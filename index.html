@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Nidhi Patil — UX Designer</title>
+  <meta name="description" content="Nidhi Patil — UX Designer creating thoughtful, human-centered experiences grounded in purpose." />
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cursor-dot"></div>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo" aria-label="Home">
+    <!-- N logo — replace src with your actual logo image -->
+    <img class="logo-svg" src="assets/images/logo.png" alt="Nidhi Patil logo" />
+  </a>
+
+  <div class="nav-links">
+    <a href="index.html" class="active">Home</a>
+    <a href="#works">Works</a>
+    <a href="pages/resume.html">Resume</a>
+  </div>
+
+  <button class="nav-burger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" role="dialog" aria-label="Navigation">
+  <a href="index.html" class="active">Home</a>
+  <a href="#works">Works</a>
+  <a href="pages/resume.html">Resume</a>
+</div>
+
+<!-- ============================================================
+     PAGE
+     ============================================================ -->
+<main class="page-body">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-body">
+      <div class="hero-heading">
+        <p>Hi, I'm Nidhi</p>
+        <p>I design experiences</p>
+        <p class="hero-line3">
+          <span>that are&nbsp;</span>
+          <span id="typing-word"
+                class="typing-word"
+                data-words="thoughtful,|human-centered,|intuitive,"
+                data-colors="#D42222|#6B7FD4|#14A62A"
+                style="color:#D42222">
+            <span class="typing-text"></span><span class="typing-caret" style="background:#D42222"></span>
+          </span>
+        </p>
+        <p>and grounded in purpose.</p>
+      </div>
+    </div>
+
+    <!-- Marquee banner -->
+    <div class="hero-banner">
+      <div class="hero-banner-track">
+        <!-- 2× for seamless loop -->
+        <span class="text">I care about the "why" behind actions</span>
+        <span class="star"><svg width="11" height="11" viewBox="0 0 18 18" fill="none"><path d="M9 0L10.2 7.8L18 9L10.2 10.2L9 18L7.8 10.2L0 9L7.8 7.8Z" fill="white"/></svg></span>
+        <span class="text">I love to observe, question and simplify</span>
+        <span class="star"><svg width="11" height="11" viewBox="0 0 18 18" fill="none"><path d="M9 0L10.2 7.8L18 9L10.2 10.2L9 18L7.8 10.2L0 9L7.8 7.8Z" fill="white"/></svg></span>
+        <span class="text">I organize chaos into meaningful flows</span>
+        <span class="star"><svg width="11" height="11" viewBox="0 0 18 18" fill="none"><path d="M9 0L10.2 7.8L18 9L10.2 10.2L9 18L7.8 10.2L0 9L7.8 7.8Z" fill="white"/></svg></span>
+        <!-- repeat -->
+        <span class="text">I care about the "why" behind actions</span>
+        <span class="star"><svg width="11" height="11" viewBox="0 0 18 18" fill="none"><path d="M9 0L10.2 7.8L18 9L10.2 10.2L9 18L7.8 10.2L0 9L7.8 7.8Z" fill="white"/></svg></span>
+        <span class="text">I love to observe, question and simplify</span>
+        <span class="star"><svg width="11" height="11" viewBox="0 0 18 18" fill="none"><path d="M9 0L10.2 7.8L18 9L10.2 10.2L9 18L7.8 10.2L0 9L7.8 7.8Z" fill="white"/></svg></span>
+        <span class="text">I organize chaos into meaningful flows</span>
+        <span class="star"><svg width="11" height="11" viewBox="0 0 18 18" fill="none"><path d="M9 0L10.2 7.8L18 9L10.2 10.2L9 18L7.8 10.2L0 9L7.8 7.8Z" fill="white"/></svg></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WORKS / PROJECTS
+       ============================================================ -->
+  <section class="section" id="works">
+    <div class="section-inner">
+      <h2 class="section-title reveal">Here's how I think through design...</h2>
+
+      <div class="projects-grid">
+
+        <!-- Project 1 — Reviving Heritage -->
+        <a href="pages/reviving-heritage.html" class="project-card reveal">
+          <img src="assets/images/revivingheritage-cover.png" alt="Reviving Heritage" />
+          <div class="project-card-info">
+            <p class="project-card-tag">UX Case Study</p>
+            <h3 class="project-card-title">Reviving Heritage</h3>
+          </div>
+        </a>
+
+        <!-- Project 2 — Anthozoa Design System -->
+        <a href="pages/anthozoa.html" class="project-card reveal">
+          <img src="assets/images/anthozoa-cover.png" alt="Anthozoa Design System" />
+          <div class="project-card-info">
+            <p class="project-card-tag">Design System</p>
+            <h3 class="project-card-title">Anthozoa Design System</h3>
+          </div>
+        </a>
+
+        <!-- Project 3 — Wedriti -->
+        <a href="pages/wedriti.html" class="project-card reveal">
+          <img src="assets/images/wedriti-cover.png" alt="Wedriti" />
+          <div class="project-card-info">
+            <p class="project-card-tag">Brand Identity &amp; Interface Design</p>
+            <h3 class="project-card-title">Wedriti</h3>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ABOUT
+       ============================================================ -->
+  <section class="section about" id="about">
+    <div class="about-inner">
+      <div>
+        <h2 class="section-title reveal">About me...</h2>
+        <div class="about-rows">
+          <div class="about-row reveal">
+            <span class="about-label">My Goal</span>
+            <p class="about-text">I want to help brands find clarity and express it through strong, thoughtful design.</p>
+          </div>
+          <div class="about-row reveal">
+            <span class="about-label">My Background</span>
+            <p class="about-text">With 2 years of experience as a Data Engineer, my curiosity gradually evolved from solving technical problems to understanding human behavior and the way people interact with systems, leading me toward UX design and human-centered thinking.</p>
+          </div>
+          <div class="about-row reveal">
+            <span class="about-label">My Approach</span>
+            <p class="about-text">I believe good design starts with empathy, asking questions, listening closely, and building experiences that feel intuitive and not just screens that look pretty.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-photo-wrap reveal">
+        <picture class="about-photo-card">
+          <source srcset="assets/images/about-polaroid.webp" type="image/webp" />
+          <img src="assets/images/about-polaroid.png" alt="Nidhi Patil" />
+        </picture>
+        <div class="about-stamp" aria-hidden="true">
+          <svg width="110" height="110" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="55" cy="55" r="47.96" stroke="var(--stamp-ink)" stroke-width="2.2" fill="none" stroke-dasharray="3.96 2.97" />
+            <circle cx="55" cy="55" r="37.95" stroke="var(--stamp-ink)" stroke-width="1.43" fill="none" />
+            <text x="55" y="46.62" text-anchor="middle" dominant-baseline="middle" class="about-stamp-text" letter-spacing="3.08">DESIGN</text>
+            <text x="55" y="56.74" text-anchor="middle" dominant-baseline="middle" class="about-stamp-text" letter-spacing="3.08">WITH</text>
+            <text x="55" y="66.86" text-anchor="middle" dominant-baseline="middle" class="about-stamp-text" letter-spacing="2.2">INTENT</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       LIFE BEYOND DESIGN — ARC CAROUSEL
+       ============================================================ -->
+  <section class="section arc-section" id="beyond">
+    <div class="section-inner">
+      <h2 class="section-title reveal">Here's my life in motion, beyond design<span class="arc-title-dots">...</span></h2>
+    </div>
+
+    <!--
+      Arc carousel — built from scratch in JS (no Framer, no library).
+      Each .arc-card below is just a static slot: a media box (JS drops
+      an <img> in here, or falls back to the pastel box if the image
+      in ARC_CONFIG.images 404s) plus a caption. All positioning,
+      motion and responsiveness is handled by the "ARC CAROUSEL"
+      block in js/main.js — see ARC_CONFIG there to tweak card count,
+      speed, direction, curve, size, etc.
+    -->
+    <div class="arc-stage">
+      <div class="arc-track">
+
+        <!-- Card 1 -->
+        <div class="arc-card">
+          <div class="arc-card-media"></div>
+          <div class="arc-card-label">
+            <p class="arc-card-sublabel">to feel small in the best way possible</p>
+            <p class="arc-card-name">Travel</p>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="arc-card">
+          <div class="arc-card-media"></div>
+          <div class="arc-card-label">
+            <p class="arc-card-sublabel">sometimes I draw for the joy of it</p>
+            <p class="arc-card-name">Illustrations</p>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="arc-card">
+          <div class="arc-card-media"></div>
+          <div class="arc-card-label">
+            <p class="arc-card-sublabel">Experimenting with things that feel satisfying</p>
+            <p class="arc-card-name">Clay &amp; Making</p>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="arc-card">
+          <div class="arc-card-media"></div>
+          <div class="arc-card-label">
+            <p class="arc-card-sublabel">Making &gt;&gt; Buying</p>
+            <p class="arc-card-name">Crafting</p>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="arc-card">
+          <div class="arc-card-media"></div>
+          <div class="arc-card-label">
+            <p class="arc-card-sublabel">help me escape my own thoughts</p>
+            <p class="arc-card-name">Books</p>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="arc-card">
+          <div class="arc-card-media"></div>
+          <div class="arc-card-label">
+            <p class="arc-card-sublabel">where my love for details started</p>
+            <p class="arc-card-name">Rangoli</p>
+          </div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="arc-card">
+          <div class="arc-card-media"></div>
+          <div class="arc-card-label">
+            <p class="arc-card-sublabel">taught me patience</p>
+            <p class="arc-card-name">Embroidery</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer" id="contact">
+    <div class="footer-inner">
+      <p class="footer-connect"><span class="star"><svg width="11" height="11" viewBox="0 0 18 18" fill="none"><path d="M9 0L10.2 7.8L18 9L10.2 10.2L9 18L7.8 10.2L0 9L7.8 7.8Z" fill="currentColor"/></svg></span>Connect</p>
+      <div class="footer-links">
+        <div class="footer-link-group">
+          <p class="footer-link-label">Behance</p>
+          <a href="https://www.behance.net/nidhipatil2" target="_blank" rel="noopener">
+            nidhipatil2 <span class="arrow">↗</span>
+          </a>
+        </div>
+        <div class="footer-link-group">
+          <p class="footer-link-label">Email</p>
+          <a href="mailto:nidhishirishpatil202@gmail.com">
+            nidhishirishpatil202@gmail.com <span class="arrow">↗</span>
+          </a>
+        </div>
+        <div class="footer-link-group">
+          <p class="footer-link-label">LinkedIn</p>
+          <a href="https://www.linkedin.com/in/nidhipatil" target="_blank" rel="noopener">
+            nidhipatil <span class="arrow">↗</span>
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-bottom-left"><span class="star"><svg width="11" height="11" viewBox="0 0 18 18" fill="none"><path d="M9 0L10.2 7.8L18 9L10.2 10.2L9 18L7.8 10.2L0 9L7.8 7.8Z" fill="currentColor"/></svg></span>Thank_you</span>
+        <span class="footer-copyright">© 2026 Nidhi</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<script src="js/main.js"></script>
+</body>
+</html>

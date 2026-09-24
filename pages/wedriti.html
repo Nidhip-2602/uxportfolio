@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Wedriti - Nidhi Patil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* Wedriti - page-only theme: maroon / rosewood / gold instead of the
+       default blue accent, plus a handful of one-off components for the
+       vision band, information architecture map, logo symbolism, colour
+       palette, patterns, card-sort tags and type/button specimens.
+       Scoped to .page-body so the shared site nav/footer keep the default
+       palette, same approach as the Reviving Heritage case study. */
+    .page-body {
+      --wd-maroon-900: #3A0E1B;
+      --wd-maroon-800: #4B1220;
+      --wd-maroon-700: #6B1F2E;
+      --wd-maroon-600: #750028;
+      --wd-pink: #C21874;
+      --wd-olive: #5C6D29;
+      --wd-navy: #0A0A5C;
+      --wd-teal: #3F8E86;
+      --wd-cream: #F1E9DA;
+      --wd-blush: #E7E0D0;
+      --wd-black: #17110F;
+    }
+
+    .page-body .cs-tag,
+    .page-body .cs-section-label,
+    .page-body .cs-stat-num,
+    .page-body .cs-numbered-item .cs-num,
+    .page-body .cs-process-eyebrow,
+    .page-body .cs-hmw-num,
+    .page-body .cs-layer-eyebrow,
+    .page-body .cs-credits-label {
+      color: var(--wd-pink);
+    }
+    .page-body .cs-body-dark { background: var(--wd-black); }
+    .page-body .cs-layer { border-color: rgba(255,255,255,0.16); }
+
+    /* ---------- Hero byline ---------- */
+    .wd-byline { font-family: var(--font-heading); font-style: italic; font-size: 20px; color: #555; margin: -20px 0 24px; }
+
+    /* ---------- Vision band ---------- */
+    .wd-band-maroon { background: var(--wd-maroon-900); }
+    .wd-band-maroon-800 { background: var(--wd-maroon-800); }
+    .wd-band-cream { background: var(--wd-cream); }
+    .wd-band-maroon .cs-body-inner,
+    .wd-band-maroon-800 .cs-body-inner { gap: 48px; }
+
+    .wd-vision-mark { position: relative; display: inline-block; margin-bottom: 18px; }
+    .wd-vision-dot { position: absolute; top: -34px; left: -6px; width: 74px; height: 74px; border-radius: 50%; background: var(--wd-pink); opacity: 0.3; z-index: 0; }
+    .wd-vision-title { position: relative; z-index: 1; font-family: var(--font-heading); font-style: italic; font-size: clamp(38px, 5vw, 56px); color: var(--wd-cream); }
+    .wd-vision-row { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    @media (max-width: 768px) { .wd-vision-row { grid-template-columns: 1fr; } }
+    .wd-vision-text { font-family: var(--font-body); font-size: 15px; line-height: 1.8; color: #ddd0c8; }
+    .wd-vision-stats { display: flex; flex-direction: column; gap: 22px; margin-top: 32px; }
+    .wd-vision-stat-num { font-family: var(--font-heading); font-size: 44px; color: var(--wd-pink); line-height: 1; }
+    .wd-vision-stat-label { font-family: var(--font-body); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #b9a99f; margin-top: 4px; line-height: 1.5; }
+    .wd-vision-copy p { font-family: var(--font-body); font-size: 15px; line-height: 1.8; color: #ddd0c8; margin-bottom: 18px; }
+    .wd-vision-copy em { font-family: var(--font-heading); font-style: italic; color: var(--wd-pink); }
+
+    /* ---------- Stakes ---------- */
+    .wd-ecosystem-row { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: start; }
+    @media (max-width: 768px) { .wd-ecosystem-row { grid-template-columns: 1fr; } }
+    .wd-statement { font-family: var(--font-heading); font-size: clamp(26px, 3.4vw, 40px); line-height: 1.3; color: var(--black); }
+    .wd-statement em { color: var(--wd-maroon-700); font-style: italic; }
+    .wd-stake-list { display: flex; flex-direction: column; }
+    .wd-stake-item { padding: 18px 0; border-top: 1px solid var(--border); }
+    .wd-stake-item:first-child { border-top: none; padding-top: 0; }
+    .wd-stake-label { font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--wd-pink); margin-bottom: 8px; }
+    .wd-stake-item p { font-size: 13px; line-height: 1.7; color: #444; }
+
+    /* ---------- IA ---------- */
+    .wd-ia { margin-top: 8px; border-radius: 6px; overflow: hidden; }
+    .wd-ia-root { background: var(--wd-maroon-700); text-align: center; padding: 22px; }
+    .wd-ia-root .wd-ia-eyebrow { color: #e7b8c9; }
+    .wd-ia-root p:last-child { font-family: var(--font-heading); font-size: 18px; color: var(--wd-cream); margin-top: 4px; }
+    .wd-ia-eyebrow { font-family: var(--font-body); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; }
+    .wd-ia-children { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: rgba(255,255,255,0.08); }
+    @media (max-width: 640px) { .wd-ia-children { grid-template-columns: 1fr 1fr; } }
+    .wd-ia-child { background: rgba(107, 31, 46, 0.55); padding: 20px; text-align: center; }
+    .wd-ia-child .wd-ia-eyebrow { color: #e7b8c9; }
+    .wd-ia-child p:last-child { font-family: var(--font-heading); font-size: 15px; color: #f2e7e0; margin-top: 4px; }
+    .wd-ia-link { margin-top: 20px; }
+    .wd-ia-link .wd-ia-eyebrow { display: block; margin-bottom: 8px; }
+    .wd-ia-link p { font-family: var(--font-body); font-size: 11px; letter-spacing: 0.03em; color: #8f8079; word-break: break-all; }
+    .wd-ia-link a { color: #8f8079; text-decoration: underline; text-underline-offset: 2px; transition: color 0.2s; }
+    .wd-ia-link a:hover { color: var(--wd-pink); }
+    .wd-ia-link a .arrow { font-size: 11px; display: inline-block; }
+
+    /* ---------- Logo explorations ---------- */
+    .wd-sketch-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+    @media (max-width: 640px) { .wd-sketch-row { grid-template-columns: 1fr; } }
+    .wd-sketch-row .cs-image-placeholder { aspect-ratio: 4/3; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); }
+    .wd-sketch-row img { width: 100%; aspect-ratio: 4/3; object-fit: contain; background: var(--wd-cream); border-radius: 8px; display: block; }
+    .wd-concept-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 28px; }
+    @media (max-width: 768px) { .wd-concept-grid { grid-template-columns: 1fr 1fr; } }
+    .wd-concept-card { background: var(--wd-cream); border-radius: 10px; overflow: hidden; }
+    .wd-concept-card .cs-image-placeholder { aspect-ratio: 1/1; background: #e6dbc8; color: #9a8b74; border-radius: 0; }
+    .wd-concept-card img { width: 100%; aspect-ratio: 1/1; object-fit: contain; background: var(--wd-cream); display: block; padding: 12px; }
+    .wd-concept-body { padding: 16px; }
+    .wd-concept-body p.wd-concept-label { font-family: var(--font-body); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--wd-maroon-700); margin-bottom: 6px; }
+    .wd-concept-body h4 { font-family: var(--font-heading); font-size: 15px; color: var(--black); margin-bottom: 6px; }
+    .wd-concept-body p.wd-concept-desc { font-size: 12px; line-height: 1.6; color: #555; }
+
+    /* ---------- Moodboard ---------- */
+    .wd-band-cream .cs-section-label { color: var(--wd-maroon-700); }
+    .wd-moodboard-row { margin-top: 28px; }
+    .wd-moodboard-row img { width: 100%; height: auto; display: block; }
+    .wd-attr-list { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+    .wd-attr-heading { font-family: var(--font-body); font-weight: 700; font-size: 15px; color: var(--black); margin-bottom: 6px; }
+    .wd-attr-pill { font-family: var(--font-body); font-size: 13px; font-weight: 500; color: var(--white); padding: 8px 20px; border-radius: 4px; }
+    .wd-attr-pill.wd-attr--navy { background: var(--wd-navy); }
+    .wd-attr-pill.wd-attr--teal { background: var(--wd-teal); }
+    .wd-attr-pill.wd-attr--pink { background: var(--wd-pink); }
+    .wd-attr-pill.wd-attr--olive { background: var(--wd-olive); }
+    .wd-logo-card { margin-top: 32px; aspect-ratio: 1600/588; background: var(--wd-maroon-900); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-family: var(--font-body); font-size: 13px; color: #b9a99f; overflow: hidden; }
+    .wd-logo-card img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+    /* ---------- Symbolism grid ---------- */
+    .wd-symbol-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 40px; margin-top: 8px; }
+    @media (max-width: 640px) { .wd-symbol-grid { grid-template-columns: 1fr; } }
+    .wd-symbol-item { display: flex; gap: 18px; align-items: flex-start; }
+    .wd-symbol-icon { flex-shrink: 0; width: 56px; height: 56px; border-radius: 8px; background: #e6dbc8; }
+    .wd-symbol-icon img { width: 100%; height: 100%; object-fit: contain; display: block; border-radius: 10px; }
+    .wd-symbol-item h4 { font-family: var(--font-body); font-weight: 700; font-size: 15px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--black); margin-bottom: 6px; }
+    .wd-symbol-item p { font-size: 13px; line-height: 1.7; color: #555; }
+
+    /* ---------- Palette ---------- */
+    .wd-gold-bar { height: 44px; border-radius: 6px; margin-top: 8px; background: linear-gradient(90deg, #E8C77E, #9C7A2E 45%, #C9A227 55%, #E9DFC4); }
+    .wd-palette-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+    @media (max-width: 640px) { .wd-palette-grid { grid-template-columns: 1fr 1fr; } }
+    .wd-swatch { min-height: 160px; padding: 16px; display: flex; align-items: flex-end; border-radius: 10px; }
+    .wd-swatch-name { font-family: var(--font-heading); font-size: 15px; color: rgba(255,255,255,0.92); }
+    .wd-swatch-hex { display: block; font-family: var(--font-body); font-size: 10px; color: rgba(255,255,255,0.55); margin-top: 2px; }
+    .wd-swatch--blush .wd-swatch-name,
+    .wd-swatch--blush .wd-swatch-hex { color: rgba(0,0,0,0.6); }
+
+    /* ---------- Patterns ---------- */
+    .wd-pattern-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+    @media (max-width: 640px) { .wd-pattern-grid { grid-template-columns: 1fr 1fr; } }
+    .wd-pattern-grid .cs-image-placeholder { aspect-ratio: 1/1; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); }
+    .wd-pattern-grid img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 10px; display: block; }
+
+    /* ---------- Mockups gallery ---------- */
+    .wd-gallery-grid { margin-top: 28px; }
+    .wd-gallery-grid img { width: 100%; height: auto; display: block; }
+
+    /* ---------- Card sort tags ---------- */
+    .wd-tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+    .wd-tag-cloud .wd-tag { font-family: var(--font-body); font-size: 11px; color: #ddd; padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.22); }
+    .wd-testing-photos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 32px; }
+    @media (max-width: 640px) { .wd-testing-photos { grid-template-columns: 1fr 1fr; } }
+    .wd-testing-photos .cs-image-placeholder { aspect-ratio: 4/3; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); }
+    .wd-testing-photos img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; display: block; }
+    .wd-italic-heading { font-family: var(--font-heading); font-style: italic; font-size: clamp(24px, 3vw, 34px); color: #b9a99f; margin-top: 40px; }
+    .wd-before-after-label { font-family: var(--font-body); font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--wd-pink); margin: 32px 0 12px; }
+    .wd-wireframe-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    @media (max-width: 640px) { .wd-wireframe-row { grid-template-columns: 1fr 1fr; } }
+    .wd-wireframe-row .cs-image-placeholder { aspect-ratio: 3/4; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); font-size: 11px; padding: 8px; text-align: center; }
+    .wd-wireframe-row figure { margin: 0; }
+    .wd-wireframe-row img { width: 100%; aspect-ratio: 3/4; object-fit: contain; background: #f4efe6; border-radius: 8px; display: block; }
+    .wd-wireframe-row figcaption { font-family: var(--font-body); font-size: 11px; color: rgba(255,255,255,0.5); text-align: center; margin-top: 8px; }
+
+    /* ---------- Type / spacing split ---------- */
+    .wd-split { display: grid; grid-template-columns: 1fr 1fr; margin-top: 8px; border-radius: 10px; overflow: hidden; }
+    @media (max-width: 768px) { .wd-split { grid-template-columns: 1fr; } }
+    .wd-split-panel { padding: 32px; }
+    .wd-split-panel--maroon { background: var(--wd-maroon-900); }
+    .wd-split-panel--cream { background: var(--wd-cream); }
+    .wd-type-row { display: grid; grid-template-columns: 1.2fr 0.8fr 0.5fr; gap: 12px; align-items: baseline; padding: 12px 0; border-top: 1px solid rgba(255,255,255,0.12); }
+    .wd-type-row:first-child { border-top: none; }
+    .wd-type-row span { font-family: var(--font-body); font-size: 12px; color: #b9a99f; }
+    .wd-type-row strong { font-family: var(--font-heading); color: var(--wd-cream); font-weight: 700; }
+    .wd-split-panel--cream .cs-image-placeholder { background: #e6dbc8; color: #9a8b74; aspect-ratio: 4/3; }
+    .wd-split-panel--cream img { width: 100%; height: auto; border-radius: 8px; display: block; }
+
+    /* ---------- Icons ---------- */
+    .wd-icon-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 28px; }
+    @media (max-width: 768px) { .wd-icon-grid { grid-template-columns: 1fr; } }
+    .wd-icon-spec h4 { font-family: var(--font-body); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 14px; }
+    .wd-spec-image { max-width: 100%; height: auto; margin-top: 16px; display: block; }
+    .wd-spec-image--sm { max-width: min(100%, 340px); }
+    .wd-icon-spec-row { display: grid; grid-template-columns: 60px 1fr 1fr; gap: 10px; align-items: center; margin-bottom: 8px; }
+    .wd-icon-spec-row span.wd-icon-spec-state { font-size: 11px; color: var(--grey); }
+    .wd-icon-box { width: 30px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+    .wd-icon-box svg { width: 16px; height: 16px; }
+    .wd-icon-box--filled { background: var(--wd-maroon-700); color: var(--white); }
+    .wd-icon-box--outline { border: 1.5px solid var(--wd-maroon-700); color: var(--wd-maroon-700); }
+    .wd-icon-box--hover.wd-icon-box--filled { background: #c98ba0; }
+    .wd-icon-box--hover.wd-icon-box--outline { border-color: #c98ba0; color: #c98ba0; }
+    .wd-icon-box--disabled.wd-icon-box--filled { background: #d8d8d8; }
+    .wd-icon-box--disabled.wd-icon-box--outline { border-color: #d8d8d8; color: #ccc; }
+    .wd-other-icons { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 28px; }
+    .wd-other-icons svg { width: 20px; height: 20px; color: var(--wd-maroon-700); }
+
+    /* ---------- Buttons ---------- */
+    .wd-btn { font-family: var(--font-body); font-weight: 600; border-radius: 6px; cursor: none; border: 1.5px solid transparent; display: inline-flex; align-items: center; gap: 8px; }
+    .wd-btn--solid { background: var(--wd-maroon-700); color: var(--white); }
+    .wd-btn--solid:hover { background: #8a3a4c; }
+    .wd-btn--outline { background: transparent; border-color: var(--wd-maroon-700); color: var(--wd-maroon-700); }
+    .wd-btn--outline:hover { background: #f6e9ec; }
+    .wd-btn--text { background: transparent; color: var(--wd-maroon-700); padding: 0 !important; }
+    .wd-btn--text:hover { color: #8a3a4c; }
+    .wd-btn:disabled { background: #e5e5e5; border-color: #e5e5e5; color: #aaa; cursor: not-allowed; }
+    .wd-btn--sm { padding: 8px 18px; font-size: 12px; }
+    .wd-btn--md { padding: 12px 26px; font-size: 14px; }
+    .wd-btn--lg { padding: 16px 36px; font-size: 16px; }
+    .wd-scale-row { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; margin-top: 28px; }
+    .wd-scale-item { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .wd-scale-item span { font-family: var(--font-body); font-size: 11px; color: var(--grey); }
+    .wd-states-table { margin-top: 28px; overflow-x: auto; }
+    .wd-states-row { display: grid; grid-template-columns: 90px repeat(4, 1fr); gap: 16px; align-items: center; padding: 16px 0; border-top: 1px solid var(--border); }
+    .wd-states-row:first-child { border-top: none; padding-top: 0; }
+    .wd-states-row span.wd-states-label { font-family: var(--font-body); font-size: 12px; color: var(--grey); }
+
+    /* ---------- Scenarios ---------- */
+    .wd-scenario-block { position: relative; margin-top: 40px; padding-left: 76px; }
+    @media (max-width: 640px) { .wd-scenario-block { padding-left: 0; padding-top: 60px; } }
+    .wd-scenario-dot { position: absolute; top: -18px; left: 0; width: 92px; height: 92px; border-radius: 50%; background: var(--wd-pink); opacity: 0.3; z-index: 0; }
+    @media (max-width: 640px) { .wd-scenario-dot { left: 0; top: 0; } }
+    .wd-scenario-text { position: relative; z-index: 1; font-family: var(--font-body); font-size: 15px; line-height: 1.9; color: #cbb9b0; }
+    .wd-scenario-text strong { color: var(--wd-cream); font-weight: 700; }
+    .wd-scenario-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 36px; }
+    @media (max-width: 768px) { .wd-scenario-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .wd-scenario-grid { grid-template-columns: 1fr; } }
+    .wd-scenario-grid .cs-image-placeholder,
+    .wd-wireframe-showcase .cs-image-placeholder { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.45); }
+    .wd-scenario-grid .cs-image-placeholder { aspect-ratio: 16/10; }
+    .wd-scenario-grid img { width: 100%; height: auto; min-width: 0; border-radius: 8px; display: block; }
+
+    /* ---------- Other wireframes ---------- */
+    .wd-wireframe-showcase { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+    @media (max-width: 640px) { .wd-wireframe-showcase { grid-template-columns: 1fr; } }
+    .wd-wf-col { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+    .wd-wf-label { font-family: var(--font-body); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #8f8079; margin-bottom: 8px; text-align: right; }
+    .wd-wireframe-showcase .cs-image-placeholder--tall { aspect-ratio: 3/4; }
+    .wd-wireframe-showcase .cs-image-placeholder--wide { aspect-ratio: 16/10; }
+    .wd-wireframe-showcase img { width: 100%; height: auto; border-radius: 8px; display: block; }
+
+    /* ---------- What this process taught ---------- */
+    .wd-taught-row { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; margin-top: 8px; }
+    @media (max-width: 768px) { .wd-taught-row { grid-template-columns: 1fr; } }
+    .wd-taught-item { padding: 18px 0; border-top: 1px solid rgba(255,255,255,0.15); }
+    .wd-taught-item:first-child { border-top: none; padding-top: 0; }
+    .wd-taught-label { font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--wd-pink); margin-bottom: 8px; }
+    .wd-taught-item p { font-size: 14px; line-height: 1.7; color: #ddd0c8; }
+    .wd-skills-label { font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #b9a99f; margin-bottom: 24px; }
+    .wd-skill-row { margin-bottom: 18px; }
+    .wd-skill-row span { display: block; font-family: var(--font-body); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #cbb9b0; margin-bottom: 8px; }
+    .wd-skill-track { height: 2px; background: rgba(255,255,255,0.15); }
+    .wd-skill-fill { height: 100%; background: var(--wd-pink); }
+
+    /* ---------- Closing ---------- */
+    .wd-thankyou { font-family: var(--font-heading); font-size: clamp(40px, 6vw, 72px); color: var(--wd-cream); font-weight: 400; }
+    .wd-thankyou em { font-style: italic; color: var(--wd-pink); }
+  </style>
+</head>
+<body>
+
+<div id="cursor-dot"></div>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo" aria-label="Home">
+    <img class="logo-svg" src="../assets/images/logo.png" alt="Nidhi Patil logo" />
+  </a>
+  <div class="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="../index.html#works" class="active">Works</a>
+    <a href="resume.html">Resume</a>
+  </div>
+  <a href="../index.html#works" class="nav-back">← Back to Works</a>
+  <button class="nav-burger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" role="dialog">
+  <a href="../index.html">Home</a>
+  <a href="../index.html#works">Works</a>
+  <a href="resume.html">Resume</a>
+  <a href="../index.html#works">← Back to Works</a>
+</div>
+
+<main class="page-body">
+
+  <!-- HERO -->
+  <div class="cs-hero">
+    <div class="cs-hero-inner">
+      <p class="cs-tag">Brand Identity Kit &amp; Interface Design</p>
+      <h1 class="cs-title">Wedriti</h1>
+      <p class="wd-byline">by RANG.</p>
+      <p class="cs-section-text" style="margin-bottom:32px;font-style:italic;max-width:640px;">Creating a seamless way for international travelers to discover, prepare for, and immerse themselves in the colours, traditions, and celebrations of Indian weddings.</p>
+
+      <img class="cs-cover" src="../assets/images/wedriti-heroimg.png" alt="Scattered Wedriti by Rang business cards" loading="lazy" decoding="async" />
+
+      <div class="cs-meta cs-meta--5">
+        <div class="cs-meta-item">
+          <p class="cs-meta-label">Role</p>
+          <p class="cs-meta-val">Brand Strategy &amp; Visual Designer</p>
+        </div>
+        <div class="cs-meta-item">
+          <p class="cs-meta-label">Team</p>
+          <p class="cs-meta-val">4 designers + 1 faculty mentor</p>
+        </div>
+        <div class="cs-meta-item">
+          <p class="cs-meta-label">Duration</p>
+          <p class="cs-meta-val">2 weeks · Sem 2, 2026</p>
+        </div>
+        <div class="cs-meta-item">
+          <p class="cs-meta-label">Methods</p>
+          <p class="cs-meta-val">User research, competitor analysis, brand strategy, visual identity &amp; UX/UI design</p>
+        </div>
+        <div class="cs-meta-item">
+          <p class="cs-meta-label">Domain</p>
+          <p class="cs-meta-val">Travel &amp; tourism, cultural experiences, wedding tourism</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VISION -->
+  <div class="cs-body wd-band-maroon">
+    <div class="cs-body-inner">
+      <div class="reveal wd-vision-row">
+        <div>
+          <div class="wd-vision-mark">
+            <span class="wd-vision-dot" aria-hidden="true"></span>
+            <h2 class="wd-vision-title">Vision</h2>
+          </div>
+          <p class="wd-vision-text">To create a trusted platform for authentic Indian wedding experiences, connecting global guests with local communities, artisans, and cultural traditions while opening doors to cultural participation.</p>
+          <div class="wd-vision-stats">
+            <div>
+              <div class="wd-vision-stat-num">87M</div>
+              <p class="wd-vision-stat-label">International tourists visit India annually</p>
+            </div>
+            <div>
+              <div class="wd-vision-stat-num">3M</div>
+              <p class="wd-vision-stat-label">Weddings happen every year</p>
+            </div>
+          </div>
+        </div>
+        <div class="wd-vision-copy">
+          <p>Indian weddings are among the most elaborate cultural events on the planet: multi-day rituals, dozens of ceremonies, hundreds of relationships converging in sacred choreography.</p>
+          <p>International guests want to witness this. Host families are flattered. But no platform exists to make this exchange safe, respectful, or meaningful.</p>
+          <p><em>This is the tension Wedriti was designed to navigate.</em></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EVERY WEDDING IS A LIVING ECOSYSTEM -->
+  <div class="cs-body">
+    <div class="cs-body-inner">
+      <div class="reveal wd-ecosystem-row">
+        <p class="wd-statement">Every wedding is a <em>living cultural ecosystem.</em><br>Not an event.<br>Not a product.</p>
+        <div class="wd-stake-list">
+          <div class="wd-stake-item">
+            <p class="wd-stake-label">Human stakes</p>
+            <p>A host family opens their most intimate spaces. A bride's rituals, handed down across generations, are now performed in front of strangers with cameras.</p>
+          </div>
+          <div class="wd-stake-item">
+            <p class="wd-stake-label">Cultural stakes</p>
+            <p>Wedding ceremonies encode regional identity, caste customs, religious traditions, and family memory. Exposure without context strips them of meaning.</p>
+          </div>
+          <div class="wd-stake-item">
+            <p class="wd-stake-label">Economic stakes</p>
+            <p>Local artisans, cultural guides, attire partners, and mobility providers hold deep knowledge, and fragile livelihoods. A platform must serve them, not extract from them.</p>
+          </div>
+          <div class="wd-stake-item">
+            <p class="wd-stake-label">Trust stakes</p>
+            <p>A guest who misunderstands a ritual can cause irreversible offence. A host who feels objectified will never participate again. Trust is the entire product.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICE DESIGN / IA -->
+  <div class="cs-body cs-body-dark">
+    <div class="cs-body-inner">
+      <div class="reveal">
+        <h2 class="cs-section-heading" style="color:var(--wd-cream);font-size:clamp(26px,3.4vw,40px);">Service design means thinking in <em style="font-style:italic;color:var(--wd-pink);">relationships, not screens.</em></h2>
+
+        <p class="wd-ia-eyebrow" style="color:var(--wd-pink);margin-top:36px;">Information architecture &middot; Platform structure</p>
+        <div class="wd-ia">
+          <div class="wd-ia-root">
+            <p class="wd-ia-eyebrow">Platform root</p>
+            <p>Wedriti by Rang</p>
+          </div>
+          <div class="wd-ia-children">
+            <div class="wd-ia-child">
+              <p class="wd-ia-eyebrow">Guest portal</p>
+              <p>Discover &amp; Book</p>
+            </div>
+            <div class="wd-ia-child">
+              <p class="wd-ia-eyebrow">Host portal</p>
+              <p>List &amp; Manage</p>
+            </div>
+            <div class="wd-ia-child">
+              <p class="wd-ia-eyebrow">Vendors hub</p>
+              <p>Attire &amp; Mobility</p>
+            </div>
+            <div class="wd-ia-child">
+              <p class="wd-ia-eyebrow">Trust layer</p>
+              <p>Verify &amp; Protect</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="wd-ia-link">
+          <p class="wd-ia-eyebrow" style="color:var(--wd-pink);">Link to detailed IA</p>
+          <p><a href="https://www.figma.com/board/5N2tceINJ98G8VxyK9Cpeg/WEDRITI-IA?node-id=163-2254&t=VcbRBkbp2HlWlEam-0" target="_blank" rel="noopener">figma.com/board/WEDRITI-IA <span class="arrow">↗</span></a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPLORATIONS - LOGO -->
+  <div class="cs-body wd-band-maroon-800">
+    <div class="cs-body-inner">
+      <div class="reveal">
+        <h2 class="cs-section-heading" style="color:var(--wd-cream);">Explorations - Logo</h2>
+
+        <div class="wd-sketch-row">
+          <!-- Replace each div below with an <img> of a sketchbook exploration page -->
+          <img src="../assets/images/wedriti-sketchbook%20page%201.png" alt="Sketchbook page: palace arch and kalash motifs" loading="lazy" decoding="async" />
+          <img src="../assets/images/wedriti-sketchbook%20page%202.png" alt="Sketchbook page: lotus, flame and havan motifs" loading="lazy" decoding="async" />
+          <img src="../assets/images/wedriti-sketchbook%20page%203.png" alt="Sketchbook page: W lettermark and refinements" loading="lazy" decoding="async" />
+        </div>
+
+        <div class="wd-concept-grid">
+          <div class="wd-concept-card">
+            <img src="../assets/images/wedriti-palace%20arch.png" alt="Palace arch concept mark" loading="lazy" decoding="async" />
+            <div class="wd-concept-body">
+              <p class="wd-concept-label">Direction 01</p>
+              <h4>Palace arch</h4>
+              <p class="wd-concept-desc">Arches recall Rajasthan's palaces for destination weddings; the red dot is a bride's sindoor, folded hands read as namaste hospitality.</p>
+            </div>
+          </div>
+          <div class="wd-concept-card">
+            <img src="../assets/images/wedriti-flame%20mark.png" alt="Divine ritual flame concept mark" loading="lazy" decoding="async" />
+            <div class="wd-concept-body">
+              <p class="wd-concept-label">Direction 02</p>
+              <h4>Divine ritual flame</h4>
+              <p class="wd-concept-desc">A kalash leaf and lotus rise from a sacred havan platform, the auspicious flame that witnesses every ceremony.</p>
+            </div>
+          </div>
+          <div class="wd-concept-card">
+            <img src="../assets/images/wedriti-w%20mark.png" alt="W lettermark concept mark" loading="lazy" decoding="async" />
+            <div class="wd-concept-body">
+              <p class="wd-concept-label">Direction 03</p>
+              <h4>"W" initial</h4>
+              <p class="wd-concept-desc">W for Wedriti, the name of the business, with folded hands woven into the negative space to signal hospitality.</p>
+            </div>
+          </div>
+          <div class="wd-concept-card">
+            <img src="../assets/images/wedriti-final%20mark.png" alt="Final Wedriti logo mark" loading="lazy" decoding="async" />
+            <div class="wd-concept-body">
+              <p class="wd-concept-label">Selected</p>
+              <h4>Final mark</h4>
+              <p class="wd-concept-desc">The lettermark and lotus flame merge into a single symbol, carried through as the brand's primary mark.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOODBOARD -->
+  <div class="cs-body wd-band-cream">
+    <div class="cs-body-inner">
+      <div class="reveal">
+        <p class="cs-section-label">Moodboard</p>
+        <h2 class="cs-section-heading" style="font-style:italic;">Moodboard</h2>
+        <p class="cs-section-text">Every element of the Wedriti identity system is derived from cultural symbols, each carrying meaning before it carries aesthetics.</p>
+
+        <div class="wd-moodboard-row">
+          <img src="../assets/images/wedriti-moodboard.png" alt="Moodboard collage of jewellery, mehendi, brass, fire and textiles, with brand attribute tags: Ritualistic, Curated, Authentic Experience, Cultural" loading="lazy" decoding="async" />
+        </div>
+
+        <div class="wd-logo-card">
+          <img src="../assets/images/wedriti-logo.png" alt="Wedriti by Rang gold wordmark" loading="lazy" decoding="async" />
+        </div>
+      </div>
+
+      <!-- LOGO SYMBOLISM -->
+      <div class="reveal">
+        <div class="wd-symbol-grid">
+          <div class="wd-symbol-item">
+            <div class="wd-symbol-icon"><img src="../assets/images/wedriti-lotus.png" alt="Lotus icon" loading="lazy" decoding="async" /></div>
+            <div>
+              <h4>Lotus</h4>
+              <p>The lotus is deeply rooted in Indian culture, symbolizing purity, sacredness, and divine beginnings.</p>
+            </div>
+          </div>
+          <div class="wd-symbol-item">
+            <div class="wd-symbol-icon"><img src="../assets/images/wedriti-w.png" alt="W initial icon" loading="lazy" decoding="async" /></div>
+            <div>
+              <h4>"W" initial</h4>
+              <p>The "W" formed within the lotus petals represents the initial of our brand name, Wedriti, subtly integrated into the logo design.</p>
+            </div>
+          </div>
+          <div class="wd-symbol-item">
+            <div class="wd-symbol-icon"><img src="../assets/images/wedriti-fire.png" alt="Fire icon" loading="lazy" decoding="async" /></div>
+            <div>
+              <h4>Fire</h4>
+              <p>In Indian weddings, fire (Agni) is a witness to the marriage. This directly connects the brand to authentic rituals, not just celebration aesthetics.</p>
+            </div>
+          </div>
+          <div class="wd-symbol-item">
+            <div class="wd-symbol-icon"><img src="../assets/images/wedriti-%20star.png" alt="Star icon" loading="lazy" decoding="async" /></div>
+            <div>
+              <h4>Star</h4>
+              <p>The star in our logo symbolises celebration, representing joy and togetherness, weddings as moments of shared happiness and meaningful milestones.</p>
+            </div>
+          </div>
+        </div>
+        <p class="wd-statement" style="margin-top:40px;">The visual identity is not decoration.<br>It is the promise made visible.</p>
+      </div>
+
+      <!-- COLOUR PALETTE -->
+      <div class="reveal">
+        <p class="cs-section-label">Colour palette</p>
+        <div class="wd-gold-bar"></div>
+        <div class="wd-palette-grid">
+          <div class="wd-swatch" style="background:#48131F;"><div><span class="wd-swatch-name">Night Bordeaux</span><span class="wd-swatch-hex">#48131F</span></div></div>
+          <div class="wd-swatch" style="background:#750028;"><div><span class="wd-swatch-name">Dark Amaranth</span><span class="wd-swatch-hex">#750028</span></div></div>
+          <div class="wd-swatch" style="background:#BC0C6B;"><div><span class="wd-swatch-name">Rosewood</span><span class="wd-swatch-hex">#BC0C6B</span></div></div>
+          <div class="wd-swatch" style="background:#5C6D29;"><div><span class="wd-swatch-name">Olive Leaf</span><span class="wd-swatch-hex">#5C6D29</span></div></div>
+          <div class="wd-swatch" style="background:#060660;"><div><span class="wd-swatch-name">Deep Twilight</span><span class="wd-swatch-hex">#060660</span></div></div>
+          <div class="wd-swatch wd-swatch--blush" style="background:#E7E0D0;"><div><span class="wd-swatch-name">Powder Blush</span><span class="wd-swatch-hex">#E7E0D0</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BRAND PATTERNS -->
+  <div class="cs-body wd-band-maroon-800">
+    <div class="cs-body-inner">
+      <div class="reveal">
+        <h2 class="cs-section-heading" style="color:var(--wd-cream);">Brand Patterns</h2>
+        <div class="wd-pattern-grid">
+          <img src="../assets/images/wedriti-brandpattern1.png" alt="Lotus tile pattern, blush on cream" loading="lazy" decoding="async" />
+          <img src="../assets/images/wedriti-brandpattern2.png" alt="Lotus tile pattern, blush on maroon" loading="lazy" decoding="async" />
+          <img src="../assets/images/wedriti-brandpattern3.png" alt="Petal drop tile pattern, maroon on cream" loading="lazy" decoding="async" />
+          <img src="../assets/images/wedriti-brandpattern6.png" alt="Lotus column tile pattern, maroon on cream" loading="lazy" decoding="async" />
+          <img src="../assets/images/wedriti-brandpattern4.png" alt="Scallop lattice tile pattern, maroon on cream" loading="lazy" decoding="async" />
+          <img src="../assets/images/wedriti-brandpattern5.png" alt="Lotus arch tile pattern, maroon on cream" loading="lazy" decoding="async" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOCKUPS -->
+  <div class="cs-body">
+    <div class="cs-body-inner">
+      <div class="reveal">
+        <h2 class="cs-section-heading" style="font-style:italic;">Mockups</h2>
+        <div class="wd-gallery-grid">
+          <img src="../assets/images/wedriti-mockups.png" alt="Wedriti mockups: lapel pin, guest wristband cards, foil sticker seal, guest tag and water bottle label, gift bag, and velvet potli favours" loading="lazy" decoding="async" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD SORT / WIREFRAMES -->
+  <div class="cs-body cs-body-dark">
+    <div class="cs-body-inner">
+      <div class="reveal">
+        <p class="cs-section-label">Card sort output &middot; user mental models (n=4 participants)</p>
+        <div class="wd-tag-cloud">
+          <span class="wd-tag">Book an experience</span>
+          <span class="wd-tag">Choose a ceremony</span>
+          <span class="wd-tag">Select attire</span>
+          <span class="wd-tag">Cultural briefing</span>
+          <span class="wd-tag">Meet the family</span>
+          <span class="wd-tag">Community connection</span>
+          <span class="wd-tag">Host profile</span>
+          <span class="wd-tag">Safety protocols</span>
+          <span class="wd-tag">Privacy controls</span>
+          <span class="wd-tag">Trust verification</span>
+          <span class="wd-tag">Cultural consent</span>
+          <span class="wd-tag">Post-experience reflection</span>
+          <span class="wd-tag">Transport logistics</span>
+          <span class="wd-tag">Cultural journal</span>
+          <span class="wd-tag">Local artisans</span>
+          <span class="wd-tag">Incident reporting</span>
+          <span class="wd-tag">Wedding calendar</span>
+          <span class="wd-tag">Learning resources</span>
+          <span class="wd-tag">Guide rating</span>
+          <span class="wd-tag">Photo ethics</span>
+        </div>
+
+        <div class="wd-testing-photos">
+          <img src="../assets/images/wedriti-cardsort1.png" alt="Card sort session" loading="lazy" decoding="async" />
+          <img src="../assets/images/wedriti-cardsort2.png" alt="Clustered card sort board" loading="lazy" decoding="async" />
+          <img src="../assets/images/wedriti-cardsort3.png" alt="Participants reviewing cards" loading="lazy" decoding="async" />
+          <img src="../assets/images/wedriti-cardsort4.png" alt="Group discussion" loading="lazy" decoding="async" />
+        </div>
+
+        <p class="wd-italic-heading">Paper Wireframes and User testing</p>
+
+        <p class="wd-before-after-label">Before</p>
+        <div class="wd-wireframe-row">
+          <figure><img src="../assets/images/wedriti-wireframe%20before1.png" alt="Before: home, explore weddings" loading="lazy" decoding="async" /><figcaption>Home &middot; explore weddings</figcaption></figure>
+          <figure><img src="../assets/images/wedriti-wireframe%20before2.png" alt="Before: become a host form" loading="lazy" decoding="async" /><figcaption>Become a host form</figcaption></figure>
+          <figure><img src="../assets/images/wedriti-wireframe%20before3.png" alt="Before: verification upload" loading="lazy" decoding="async" /><figcaption>Verification upload</figcaption></figure>
+          <figure><img src="../assets/images/wedriti-wireframe%20before4.png" alt="Before: my events, wedding detail" loading="lazy" decoding="async" /><figcaption>My events &middot; wedding detail</figcaption></figure>
+        </div>
+
+        <p class="wd-before-after-label">After</p>
+        <div class="wd-wireframe-row">
+          <figure><img src="../assets/images/wedriti-wireframe%20after1.png" alt="After: home, guest, vendor and host entry" loading="lazy" decoding="async" /><figcaption>Home &middot; guest / vendor / host entry</figcaption></figure>
+          <figure><img src="../assets/images/wedriti-wireframe%20after2.png" alt="After: vendor category selection" loading="lazy" decoding="async" /><figcaption>Vendor category selection</figcaption></figure>
+          <figure><img src="../assets/images/wedriti-wireframe%20after3.png" alt="After: personal details and verification" loading="lazy" decoding="async" /><figcaption>Personal details &amp; verification</figcaption></figure>
+          <figure><img src="../assets/images/wedriti-wireframe%20after4.png" alt="After: upcoming wedding schedule" loading="lazy" decoding="async" /><figcaption>Upcoming wedding schedule</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPOGRAPHY / SPACING -->
+  <div class="cs-body">
+    <div class="cs-body-inner">
+      <div class="reveal">
+        <h2 class="cs-section-heading" style="font-style:italic;">Typography, spacing, icons and buttons</h2>
+        <div class="wd-split">
+          <div class="wd-split-panel wd-split-panel--maroon">
+            <p class="wd-ia-eyebrow" style="color:var(--wd-pink);margin-bottom:12px;">Type hierarchy</p>
+            <div class="wd-type-row"><strong>H1 Headline</strong><span>Bold</span><span>40</span></div>
+            <div class="wd-type-row"><strong>H2 Headline</strong><span>Regular</span><span>28</span></div>
+            <div class="wd-type-row"><strong>H3 Headline</strong><span>Bold</span><span>20</span></div>
+            <div class="wd-type-row"><strong>B1 Body</strong><span>Bold</span><span>18</span></div>
+            <div class="wd-type-row"><strong>B2 Body</strong><span>Regular</span><span>16</span></div>
+            <div class="wd-type-row"><strong>B3 Body</strong><span>Regular</span><span>14</span></div>
+            <div class="wd-type-row"><strong>C1 Caption</strong><span>Regular</span><span>12</span></div>
+            <div class="wd-type-row"><strong>C2 Caption</strong><span>Regular</span><span>10</span></div>
+          </div>
+          <div class="wd-split-panel wd-split-panel--cream">
+            <p class="cs-section-label" style="margin-bottom:12px;">Layout grid</p>
+            <img src="../assets/images/wedriti-layout%20grid.png" alt="Layout grid: column, margin and gutter spec" loading="lazy" decoding="async" />
+          </div>
+        </div>
+      </div>
+
+      <!-- ICONS -->
+      <div class="reveal">
+        <p class="cs-section-label">Icons</p>
+        <img class="wd-spec-image wd-spec-image--sm" src="../assets/images/wedriti-icon%20states.png" alt="Icon states: Solid, Outline and Standard across Default, Hover and Disabled" loading="lazy" decoding="async" />
+      </div>
+
+      <!-- BUTTONS -->
+      <div class="reveal">
+        <p class="cs-section-label">Buttons scale</p>
+        <img class="wd-spec-image" src="../assets/images/wedriti-button%20scale.png" alt="Button scale: Small, Medium, Large and Icon button dimensions" loading="lazy" decoding="async" />
+
+        <p class="cs-section-label" style="margin-top:44px;">Button states</p>
+        <img class="wd-spec-image" src="../assets/images/wedriti-button%20states.png" alt="Button states: Solid, Outline, Text and Right icon across Default, Hover and Disabled" loading="lazy" decoding="async" />
+      </div>
+    </div>
+  </div>
+
+  <!-- USER SCENARIOS / HIGH FIDELITY WIREFRAMES -->
+  <div class="cs-body cs-body-dark">
+    <div class="cs-body-inner">
+      <div class="reveal">
+        <h2 class="cs-section-heading" style="color:var(--wd-cream);">User Scenarios and <em style="font-style:italic;color:var(--wd-pink);">High fidelity wireframes</em></h2>
+
+        <div class="wd-scenario-block">
+          <span class="wd-scenario-dot" aria-hidden="true"></span>
+          <p class="wd-scenario-text">Meera Sajane, a <strong>cultural guide</strong> who has joined Wedriti as a vendor few months ago, logs into her <strong>dashboard</strong> to begin managing her services on the platform. On the Dashboard, she quickly reviews her upcoming weddings, new booking requests, ratings, and a snapshot of her earnings to understand her current performance. She then moves to the Weddings section to check detailed client requests, reviews event dates and locations, and accepts a suitable booking, which instantly reflects in her Schedule with clear timelines and venue details. After the event, Meera visits the Feedback page to read client reviews and monitor her ratings, updates her Profile to refine her bio and availability, and finally checks her Income Statement to track completed events and payouts, helping her stay organized while steadily building her presence on Wedriti.</p>
+        </div>
+
+        <div class="wd-scenario-grid">
+          <img src="../assets/images/wedriti-dashboard1.png" alt="Dashboard: upcoming weddings, requests and earnings" loading="lazy" decoding="async" />
+          <img src="../assets/images/wedriti-dashboard2.png" alt="Wedding requests: confirm or ignore" loading="lazy" decoding="async" />
+          <img src="../assets/images/wedriti-dashboard3.png" alt="Your schedule: assigned weddings" loading="lazy" decoding="async" />
+          <img src="../assets/images/wedriti-dashboard4.png" alt="Feedback: guest ratings and reviews" loading="lazy" decoding="async" />
+          <img src="../assets/images/wedriti-dashboard5.png" alt="Profile: bio, availability and bank details" loading="lazy" decoding="async" />
+          <img src="../assets/images/wedriti-dashboard6.png" alt="Income statement: payouts by event" loading="lazy" decoding="async" />
+        </div>
+      </div>
+
+      <!-- OTHER MAIN WIREFRAMES -->
+      <div class="reveal">
+        <h2 class="cs-section-heading" style="color:var(--wd-cream);">Other main <em style="font-style:italic;color:var(--wd-pink);">High fidelity wireframes</em></h2>
+
+        <div class="wd-wireframe-showcase">
+          <div class="wd-wf-col">
+            <p class="wd-wf-label">Homepage</p>
+            <img src="../assets/images/wedriti-homepage.png" alt="Homepage: hero, about, featured weddings and testimonials" loading="lazy" decoding="async" />
+          </div>
+          <div class="wd-wf-col">
+            <p class="wd-wf-label">Rent an attire tab</p>
+            <img src="../assets/images/wedriti-rent%20an%20attire.png" alt="Rent an attire: filters, occasions and attire types" loading="lazy" decoding="async" />
+            <p class="wd-wf-label" style="margin-top:4px;">Services tab</p>
+            <img src="../assets/images/wedriti-services.png" alt="Services: attire, stay, commute and cultural guide" loading="lazy" decoding="async" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT THIS PROCESS TAUGHT -->
+  <div class="cs-body wd-band-maroon-800">
+    <div class="cs-body-inner">
+      <div class="reveal">
+        <h2 class="cs-section-heading" style="color:var(--wd-cream);">What this process <em style="font-style:italic;color:var(--wd-pink);">taught.</em></h2>
+
+        <div class="wd-taught-row">
+          <div>
+            <div class="wd-taught-item">
+              <p class="wd-taught-label">On complexity</p>
+              <p>A system with seven stakeholder groups is not one design problem. It is seven problems that must solve each other. Service design taught me to think in ecosystems, not interfaces.</p>
+            </div>
+            <div class="wd-taught-item">
+              <p class="wd-taught-label">On brand</p>
+              <p>Brand identity built on cultural symbolism cannot be decorative. Every visual decision must be justified by meaning. Aesthetic choices are ethical choices.</p>
+            </div>
+            <div class="wd-taught-item">
+              <p class="wd-taught-label">On trust</p>
+              <p>The most important design decision on this project was invisible: the privacy control architecture (packages) that gives host families sovereign control over their experience.</p>
+            </div>
+          </div>
+          <div>
+            <p class="wd-skills-label">Skills applied &amp; developed</p>
+            <div class="wd-skill-row"><span>Brand strategy</span><div class="wd-skill-track"><div class="wd-skill-fill" style="width:94%;"></div></div></div>
+            <div class="wd-skill-row"><span>Visual identity</span><div class="wd-skill-track"><div class="wd-skill-fill" style="width:82%;"></div></div></div>
+            <div class="wd-skill-row"><span>Service design</span><div class="wd-skill-track"><div class="wd-skill-fill" style="width:90%;"></div></div></div>
+            <div class="wd-skill-row"><span>Information architecture</span><div class="wd-skill-track"><div class="wd-skill-fill" style="width:92%;"></div></div></div>
+            <div class="wd-skill-row"><span>User research</span><div class="wd-skill-track"><div class="wd-skill-fill" style="width:86%;"></div></div></div>
+            <div class="wd-skill-row"><span>UX design (multi-role)</span><div class="wd-skill-track"><div class="wd-skill-fill" style="width:84%;"></div></div></div>
+            <div class="wd-skill-row"><span>Cultural sensitivity</span><div class="wd-skill-track"><div class="wd-skill-fill" style="width:95%;"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THANK YOU -->
+  <div class="cs-body cs-body-dark">
+    <div class="cs-body-inner">
+      <div class="reveal">
+        <h2 class="wd-thankyou">Thank <em>You</em></h2>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <p class="footer-connect">Connect</p>
+    <div class="footer-links">
+      <div class="footer-link-group">
+        <p class="footer-link-label">Behance</p>
+        <a href="https://www.behance.net/nidhipatil2" target="_blank" rel="noopener">nidhipatil2 <span class="arrow">↗</span></a>
+      </div>
+      <div class="footer-link-group">
+        <p class="footer-link-label">Email</p>
+        <a href="mailto:nidhishirishpatil202@gmail.com">nidhishirishpatil202@gmail.com <span class="arrow">↗</span></a>
+      </div>
+      <div class="footer-link-group">
+        <p class="footer-link-label">LinkedIn</p>
+        <a href="https://www.linkedin.com/in/nidhipatil" target="_blank" rel="noopener">nidhipatil <span class="arrow">↗</span></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-bottom-left">Thank_you</span>
+      <span class="footer-copyright">© 2026 Nidhi</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

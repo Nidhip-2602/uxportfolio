@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Reviving Heritage · Nidhi Patil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* Reviving Heritage — page-only accent swap: blue -> maroon, dark sections -> warm gold.
+       Scoped to .page-body so the shared site nav/footer keep the default palette. */
+    .page-body .cs-section-label,
+    .page-body .cs-stat-num,
+    .page-body .cs-numbered-item .cs-num,
+    .page-body .cs-process-eyebrow,
+    .page-body .cs-observation-num,
+    .page-body .cs-callout-label,
+    .page-body .cs-persona-role,
+    .page-body .cs-hmw-num,
+    .page-body .cs-concept-label,
+    .page-body .cs-reflection-item .cs-reflection-num,
+    .page-body .cs-journey-titles .cs-eyebrow,
+    .page-body .cs-layer-eyebrow,
+    .page-body .cs-credits-label,
+    .page-body .cs-insight-row .cs-arrow-col {
+      color: #6B1F2E;
+    }
+    .page-body .cs-bar-fill { background: #6B1F2E; }
+    .page-body .cs-pull-quote em { color: #5C3A21; }
+
+    .page-body .cs-body-dark,
+    .page-body .cs-outcome-strip {
+      background: rgba(214, 197, 148, 0.4);
+    }
+    .page-body .cs-outcome-strip { color: #453824; }
+    .page-body .cs-body-dark .cs-section-text,
+    .page-body .cs-body-dark .cs-layer p,
+    .page-body .cs-body-dark .cs-insight-row .cs-insight-text,
+    .page-body .cs-body-dark .cs-insight-row .cs-response-text,
+    .page-body .cs-credits-row p {
+      color: #453824;
+    }
+    .page-body .cs-body-dark .cs-section-heading,
+    .page-body .cs-body-dark .cs-pull-quote,
+    .page-body .cs-body-dark .cs-layer h3,
+    .page-body .cs-body-dark .cs-insight-row .cs-insight-text em {
+      color: #1F1F1F;
+    }
+    .page-body .cs-body-dark .cs-caption-note,
+    .page-body .cs-outcome-label {
+      color: #7a6a4d;
+    }
+    .page-body .cs-outcome-strip .cs-outcome-num { color: #6B1F2E; }
+    .page-body .cs-outcome-strip .cs-outcome-list { color: #453824; }
+    .page-body .cs-outcome-strip .cs-outcome-list strong { color: #6B1F2E; }
+    .page-body .cs-journey-step p { color: #453824; }
+    .page-body .cs-body-dark .cs-insight-row { border-top-color: rgba(31,31,31,0.15); }
+    .page-body .cs-layer { border-color: rgba(31,31,31,0.18); }
+    .page-body .cs-journey-step { border-top-color: rgba(31,31,31,0.18); }
+    .page-body .cs-journey-num { color: rgba(31,31,31,0.25); }
+    .page-body .cs-credits-row { border-top-color: rgba(31,31,31,0.15); }
+    .page-body .cs-mock-grid .cs-image-placeholder,
+    .page-body .cs-touchpoint-grid .cs-image-placeholder {
+      background: #eadfc4;
+      color: #8a7857;
+    }
+  </style>
+</head>
+<body>
+
+<div id="cursor-dot"></div>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo" aria-label="Home">
+    <img class="logo-svg" src="../assets/images/logo.png" alt="Nidhi Patil logo" />
+  </a>
+  <div class="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="../index.html#works" class="active">Works</a>
+    <a href="resume.html">Resume</a>
+  </div>
+  <a href="../index.html#works" class="nav-back">← Back to Works</a>
+  <button class="nav-burger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" role="dialog">
+  <a href="../index.html">Home</a>
+  <a href="../index.html#works">Works</a>
+  <a href="resume.html">Resume</a>
+  <a href="../index.html#works">← Back to Works</a>
+</div>
+
+<main class="page-body">
+
+  <!-- HERO -->
+  <div class="cs-hero">
+    <div class="cs-hero-inner">
+      <p class="cs-tag">UX Research &amp; Concept Design</p>
+      <h1 class="cs-title">Reviving Heritage.</h1>
+      <p class="cs-section-text" style="margin-bottom:32px;font-style:italic;max-width:560px;">Pune's heartbeat, etched in stone and wood, and slowly fading from the public's everyday memory.</p>
+
+      <img class="cs-cover" src="../assets/images/wada-heroimg.png" alt="Shaniwar Wada, Pune" loading="lazy" decoding="async" />
+
+      <div class="cs-meta cs-meta--5">
+        <div class="cs-meta-item">
+          <p class="cs-meta-label">Role</p>
+          <p class="cs-meta-val">Co-led research, synthesis &amp; concept design</p>
+        </div>
+        <div class="cs-meta-item">
+          <p class="cs-meta-label">Team</p>
+          <p class="cs-meta-val">4 designers + 2 faculty mentors</p>
+        </div>
+        <div class="cs-meta-item">
+          <p class="cs-meta-label">Duration</p>
+          <p class="cs-meta-val">4 weeks · Sem 1, 2025</p>
+        </div>
+        <div class="cs-meta-item">
+          <p class="cs-meta-label">Methods</p>
+          <p class="cs-meta-val">Contextual inquiry, ethnography, ideation</p>
+        </div>
+        <div class="cs-meta-item">
+          <p class="cs-meta-label">Domain</p>
+          <p class="cs-meta-val">Heritage, cultural tourism</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AT A GLANCE -->
+  <div class="cs-body">
+    <div class="cs-body-inner">
+      <div class="reveal">
+        <p class="cs-section-label">At a glance</p>
+        <div class="cs-glance-row">
+          <p class="cs-section-text">Pune's Wadas, ancestral courtyard mansions from the Maratha Peshwa era, are quietly disappearing in plain sight. While forts get UNESCO status and temples draw crowds, Wadas remain unread chapters. We asked: how do you make a forgotten heritage feel alive again, without turning it into a theme park?</p>
+          <div class="cs-stats-grid">
+            <div class="cs-stat">
+              <div class="cs-stat-num">74<span>%</span></div>
+              <p class="cs-stat-label">have visited a Wada but mostly only once</p>
+            </div>
+            <div class="cs-stat">
+              <div class="cs-stat-num">67<span>%</span></div>
+              <p class="cs-stat-label">call preservation "extremely important"</p>
+            </div>
+            <div class="cs-stat">
+              <div class="cs-stat-num">15<span>+</span></div>
+              <p class="cs-stat-label">in-person interviews across three field visits</p>
+            </div>
+            <div class="cs-stat">
+              <div class="cs-stat-num">3</div>
+              <p class="cs-stat-label">concepts developed, 1 hero solution shortlisted</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 01 · THE BRIEF -->
+      <div class="reveal">
+        <p class="cs-section-label">01 · The Brief</p>
+        <h2 class="cs-section-heading">Why Wadas?</h2>
+        <div class="cs-glance-row">
+          <div>
+            <p class="cs-section-text">During pilot research across Maharashtra's heritage sites, we noticed a clear imbalance. Temples thrive, institutionally maintained, ritually attended. Forts have surged in cultural visibility since UNESCO's 2025 recognition of the Maratha Military Landscapes. Wadas, the centuries-old courtyard homes that once shaped the social fabric of Peshwa Pune, sit in between, too domestic to be monuments, too neglected to be tourism.</p>
+            <p class="cs-section-text" style="margin-top:16px;">So we picked the underdog. Not because they're prettier, but because they're the most at-risk and the least understood.</p>
+          </div>
+          <div>
+            <p class="cs-callout-label" style="border-top:none;padding-top:0;margin-top:0;">Three reasons we chose Wadas</p>
+            <div class="cs-numbered-list" style="margin-top:12px;">
+              <div class="cs-numbered-item">
+                <span class="cs-num">01</span>
+                <p><strong>Hidden in plain sight.</strong> Entrances are unmarked, often shared with shops or homes, outsiders can pass them without ever knowing.</p>
+              </div>
+              <div class="cs-numbered-item">
+                <span class="cs-num">02</span>
+                <p><strong>No institutional patron.</strong> Unlike forts (UNESCO) or temples (trusts), Wadas have no dedicated preservation body, splintering accountability.</p>
+              </div>
+              <div class="cs-numbered-item">
+                <span class="cs-num">03</span>
+                <p><strong>A living typology, not a ruin.</strong> Many Wadas still house families, shops, or offices, the design challenge is participation, not just conservation.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 · PROCESS -->
+      <div class="reveal">
+        <p class="cs-section-label">02 · Process</p>
+        <h2 class="cs-section-heading">Double Diamond, walked twice.</h2>
+        <p class="cs-section-text">We structured our work along the four stages of the Double Diamond, discovering broadly, defining sharply, developing many ideas, then converging on three concepts ready to test.</p>
+        <div class="cs-process-grid">
+          <div class="cs-process-step">
+            <p class="cs-process-eyebrow">01 · Discover</p>
+            <h3>Field &amp; context</h3>
+            <p>Three site visits, conversations with 15+ residents, locals, caretakers and tourists across Shaniwar, Vishrambaug, Nana &amp; Shitole Wadas.</p>
+            <div class="cs-tag-row">
+              <span class="cs-tag-pill">Contextual inquiry</span>
+              <span class="cs-tag-pill">Affinity mapping</span>
+              <span class="cs-tag-pill">5 CI models</span>
+            </div>
+          </div>
+          <div class="cs-process-step">
+            <p class="cs-process-eyebrow">02 · Define</p>
+            <h3>Synthesis</h3>
+            <p>From scattered field notes to clear personas, journeys and a sharp problem statement that the team could rally behind.</p>
+            <div class="cs-tag-row">
+              <span class="cs-tag-pill">Personas</span>
+              <span class="cs-tag-pill">Empathy maps</span>
+              <span class="cs-tag-pill">Journey mapping</span>
+              <span class="cs-tag-pill">5W1H</span>
+              <span class="cs-tag-pill">HMW</span>
+            </div>
+          </div>
+          <div class="cs-process-step">
+            <p class="cs-process-eyebrow">03 · Develop</p>
+            <h3>Ideation</h3>
+            <p>Wide-net brainstorming, structured ideation, dot voting and shortlisting to find concepts that respect the site's spirit.</p>
+            <div class="cs-tag-row">
+              <span class="cs-tag-pill">Brainstorm</span>
+              <span class="cs-tag-pill">SCAMPER</span>
+              <span class="cs-tag-pill">Affinity</span>
+              <span class="cs-tag-pill">Dot voting</span>
+            </div>
+          </div>
+          <div class="cs-process-step">
+            <p class="cs-process-eyebrow">04 · Deliver</p>
+            <h3>Concepts</h3>
+            <p>Three concepts developed in detail; one, the Wada Marathon, selected as the lead direction for prototyping.</p>
+            <div class="cs-tag-row">
+              <span class="cs-tag-pill">Concept design</span>
+              <span class="cs-tag-pill">User flows</span>
+              <span class="cs-tag-pill">Storyboarding</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 · DISCOVER -->
+      <div class="reveal">
+        <p class="cs-section-label">03 · Discover</p>
+        <h2 class="cs-section-heading">What the field told us.</h2>
+        <p class="cs-section-text">We immersed ourselves in Wadas, Shaniwar, Vishrambaug, Nana and Shitole, observing how visitors moved, where they paused, what they photographed, and where they walked away.</p>
+
+        <div class="cs-photo-grid">
+          <div>
+            <img class="cs-field-photo" src="../assets/images/wada-sardar-shitole-wada.png" alt="Sardar Shitole Wada" loading="lazy" decoding="async" />
+            <p class="cs-photo-caption">Sardar Shitole Wada</p>
+          </div>
+          <div>
+            <img class="cs-field-photo" src="../assets/images/wada-ticket-nana.png" alt="Ticket to Nana Wada" loading="lazy" decoding="async" />
+            <p class="cs-photo-caption">Ticket to Nana Wada</p>
+          </div>
+          <div>
+            <img class="cs-field-photo" src="../assets/images/wada-deshpande-wada.png" alt="Deshpande Wada" loading="lazy" decoding="async" />
+            <p class="cs-photo-caption">Deshpande Wada (a house)</p>
+          </div>
+          <div>
+            <img class="cs-field-photo" src="../assets/images/wada-vishrambaug-wada.png" alt="Vishrambaug Wada" loading="lazy" decoding="async" />
+            <p class="cs-photo-caption">Vishrambaug Wada</p>
+          </div>
+          <div>
+            <img class="cs-field-photo" src="../assets/images/wada-nana-wada.jpg" alt="Nana Wada facade" loading="lazy" decoding="async" />
+            <p class="cs-photo-caption">Nana Wada</p>
+          </div>
+        </div>
+
+        <h3 style="font-family:var(--font-heading);font-size:19px;margin-top:40px;margin-bottom:4px;color:var(--black);">Four observations that shaped everything after</h3>
+        <div class="cs-observation-grid">
+          <div class="cs-observation">
+            <p class="cs-observation-num">01</p>
+            <h3>Hidden in plain sight</h3>
+            <p>Entrances are obscured or share frontage with shops and homes. Outsiders can walk right past what should be a landmark, it becomes invisible street furniture.</p>
+          </div>
+          <div class="cs-observation">
+            <p class="cs-observation-num">02</p>
+            <h3>No context, no connection</h3>
+            <p>Renovated wings sit beside crumbling ones with no signage or story to bridge them. Visitors glimpse history but can't read it.</p>
+          </div>
+          <div class="cs-observation">
+            <p class="cs-observation-num">03</p>
+            <h3>Photos without meaning</h3>
+            <p>Young visitors treat courtyards as backdrops. The architecture becomes content; the heritage becomes wallpaper.</p>
+          </div>
+          <div class="cs-observation">
+            <p class="cs-observation-num">04</p>
+            <h3>Community, but quietly</h3>
+            <p>Families, elders, vendors still gather inside. Wadas haven't died, they've gone underground. The community is the asset.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SURVEY SNAPSHOT -->
+      <div class="reveal">
+        <p class="cs-section-label">Survey snapshot</p>
+        <h2 class="cs-section-heading">What people actually said.</h2>
+        <p class="cs-section-text">We supplemented contextual inquiry with a bilingual (English + Marathi) survey of Pune residents and visitors. The data confirmed the following suspicions.</p>
+
+        <div class="cs-bar-charts-grid">
+          <div class="cs-bar-chart">
+            <h4>What pulls visitors in, and what pushes them away</h4>
+            <div class="cs-bar-row">
+              <span class="cs-bar-row-label">Lack of promotion / awareness</span>
+              <div class="cs-bar-track"><div class="cs-bar-fill" style="width:100%;"></div></div>
+              <span class="cs-bar-value">49</span>
+            </div>
+            <div class="cs-bar-row">
+              <span class="cs-bar-row-label">Poor maintenance &amp; infrastructure</span>
+              <div class="cs-bar-track"><div class="cs-bar-fill" style="width:88%;"></div></div>
+              <span class="cs-bar-value">43</span>
+            </div>
+            <div class="cs-bar-row">
+              <span class="cs-bar-row-label">Limited accessibility</span>
+              <div class="cs-bar-track"><div class="cs-bar-fill" style="width:45%;"></div></div>
+              <span class="cs-bar-value">22</span>
+            </div>
+            <div class="cs-bar-row">
+              <span class="cs-bar-row-label">Competition from other attractions</span>
+              <div class="cs-bar-track"><div class="cs-bar-fill" style="width:45%;"></div></div>
+              <span class="cs-bar-value">22</span>
+            </div>
+            <div class="cs-bar-row">
+              <span class="cs-bar-row-label">I'm not aware of it yet</span>
+              <div class="cs-bar-track"><div class="cs-bar-fill" style="width:2%;"></div></div>
+              <span class="cs-bar-value">1</span>
+            </div>
+          </div>
+
+          <div class="cs-bar-chart">
+            <h4>What attracts visitors</h4>
+            <div class="cs-bar-row">
+              <span class="cs-bar-row-label">Architecture &amp; design</span>
+              <div class="cs-bar-track"><div class="cs-bar-fill" style="width:100%;"></div></div>
+              <span class="cs-bar-value">39</span>
+            </div>
+            <div class="cs-bar-row">
+              <span class="cs-bar-row-label">History &amp; stories</span>
+              <div class="cs-bar-track"><div class="cs-bar-fill" style="width:82%;"></div></div>
+              <span class="cs-bar-value">32</span>
+            </div>
+            <div class="cs-bar-row">
+              <span class="cs-bar-row-label">Photography opportunities</span>
+              <div class="cs-bar-track"><div class="cs-bar-fill" style="width:41%;"></div></div>
+              <span class="cs-bar-value">16</span>
+            </div>
+            <div class="cs-bar-row">
+              <span class="cs-bar-row-label">Cultural events / festivals</span>
+              <div class="cs-bar-track"><div class="cs-bar-fill" style="width:36%;"></div></div>
+              <span class="cs-bar-value">14</span>
+            </div>
+            <div class="cs-bar-row">
+              <span class="cs-bar-row-label">Local food or shops near</span>
+              <div class="cs-bar-track"><div class="cs-bar-fill" style="width:18%;"></div></div>
+              <span class="cs-bar-value">7</span>
+            </div>
+            <div class="cs-bar-row">
+              <span class="cs-bar-row-label">Guided tours / heritage walks</span>
+              <div class="cs-bar-track"><div class="cs-bar-fill" style="width:8%;"></div></div>
+              <span class="cs-bar-value">3</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-callout-grid">
+          <div class="cs-callout">
+            <p class="cs-callout-label">Top motivator</p>
+            <p>Historical importance, followed by architecture, confirming that <strong>story is the hook</strong>, not aesthetics alone.</p>
+          </div>
+          <div class="cs-callout">
+            <p class="cs-callout-label">Top friction</p>
+            <p>Poor upkeep and missing information / signage / guides, <strong>basic infrastructure, not concepts</strong>.</p>
+          </div>
+          <div class="cs-callout">
+            <p class="cs-callout-label">The surprise</p>
+            <p>Strong appetite for adaptive reuse like cafes, art galleries, community hubs, provided cultural integrity stays.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 · DEFINE -->
+      <div class="reveal">
+        <p class="cs-section-label">04 · Define</p>
+        <h2 class="cs-section-heading">The people we are designing for.</h2>
+        <p class="cs-section-text">We built four personas across the visitor and resident spectrum. Two of them carried the most tension and ended up steering the rest of the project.</p>
+
+        <div class="cs-persona-grid">
+          <div class="cs-persona-card">
+            <div class="cs-persona-head">
+              <img class="cs-persona-avatar" src="../assets/images/persona-aarav.jpg" alt="Aarav" loading="lazy" decoding="async" />
+              <div>
+                <p class="cs-persona-name">Aarav, 23</p>
+                <p class="cs-persona-role">The curious student</p>
+              </div>
+            </div>
+            <p class="cs-persona-label">Goals</p>
+            <ul>
+              <li>Discover Pune's hidden cultural pockets between classes</li>
+              <li>Share visit on Instagram with a story to back the photo</li>
+              <li>Learn something he can take into design history coursework</li>
+            </ul>
+            <p class="cs-persona-label">Frustrations</p>
+            <ul>
+              <li>"I'm standing here and I have no idea what I'm looking at"</li>
+              <li>No QR codes, no English-friendly context, no entry clarity</li>
+              <li>Visits become 15-minute photo stops, not memories</li>
+            </ul>
+            <p class="cs-persona-label">Quote</p>
+            <p class="cs-persona-quote">"I'd come back if there was a reason to. Right now there isn't."</p>
+          </div>
+
+          <div class="cs-persona-card">
+            <div class="cs-persona-head">
+              <img class="cs-persona-avatar" src="../assets/images/persona-joshi.jpg" alt="Mr. Joshi" loading="lazy" decoding="async" />
+              <div>
+                <p class="cs-persona-name">Mr. Joshi, 68</p>
+                <p class="cs-persona-role">The neighbourhood elder</p>
+              </div>
+            </div>
+            <p class="cs-persona-label">Goals</p>
+            <ul>
+              <li>See the Wada respected, not turned into a backdrop</li>
+              <li>Pass stories and pride down to younger generations</li>
+              <li>Walk through familiar courtyards without obstruction</li>
+            </ul>
+            <p class="cs-persona-label">Frustrations</p>
+            <ul>
+              <li>Decay, garbage, insensitive renovations</li>
+              <li>Tourists posing without acknowledging the place's meaning</li>
+              <li>Younger family members no longer interested in the past</li>
+            </ul>
+            <p class="cs-persona-label">Quote</p>
+            <p class="cs-persona-quote">"They take photos. They don't ask why the door is shaped that way."</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- USER JOURNEY -->
+      <div class="reveal">
+        <p class="cs-section-label">User journey · Ganesh Utsav visit</p>
+        <h2 class="cs-section-heading">Where curiosity dies: a tourist's journey through a Wada during Ganesh festival.</h2>
+        <p class="cs-section-text">We mapped three journeys; the festival visit was the most revealing, high arrival energy, sharp emotional drop midway, awkward exit.</p>
+
+        <img class="cs-full-image" style="margin-top:20px;" src="../assets/images/wada-user-journey.png" alt="Emotional journey map across Ganesh Utsav visit, tourist multi-stop visit and a normal day" loading="lazy" decoding="async" />
+        <p class="cs-caption-note">Key beats: curious at Explore · a sharp drop at Midday from crowd, noise and confusion · spiritual peak in the Evening</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- THE PROBLEM, IN ONE SENTENCE -->
+  <div class="cs-body cs-body-dark">
+    <div class="cs-body-inner">
+      <div class="reveal">
+        <p class="cs-section-label">The problem, in one sentence</p>
+        <p class="cs-pull-quote">Pune's Wadas have everything heritage tourism needs, <em>history, architecture, community</em>, and almost nothing visitors need: <em>context, navigation, a reason to return</em>.</p>
+        <p class="cs-caption-note">Synthesised from 15+ interviews, three field visits &amp; survey data</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-body">
+    <div class="cs-body-inner">
+
+      <!-- 05 · REFRAME -->
+      <div class="reveal">
+        <p class="cs-section-label">05 · Reframe</p>
+        <h2 class="cs-section-heading">How might we&hellip;</h2>
+        <div class="cs-hmw-grid">
+          <div class="cs-hmw-card">
+            <p class="cs-hmw-num">HMW 01</p>
+            <p>Create <em>emotional connections</em> between visitors and Wadas, not just photo opportunities?</p>
+          </div>
+          <div class="cs-hmw-card">
+            <p class="cs-hmw-num">HMW 02</p>
+            <p>Make Wadas <em>visible</em> in the city, discoverable to someone who didn't come looking?</p>
+          </div>
+          <div class="cs-hmw-card">
+            <p class="cs-hmw-num">HMW 03</p>
+            <p>Turn passive sightseeing into <em>active participation</em>, while keeping cultural integrity?</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 06 · IDEATE -->
+      <div class="reveal">
+        <p class="cs-section-label">06 · Ideate</p>
+        <h2 class="cs-section-heading">From 40 ideas to 3 directions.</h2>
+        <p class="cs-section-text">We diverged wide using brainstorming, SCAMPER and analogous-domain probes then clustered, voted, and converged.</p>
+
+        <div class="cs-process-grid">
+          <div class="cs-process-step">
+            <p class="cs-process-eyebrow">01 · 40+ ideas</p>
+            <h3>Brainstorm</h3>
+            <p>Open ideation across heritage, gamification, storytelling, infrastructure, digital reuse.</p>
+          </div>
+          <div class="cs-process-step">
+            <p class="cs-process-eyebrow">02 · 7 categories</p>
+            <h3>SCAMPER</h3>
+            <p>Substitute, combine, adapt, modify, put-to-use, eliminate, reverse, applied to the Wada experience.</p>
+          </div>
+          <div class="cs-process-step">
+            <p class="cs-process-eyebrow">03 · 9 clusters</p>
+            <h3>Affinity</h3>
+            <p>Grouped overlapping ideas; surfaced themes around participation, storytelling and reuse.</p>
+          </div>
+          <div class="cs-process-step">
+            <p class="cs-process-eyebrow">04 · 3 winners</p>
+            <h3>Dot voting</h3>
+            <p>Team voted on impact &amp; feasibility. Three concepts emerged; Wada Marathon led.</p>
+          </div>
+        </div>
+
+        <h3 style="font-family:var(--font-heading);font-size:19px;margin-top:44px;margin-bottom:4px;color:var(--black);">From divergence to a shortlist</h3>
+        <p class="cs-section-text" style="font-style:italic;font-size:13px;color:var(--grey);margin-bottom:8px;">SCAMPER opened the solution space. Dot voting closed it.</p>
+
+        <div class="cs-shortlist-grid">
+          <div>
+            <h4>SCAMPER ideation</h4>
+            <p class="cs-hint">Seven lenses to push past obvious answers</p>
+            <div class="cs-scamper-list">
+              <div class="cs-scamper-item"><span class="cs-scamper-letter">S</span><div><strong>Substitute</strong><span>Static boards, AR labels</span></div></div>
+              <div class="cs-scamper-item"><span class="cs-scamper-letter">C</span><div><strong>Combine</strong><span>Heritage + festivals + cafes</span></div></div>
+              <div class="cs-scamper-item"><span class="cs-scamper-letter">A</span><div><strong>Adapt</strong><span>Reels, AR hunts, multilingual</span></div></div>
+              <div class="cs-scamper-item"><span class="cs-scamper-letter">M</span><div><strong>Modify / Magnify</strong><span>Sound &amp; light, micro AR zoom</span></div></div>
+              <div class="cs-scamper-item"><span class="cs-scamper-letter">P</span><div><strong>Put to another use</strong><span>Galleries, film sets, skill hubs</span></div></div>
+              <div class="cs-scamper-item"><span class="cs-scamper-letter">E</span><div><strong>Eliminate</strong><span>Queues, language barriers</span></div></div>
+              <div class="cs-scamper-item"><span class="cs-scamper-letter">R</span><div><strong>Reverse / Rearrange</strong><span>Selfie first, then heritage</span></div></div>
+            </div>
+          </div>
+          <div>
+            <h4>Dot voting</h4>
+            <p class="cs-hint">Ideas clustered into 7 themes; participants placed dots on what excited them most</p>
+            <img src="../assets/images/wada-dot-voting.png" alt="Dot voting board across interactivity, marketing, ambience, food, events, vendors and collectables" style="width:100%;border-radius:10px;" loading="lazy" decoding="async" />
+          </div>
+        </div>
+
+        <div class="cs-outcome-strip">
+          <div>
+            <div class="cs-outcome-num">7</div>
+            <p class="cs-outcome-label">themes clustered from 50+ ideas</p>
+          </div>
+          <div>
+            <div class="cs-outcome-num">3</div>
+            <p class="cs-outcome-label">dot colors signaling priority &amp; energy</p>
+          </div>
+          <div class="cs-outcome-list">
+            <strong>Top-voted ideas</strong>
+            Light projection on Wadas &middot; AR/VR navigation &middot; Heritage selfie spots &middot; Local artisan workshops &middot; Gamification &amp; collectables &middot; Renovated-but-old look
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · THE HERO CONCEPT -->
+  <div class="cs-body cs-body-dark">
+    <div class="cs-body-inner">
+      <div class="reveal">
+        <p class="cs-section-label">07 · The Hero Concept</p>
+        <h2 class="cs-section-heading">The Wada <em>Marathon</em>.</h2>
+        <p class="cs-section-text">A city-wide heritage quest that turns visiting Pune's Wadas into a playful achievement journey.</p>
+        <p class="cs-section-text" style="margin-top:12px;">Not just an app or campaign: a three layered service.</p>
+
+        <div class="cs-layer-grid">
+          <div class="cs-layer">
+            <p class="cs-layer-eyebrow">Layer 01</p>
+            <h3>Physical</h3>
+            <p>A charm, keychain or phone tag acts as the visitor's passport. Selfie-mirror kiosks at each Wada offer a tactile check-in moment.</p>
+          </div>
+          <div class="cs-layer">
+            <p class="cs-layer-eyebrow">Layer 02</p>
+            <h3>Digital</h3>
+            <p>A companion app with map, stamps, AR frames, audio stories and a growing scrapbook collage that visitors can rearrange and share.</p>
+          </div>
+          <div class="cs-layer">
+            <p class="cs-layer-eyebrow">Layer 03</p>
+            <h3>Gamification</h3>
+            <p>Passport, badges, hidden trails and seasonal collectibles create a loop of pride, share, return, without trivialising the heritage.</p>
+          </div>
+        </div>
+
+        <div class="cs-mock-grid">
+          <img src="../assets/images/wada-physical.png" alt="Wada Marathon physical charm" loading="lazy" decoding="async" />
+          <img src="../assets/images/wada-digital.png" alt="App splash screen: The Wada Marathon" loading="lazy" decoding="async" />
+          <img src="../assets/images/wada-gamification.png" alt="App map screen: Wadas in Sadashiv Peth" loading="lazy" decoding="async" />
+        </div>
+
+        <h3 style="font-family:var(--font-heading);font-size:19px;margin-top:48px;margin-bottom:16px;color:#1F1F1F;">A seven-step ritual, designed to feel like joining a scavenger myth, not installing another tourism app.</h3>
+        <div class="cs-journey-list">
+          <div class="cs-journey-step">
+            <div class="cs-journey-num">01</div>
+            <div class="cs-journey-titles"><p class="cs-eyebrow">Begin</p><strong>The passport</strong></div>
+            <p>Download the app or pick up a physical charm from a partner shop. Onboarding feels playful: not "create account," but "begin your trail." Your charm is your ticket, collector's item and identity link rolled into one object.</p>
+          </div>
+          <div class="cs-journey-step">
+            <div class="cs-journey-num">02</div>
+            <div class="cs-journey-titles"><p class="cs-eyebrow">Arrive</p><strong>Recognition at the gate</strong></div>
+            <p>Each Wada is a checkpoint. Tap your charm or scan a QR, the Wada "recognises" you. A short personalised welcome plays: a fragment of the building's story, calibrated to whether you're a first-time or returning visitor.</p>
+          </div>
+          <div class="cs-journey-step">
+            <div class="cs-journey-num">03</div>
+            <div class="cs-journey-titles"><p class="cs-eyebrow">Capture</p><strong>The selfie mirror</strong></div>
+            <p>Step into a tasteful mirror frame at the entrance. The mirror or the app camera adds AR motifs from that Wada's signature carvings. Photography becomes a small ritual instead of just a backdrop habit.</p>
+          </div>
+          <div class="cs-journey-step">
+            <div class="cs-journey-num">04</div>
+            <div class="cs-journey-titles"><p class="cs-eyebrow">Collect</p><strong>Stamp the passport</strong></div>
+            <p>Each visit adds a stamp and your selfie to your digital passport, a scrapbook the app weaves into a living collage you can rearrange, narrate, and export.</p>
+          </div>
+          <div class="cs-journey-step">
+            <div class="cs-journey-num">05</div>
+            <div class="cs-journey-titles"><p class="cs-eyebrow">Progress</p><strong>Badges &amp; unlocks</strong></div>
+            <p>As more Wadas are visited, the collage grows and themed badges unlock, "Peshwa-era trail," "monsoon visit," "wooden carvings deep-dive." Visible markers fuel the pride, share, new-visitor loop.</p>
+          </div>
+          <div class="cs-journey-step">
+            <div class="cs-journey-num">06</div>
+            <div class="cs-journey-titles"><p class="cs-eyebrow">Celebrate</p><strong>The completion ritual</strong></div>
+            <p>Finishing a trail earns a certificate, a limited-edition charm patch, and a prompt to choose the next route, Saswad Wadas, Nashik Wadas, or seasonal festival trails.</p>
+          </div>
+          <div class="cs-journey-step">
+            <div class="cs-journey-num">07</div>
+            <div class="cs-journey-titles"><p class="cs-eyebrow">Return</p><strong>Hidden layers</strong></div>
+            <p>Revisiting a Wada reveals what wasn't visible the first time, behind-the-scenes craftsperson workshops, secret micro-trails, time-bound festival overlays. The same building, deeper each time.</p>
+          </div>
+        </div>
+
+        <h3 style="font-family:var(--font-heading);font-size:19px;margin-top:48px;margin-bottom:16px;color:#1F1F1F;">The four moments that carry the experience.</h3>
+        <div class="cs-touchpoint-grid">
+          <img src="../assets/images/wada-splashscreen.png" alt="App: Wada Marathon splash" loading="lazy" decoding="async" />
+          <img src="../assets/images/wada-map-withpins.png" alt="App: map with Wada pins" loading="lazy" decoding="async" />
+          <img src="../assets/images/wada-memory-collage.png" alt="App: memory collage" loading="lazy" decoding="async" />
+          <img src="../assets/images/wada-quest-complete.png" alt="App: quest complete screen" loading="lazy" decoding="async" />
+        </div>
+
+        <h3 style="font-family:var(--font-heading);font-size:19px;margin-top:48px;margin-bottom:6px;color:#1F1F1F;">Every choice traces back to a field insight.</h3>
+        <div class="cs-insight-table">
+          <div class="cs-insight-row">
+            <p class="cs-insight-text">Insight: <em>"I have no idea what I'm looking at."</em></p>
+            <span class="cs-arrow-col">→</span>
+            <p class="cs-response-text">Charm-triggered audio stories at every Wada, narrated, not signposted.</p>
+          </div>
+          <div class="cs-insight-row">
+            <p class="cs-insight-text">Insight: <em>74% visit only once.</em></p>
+            <span class="cs-arrow-col">→</span>
+            <p class="cs-response-text">Layered unlocks &amp; seasonal trails reward return, not just first arrival.</p>
+          </div>
+          <div class="cs-insight-row">
+            <p class="cs-insight-text">Insight: <em>Young visitors treat courtyards as photo backdrops.</em></p>
+            <span class="cs-arrow-col">→</span>
+            <p class="cs-response-text">Selfie-mirror frames make photography a ritual that delivers story, not just takes one.</p>
+          </div>
+          <div class="cs-insight-row">
+            <p class="cs-insight-text">Insight: <em>Wadas hide in plain sight.</em></p>
+            <span class="cs-arrow-col">→</span>
+            <p class="cs-response-text">City-wide trail creates wayfinding the city itself never built.</p>
+          </div>
+          <div class="cs-insight-row">
+            <p class="cs-insight-text">Insight: <em>Pride and ownership matter to locals.</em></p>
+            <span class="cs-arrow-col">→</span>
+            <p class="cs-response-text">Physical charm and shareable collage turn visitors into ambassadors.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-body">
+    <div class="cs-body-inner">
+
+      <!-- 08 · THE OTHER TWO -->
+      <div class="reveal">
+        <p class="cs-section-label">08 · The Other Two</p>
+        <h2 class="cs-section-heading">What we also explored.</h2>
+        <p class="cs-section-text">Two further concepts emerged from ideation. The Wada Marathon led in dot voting, but these stayed on the table as adjacent or future directions.</p>
+
+        <div class="cs-concept-grid">
+          <div class="cs-concept-card">
+            <img src="../assets/images/wada-concept2.png" alt="The Speaking Artifacts concept" loading="lazy" decoding="async" />
+            <div class="cs-concept-body">
+              <p class="cs-concept-label">Concept 02</p>
+              <h3>The Speaking Artifacts</h3>
+              <p>Statues, weapons and everyday objects inside Wadas become storytellers. Gesture-activated sensors and directional speakers let an artifact narrate its own past; a salute might trigger a battle story, a namaste, a household tale.</p>
+              <p class="cs-concept-meta"><strong>Mode:</strong> Phygital, on-site</p>
+              <p class="cs-concept-meta"><strong>Best for:</strong> Families, school groups</p>
+            </div>
+          </div>
+          <div class="cs-concept-card">
+            <img src="../assets/images/wada-concept3.png" alt="Mehfil at the Wada concept" loading="lazy" decoding="async" />
+            <div class="cs-concept-body">
+              <p class="cs-concept-label">Concept 03</p>
+              <h3>Mehfil at the Wada</h3>
+              <p>Reactivate Wada courtyards as living cultural hubs through classical music baithaks paired with artisan workshops, pottery, weaving, miniature painting. Heritage as venue, performance and economy in one.</p>
+              <p class="cs-concept-meta"><strong>Mode:</strong> Event-led, ticketed</p>
+              <p class="cs-concept-meta"><strong>Best for:</strong> Cultural audiences, weekend tourists</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 09 · REFLECTION -->
+      <div class="reveal">
+        <p class="cs-section-label">09 · Reflection</p>
+        <h2 class="cs-section-heading">What this project taught us.</h2>
+        <div class="cs-reflection-grid">
+          <div class="cs-reflection-item">
+            <p class="cs-reflection-num">01</p>
+            <h3>Heritage doesn't need preservation, it needs participation.</h3>
+            <p>Sites that ask nothing of their visitors get forgotten. The interventions that landed were the ones that gave people a role, a charm to carry, a stamp to collect, a story to pass along.</p>
+          </div>
+          <div class="cs-reflection-item">
+            <p class="cs-reflection-num">02</p>
+            <h3>The brief is hiding in the field, not the brief document.</h3>
+            <p>We arrived expecting an awareness problem. We left with an engagement problem. Three visits and 15 conversations completely reframed the work, survey data alone would have led us somewhere shallower.</p>
+          </div>
+          <div class="cs-reflection-item">
+            <p class="cs-reflection-num">03</p>
+            <h3>Respect first, design second.</h3>
+            <p>Heritage design has a low ceiling for cleverness. Every "fun" idea had to be stress-tested against whether it would make Mr. Joshi, the neighbourhood elder, feel proud or insulted. That filter shaped every concept.</p>
+          </div>
+          <div class="cs-reflection-item">
+            <p class="cs-reflection-num">04</p>
+            <h3>Phygital wins where pure digital flattens.</h3>
+            <p>An app alone would have been forgettable. The charm, a small, tangible, ridiculous-on-paper object, is what turns the experience from an interaction into a memory.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="cs-body cs-body-dark">
+    <div class="cs-body-inner">
+      <div class="reveal">
+        <h2 class="cs-section-heading" style="font-size:clamp(24px,3vw,34px);">Reviving heritage, <em style="font-style:italic;color:#6B1F2E;">one Wada at a time.</em></h2>
+        <p class="cs-section-text">A design research project on Pune's Wadas, conducted as part of Design Methods coursework.</p>
+
+        <div class="cs-credits-row">
+          <div>
+            <p class="cs-credits-label">Team</p>
+            <p>Nidhi Patil<br>Rashmi Gore<br>Digvijay Shelar<br>Priyanka Wakchaure</p>
+          </div>
+          <div>
+            <p class="cs-credits-label">Mentors</p>
+            <p>Assoc. Prof. Dr. Wricha Mishra<br>Asst. Prof. Shreyasha Aishwarya</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <p class="footer-connect">Connect</p>
+    <div class="footer-links">
+      <div class="footer-link-group">
+        <p class="footer-link-label">Behance</p>
+        <a href="https://www.behance.net/nidhipatil2" target="_blank" rel="noopener">nidhipatil2 <span class="arrow">↗</span></a>
+      </div>
+      <div class="footer-link-group">
+        <p class="footer-link-label">Email</p>
+        <a href="mailto:nidhishirishpatil202@gmail.com">nidhishirishpatil202@gmail.com <span class="arrow">↗</span></a>
+      </div>
+      <div class="footer-link-group">
+        <p class="footer-link-label">LinkedIn</p>
+        <a href="https://www.linkedin.com/in/nidhipatil" target="_blank" rel="noopener">nidhipatil <span class="arrow">↗</span></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-bottom-left">Thank_you</span>
+      <span class="footer-copyright">© 2026 Nidhi</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
