@@ -31,6 +31,8 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden; /* belt-and-braces alongside body's own overflow-x:hidden below — some content (e.g. the arc carousel, which needs overflow:visible for its own vertical bleed) can end up wider than the viewport, and relying on body alone to clip that isn't reliable in every browser */
+  background: #0d0d0d; /* matches .footer — every page ends on the dark footer, so any residual overscroll edge shows this instead of flashing white */
+  overscroll-behavior-y: contain; /* stops Chrome/Edge's scroll-past-the-end glow on Windows touchpads. "contain" only (not "none") and only on html, not body — the html+body "none" combo previously locked up scrolling entirely */
 }
 body {
   font-family: var(--font-body);
@@ -49,6 +51,37 @@ html {
 }
 ::-webkit-scrollbar { display: none; width: 0; height: 0; }  /* Chrome/Edge/Safari */
 img { display: block; max-width: 100%; }
+
+/* ============================================================
+   PAGE LOADER — index.html only (see the markup right after <body>
+   and the timing IIFE at the top of js/main.js).
+   ============================================================ */
+#page-loader {
+  position: fixed;
+  inset: 0;
+  background: var(--white);
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease;
+}
+#page-loader.loader-hidden { opacity: 0; pointer-events: none; }
+.loader-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.loader-dot { width: 18px; height: 18px; border-radius: 50%; animation: loader-bounce 1s ease-in-out infinite; }
+.loader-dot--red   { background: var(--red); }
+.loader-dot--blue  { background: var(--blue); }
+.loader-dot--green { background: var(--green); }
+.loader-dot:nth-child(1) { animation-delay: 0s; }
+.loader-dot:nth-child(2) { animation-delay: 0.1s; }
+.loader-dot:nth-child(3) { animation-delay: 0.2s; }
+@keyframes loader-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50%      { transform: translateY(-10px); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .loader-dot { animation: none !important; opacity: 1; }
+}
 
 /* ============================================================
    CUSTOM CURSOR
@@ -718,7 +751,7 @@ img { display: block; max-width: 100%; }
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--grey);
+  color: var(--blue);
   margin-bottom: 16px;
 }
 .cs-title {
@@ -754,7 +787,6 @@ img { display: block; max-width: 100%; }
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
   padding: 40px 0;
-  border-bottom: 1px solid var(--border);
 }
 .cs-meta-item {}
 .cs-meta-label {

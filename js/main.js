@@ -1,4 +1,22 @@
 /* ============================================================
+   PAGE LOADER — no-ops on any page without #page-loader (index.html
+   only). Fixed 3.5s show time, independent of actual asset loading,
+   per the design brief ("should look like loading just for 3-4
+   seconds"), then fades out and removes itself from the DOM.
+   ============================================================ */
+(function () {
+  const loader = document.getElementById('page-loader');
+  if (!loader) return;
+
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => {
+    loader.classList.add('loader-hidden');
+    document.body.style.overflow = '';
+    loader.addEventListener('transitionend', () => loader.remove(), { once: true });
+  }, 3500);
+})();
+
+/* ============================================================
    CURSOR
    ============================================================ */
 (function () {
@@ -61,6 +79,87 @@ document.querySelectorAll('a[href="#works"]').forEach(a => {
     if (sec) { e.preventDefault(); sec.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   });
 });
+
+/* ============================================================
+   NAV — ACTIVE LINK FOLLOWS SCROLL POSITION
+   Only runs on index.html (guarded by the #home/#works lookup below,
+   which other pages don't have) — keeps the underline on "Home" or
+   "Works" in sync with whichever section is actually in view, instead
+   of it being stuck on whichever had the hardcoded .active class.
+   ============================================================ */
+(function () {
+  const homeSection  = document.getElementById('home');
+  const worksSection = document.getElementById('works');
+  const homeLinks  = document.querySelectorAll('a[href="index.html"]');
+  const worksLinks = document.querySelectorAll('a[href="#works"]');
+  if (!homeSection || !worksSection || !homeLinks.length || !worksLinks.length) return;
+
+  function setActive(id) {
+    const isWorks = id === 'works';
+    homeLinks.forEach(a => a.classList.toggle('active', !isWorks));
+    worksLinks.forEach(a => a.classList.toggle('active', isWorks));
+  }
+
+  let io;
+  function buildObserver() {
+    if (io) io.disconnect();
+    const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 68;
+    // A thin detection line just below the fixed nav — whichever section
+    // currently occupies that line is the "active" one.
+    const bottomMargin = Math.max(window.innerHeight - navH - 2, 0);
+    io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) setActive(entry.target.id); });
+    }, { rootMargin: `-${navH + 1}px 0px -${bottomMargin}px 0px`, threshold: 0 });
+    io.observe(homeSection);
+    io.observe(worksSection);
+  }
+
+  buildObserver();
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(buildObserver, 150);
+  });
+})();
+
+/* ============================================================
+   MARQUEE BANNER — fills the track with as many copies of the
+   phrase set as the viewport needs, so wide screens never run out
+   of content mid-loop (a fixed number of hand-written copies looks
+   fine on a laptop but leaves visible empty gaps on a wide monitor).
+   ============================================================ */
+(function () {
+  const track = document.getElementById('hero-banner-track');
+  if (!track) return;
+
+  const unitHTML = track.innerHTML; // the single, un-repeated phrase set
+  const PX_PER_SECOND = 28; // scroll speed — lower is slower. Kept constant so
+                             // the marquee moves at the same visual pace on
+                             // every screen width, regardless of how many
+                             // phrase copies that width needed.
+
+  function build() {
+    track.innerHTML = unitHTML;
+    const unitWidth = track.scrollWidth || 1;
+    // Each half must comfortably outrun the viewport so the 50%-translate
+    // loop (see @keyframes marquee) never runs out of content to show.
+    const repeats = Math.max(1, Math.ceil((window.innerWidth * 1.5) / unitWidth));
+    const half = unitHTML.repeat(repeats);
+    track.innerHTML = half + half; // duplicated once more for the seamless loop
+
+    const halfWidth = track.scrollWidth / 2;
+    track.style.animationDuration = `${halfWidth / PX_PER_SECOND}s`;
+  }
+
+  build();
+  window.addEventListener('load', build); // re-measure once webfonts have swapped in
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(build, 150);
+  });
+})();
 
 /* ============================================================
    TYPING ANIMATION

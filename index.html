@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Nidhi Patil — UX Designer</title>
+  <title>Nidhi Patil &nbsp;·&nbsp; UX Designer</title>
   <meta name="description" content="Nidhi Patil — UX Designer creating thoughtful, human-centered experiences grounded in purpose." />
   <link rel="icon" type="image/png" href="favicon.png">
 
@@ -15,6 +15,17 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+
+<!-- PAGE LOADER — shown for a few seconds on first paint, then fades out
+     (see #page-loader rules in css/style.css and the loader IIFE at the
+     top of js/main.js). Only on this page, by design. -->
+<div id="page-loader" aria-hidden="true">
+  <div class="loader-grid">
+    <span class="loader-dot loader-dot--red"></span>
+    <span class="loader-dot loader-dot--blue"></span>
+    <span class="loader-dot loader-dot--green"></span>
+  </div>
+</div>
 
 <!-- CURSOR -->
 <div id="cursor-dot"></div>
@@ -52,7 +63,7 @@
 <main class="page-body">
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" id="home">
     <div class="hero-body">
       <div class="hero-heading">
         <p>Hi, I'm Nidhi</p>
@@ -71,17 +82,13 @@
       </div>
     </div>
 
-    <!-- Marquee banner -->
+    <!-- Marquee banner — JS (main.js) clones this single unit enough times
+         to fill the viewport, then duplicates that whole run once more for
+         a seamless loop. Don't hand-duplicate the phrases here: a fixed
+         number of copies runs out of content on wide screens, leaving the
+         banner visibly empty between phrases. -->
     <div class="hero-banner">
-      <div class="hero-banner-track">
-        <!-- 2× for seamless loop -->
-        <span class="text">I care about the "why" behind actions</span>
-        <span class="star"><svg width="11" height="11" viewBox="0 0 18 18" fill="none"><path d="M9 0L10.2 7.8L18 9L10.2 10.2L9 18L7.8 10.2L0 9L7.8 7.8Z" fill="white"/></svg></span>
-        <span class="text">I love to observe, question and simplify</span>
-        <span class="star"><svg width="11" height="11" viewBox="0 0 18 18" fill="none"><path d="M9 0L10.2 7.8L18 9L10.2 10.2L9 18L7.8 10.2L0 9L7.8 7.8Z" fill="white"/></svg></span>
-        <span class="text">I organize chaos into meaningful flows</span>
-        <span class="star"><svg width="11" height="11" viewBox="0 0 18 18" fill="none"><path d="M9 0L10.2 7.8L18 9L10.2 10.2L9 18L7.8 10.2L0 9L7.8 7.8Z" fill="white"/></svg></span>
-        <!-- repeat -->
+      <div class="hero-banner-track" id="hero-banner-track">
         <span class="text">I care about the "why" behind actions</span>
         <span class="star"><svg width="11" height="11" viewBox="0 0 18 18" fill="none"><path d="M9 0L10.2 7.8L18 9L10.2 10.2L9 18L7.8 10.2L0 9L7.8 7.8Z" fill="white"/></svg></span>
         <span class="text">I love to observe, question and simplify</span>
@@ -142,7 +149,7 @@
         <div class="about-rows">
           <div class="about-row reveal">
             <span class="about-label">My Goal</span>
-            <p class="about-text">I want to help brands find clarity and express it through strong, thoughtful design.</p>
+            <p class="about-text">I want to design meaningful experiences that make complex interactions feel simple, intuitive, and human. I aim to create solutions that are both useful for people and purposeful for the context they exist in.</p>
           </div>
           <div class="about-row reveal">
             <span class="about-label">My Background</span>
@@ -281,7 +288,7 @@
         </div>
         <div class="footer-link-group">
           <p class="footer-link-label">LinkedIn</p>
-          <a href="https://www.linkedin.com/in/nidhipatil" target="_blank" rel="noopener">
+          <a href="https://www.linkedin.com/in/nidhi-p-033a4b19b/" target="_blank" rel="noopener">
             nidhipatil <span class="arrow">↗</span>
           </a>
         </div>
