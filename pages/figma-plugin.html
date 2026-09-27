@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Paste Your Table: Figma Plugin &nbsp;·&nbsp; Nidhi Patil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* ── green accent tokens ── */
+    :root {
+      --g:     #14A62A;
+      --g-light: #F0FAF2;
+      --g-border: #b6e8be;
+    }
+
+    /* Tag */
+    .pg-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--g-light);
+      border: 1.5px solid var(--g-border);
+      color: var(--g);
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+    }
+    .pg-tag .dot {
+      width: 7px; height: 7px;
+      background: var(--g);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* Title */
+    .pg-title {
+      font-family: var(--font-heading);
+      font-size: clamp(38px, 5.5vw, 72px);
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      margin-bottom: 16px;
+    }
+
+    .pg-subtitle {
+      font-family: var(--font-body);
+      font-size: 17px;
+      color: #666;
+      max-width: 580px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+
+    /* Tool badges */
+    .pg-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .pg-tool-badge {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 100px;
+      border: 1.5px solid var(--border);
+      color: var(--black);
+    }
+    .pg-tool-badge.published {
+      border-color: var(--g);
+      color: var(--g);
+      background: var(--g-light);
+    }
+
+    /* Cover */
+    .pg-cover {
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--g-light);
+      border: 1.5px solid var(--g-border);
+      margin-top: 48px;
+    }
+    .pg-cover img { width: 100%; display: block; }
+    .pg-cover-placeholder {
+      width: 100%;
+      aspect-ratio: 16/7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: #aaa;
+    }
+
+    /* Meta */
+    .pg-meta {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin: 48px 0;
+    }
+    .pg-meta-item {
+      padding: 24px 22px;
+      border-right: 1.5px solid var(--border);
+    }
+    .pg-meta-item:last-child { border-right: none; }
+    .pg-meta-label {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-bottom: 6px;
+    }
+    .pg-meta-val {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--black);
+    }
+    .pg-meta-val.green { color: var(--g); }
+
+    /* Section */
+    .pg-section {
+      padding: 80px var(--pad-x);
+      border-top: 1.5px solid var(--border);
+    }
+    .pg-section.tinted { background: var(--g-light); }
+    .pg-section.dark    { background: #0d0d0d; }
+
+    .pg-section-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    /* Step label */
+    .pg-step {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--g);
+      margin-bottom: 12px;
+    }
+    .pg-step.dark-label { color: #6B7FD4; }
+
+    .pg-heading {
+      font-family: var(--font-heading);
+      font-size: clamp(24px, 3vw, 38px);
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1.25;
+      margin-bottom: 20px;
+    }
+    .pg-heading.light { color: #fff; }
+
+    .pg-text {
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.85;
+      color: #444;
+      max-width: 680px;
+    }
+    .pg-text + .pg-text { margin-top: 16px; }
+    .pg-text.light { color: rgba(255,255,255,0.65); }
+
+    /* Image placeholder */
+    .pg-img {
+      width: 100%;
+      border-radius: 14px;
+      overflow: hidden;
+      margin-top: 36px;
+      background: #f5f5f5;
+      border: 1.5px solid var(--border);
+    }
+    .pg-img.green-tint { background: var(--g-light); border-color: var(--g-border); }
+    .pg-img img { width: 100%; display: block; }
+    .pg-img-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: #bbb;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .pg-img-placeholder span {
+      font-size: 11px;
+      color: #ccc;
+    }
+    .pg-img-caption {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--grey);
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    /* 2-col image grid */
+    .pg-img-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 36px;
+    }
+    .pg-img-grid .pg-img { margin-top: 0; }
+    .pg-img-label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-bottom: 10px;
+    }
+
+    /* 3-col image grid */
+    .pg-img-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-top: 36px;
+    }
+    .pg-img-grid-3 .pg-img { margin-top: 0; }
+
+    /* Workflow comparison */
+    .pg-workflow {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 24px;
+      align-items: center;
+      margin-top: 36px;
+    }
+    .pg-workflow-col {
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .pg-workflow-col.after { border-color: var(--g-border); }
+    .pg-workflow-header {
+      padding: 14px 20px;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 1.5px solid var(--border);
+      background: #f8f8f8;
+      color: var(--grey);
+    }
+    .pg-workflow-col.after .pg-workflow-header {
+      background: var(--g-light);
+      border-color: var(--g-border);
+      color: var(--g);
+    }
+    .pg-workflow-steps {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .pg-workflow-step {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--black);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pg-workflow-step .bullet {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+    .pg-workflow-col.after .bullet { background: var(--g); }
+    .pg-workflow-step.red-step .bullet { background: #D42222; }
+    .pg-workflow-step.red-step { color: #D42222; }
+    .pg-workflow-arrow {
+      font-size: 28px;
+      color: var(--g);
+      font-weight: 300;
+      text-align: center;
+    }
+
+    /* Principles grid */
+    .pg-principles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 36px;
+    }
+    .pg-principle-card {
+      border: 1.5px solid var(--g-border);
+      border-radius: 14px;
+      padding: 28px;
+      background: var(--g-light);
+    }
+    .pg-principle-num {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--g);
+      margin-bottom: 12px;
+      opacity: 0.5;
+    }
+    .pg-principle-title {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .pg-principle-text {
+      font-family: var(--font-body);
+      font-size: 13px;
+      line-height: 1.7;
+      color: #555;
+    }
+
+    /* UI states */
+    .pg-states {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 36px;
+    }
+    .pg-state-card {
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .pg-state-label {
+      padding: 12px 16px;
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey);
+      border-bottom: 1.5px solid var(--border);
+      background: #f8f8f8;
+    }
+    .pg-state-img {
+      background: #f0f0f0;
+      width: 100%;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+      font-size: 11px;
+      color: #bbb;
+      padding: 12px;
+      text-align: center;
+    }
+    .pg-state-img img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; }
+
+    /* Equal-height image pairs (different source aspect ratios, no cropping) */
+    .pg-img-equal {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 360px;
+    }
+    .pg-img-equal img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* AI workflow strip */
+    .pg-ai-flow {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-top: 36px;
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .pg-ai-step {
+      flex: 1;
+      padding: 22px 18px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--black);
+      text-align: center;
+      border-right: 1.5px solid var(--border);
+      line-height: 1.4;
+    }
+    .pg-ai-step:last-child { border-right: none; }
+    .pg-ai-step.highlight {
+      background: var(--g-light);
+      color: var(--g);
+    }
+    .pg-ai-step .sub {
+      display: block;
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--grey);
+      margin-top: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    /* Iteration card */
+    .pg-iteration {
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-top: 36px;
+    }
+    .pg-iteration-header {
+      padding: 20px 28px;
+      background: #f8f8f8;
+      border-bottom: 1.5px solid var(--border);
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+    .pg-iteration-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .pg-iteration-col {
+      padding: 24px 22px;
+      border-right: 1.5px solid var(--border);
+    }
+    .pg-iteration-col:last-child { border-right: none; }
+    .pg-iteration-label {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .pg-iteration-label.problem  { color: #D42222; }
+    .pg-iteration-label.hypo     { color: #6B7FD4; }
+    .pg-iteration-label.change   { color: var(--g); }
+    .pg-iteration-label.result   { color: var(--black); }
+    .pg-iteration-text {
+      font-family: var(--font-body);
+      font-size: 13px;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    /* Outcome */
+    .pg-outcome {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 36px;
+    }
+    .pg-outcome-stat {
+      border: 1.5px solid var(--g-border);
+      border-radius: 14px;
+      padding: 36px 32px;
+      background: var(--g-light);
+      text-align: center;
+    }
+    .pg-outcome-number {
+      font-family: var(--font-heading);
+      font-size: 52px;
+      font-weight: 700;
+      color: var(--g);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .pg-outcome-label {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* Contribution pills */
+    .pg-contributions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .pg-contrib-pill {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 100px;
+      background: var(--g-light);
+      border: 1.5px solid var(--g-border);
+      color: var(--g);
+    }
+
+    /* Learnings */
+    .pg-learnings {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 36px;
+    }
+    .pg-learning-card {
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      transition: border-color 0.2s;
+    }
+    .pg-learning-card:hover { border-color: var(--g); }
+    .pg-learning-num {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--g);
+      margin-bottom: 12px;
+      opacity: 0.4;
+    }
+    .pg-learning-title {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .pg-learning-text {
+      font-family: var(--font-body);
+      font-size: 13px;
+      line-height: 1.7;
+      color: #555;
+    }
+
+    /* Out of scope tags */
+    .pg-out-of-scope {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .pg-oos-tag {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--grey);
+      border: 1.5px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 100px;
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
+
+    @media (max-width: 900px) {
+      .pg-meta           { grid-template-columns: repeat(3, 1fr); }
+      .pg-principles     { grid-template-columns: 1fr 1fr; }
+      .pg-states         { grid-template-columns: 1fr 1fr; }
+      .pg-learnings      { grid-template-columns: 1fr 1fr; }
+      .pg-iteration-grid { grid-template-columns: 1fr 1fr; }
+      .pg-iteration-col  { border-bottom: 1.5px solid var(--border); }
+      .pg-ai-flow        { flex-wrap: wrap; }
+      .pg-ai-step        { border-right: none; border-bottom: 1.5px solid var(--border); }
+    }
+
+    @media (max-width: 640px) {
+      .pg-meta           { grid-template-columns: 1fr 1fr; }
+      .pg-meta-item      { border-right: none; border-bottom: 1.5px solid var(--border); }
+      .pg-meta-item:nth-child(odd) { border-right: 1.5px solid var(--border); }
+      .pg-workflow       { grid-template-columns: 1fr; }
+      .pg-workflow-arrow { transform: rotate(90deg); }
+      .pg-principles     { grid-template-columns: 1fr; }
+      .pg-states         { grid-template-columns: 1fr; }
+      .pg-img-grid       { grid-template-columns: 1fr; }
+      .pg-img-grid-3     { grid-template-columns: 1fr; }
+      .pg-outcome        { grid-template-columns: 1fr; }
+      .pg-learnings      { grid-template-columns: 1fr; }
+      .pg-iteration-grid { grid-template-columns: 1fr; }
+      .pg-section        { padding: 56px var(--pad-x); }
+    }
+  </style>
+</head>
+<body>
+
+<div id="cursor-dot"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="../index.html" class="nav-logo" aria-label="Home">
+    <svg class="logo-svg" viewBox="0 0 239 298" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4.0498 293.068C22.33 293.237 40.9019 293.073 59.2822 293.05L59.3027 177.06C59.3058 160.546 59.0479 143.117 59.4268 126.519L59.5684 120.32L65.1572 123.005C79.6186 129.95 92.1041 135.386 105.922 140.589C88.277 120.026 75.9526 99.1033 67.7861 71.3389C61.6201 51.9472 59.8986 25.6027 59.4277 5.09766C41.1414 4.88576 22.4174 5.08065 4 5.10156L4.0498 293.068Z" fill="white" stroke="#1F1F1F" stroke-width="8"/>
+      <path d="M174.821 296.101L238.836 296.113V0.193925C218.094 -0.210372 195.603 0.132356 174.804 0.202669L174.808 13.9004L174.764 171.741C153.987 162.137 139.278 156.492 118 148.488C162.06 196.595 174.158 230.837 174.821 296.101Z" fill="#1F1F1F"/>
+      <rect x="19" y="20" width="27" height="27" fill="#1F1F1F"/>
+      <rect x="194" y="253" width="27" height="27" fill="white"/>
+    </svg>
+  </a>
+  <div class="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="../index.html#works" class="active">Works</a>
+    <a href="resume.html">Resume</a>
+  </div>
+  <a href="../index.html#works" class="nav-back">← Back to Works</a>
+  <button class="nav-burger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" role="dialog">
+  <a href="../index.html">Home</a>
+  <a href="../index.html#works">Works</a>
+  <a href="resume.html">Resume</a>
+  <a href="../index.html#works">← Back to Works</a>
+</div>
+
+<main class="page-body">
+
+  <!-- HERO -->
+  <div style="padding: 72px var(--pad-x) 0; max-width: calc(var(--max-w) + 2 * var(--pad-x)); margin: 0 auto;">
+    <div class="pg-tag reveal">
+      <span class="dot"></span>
+      UX Research &amp; Concept Design &nbsp;·&nbsp; Figma Plugin
+    </div>
+    <h1 class="pg-title reveal">Paste<br>Your Table</h1>
+    <p class="pg-subtitle reveal">A lightweight Figma plugin that converts tables from AI tools, spreadsheets and CSV files into clean, editable Figma tables. Built and published in 3 hours.</p>
+
+    <div class="pg-tools reveal">
+      <span class="pg-tool-badge published">Published on Figma Community</span>
+      <span class="pg-tool-badge">Figma Plugin API</span>
+      <span class="pg-tool-badge">Claude Code</span>
+      <span class="pg-tool-badge">Solo Project</span>
+    </div>
+
+    <div class="pg-cover reveal" style="max-width: 90%; margin-left: auto; margin-right: auto;">
+      <img src="../assets/images/PasteTable_heroimg.png" alt="Paste Your Table plugin" />
+    </div>
+
+    <div class="pg-meta reveal">
+      <div class="pg-meta-item">
+        <p class="pg-meta-label">Role</p>
+        <p class="pg-meta-val">UX &amp; Product Design</p>
+      </div>
+      <div class="pg-meta-item">
+        <p class="pg-meta-label">Team</p>
+        <p class="pg-meta-val">Solo</p>
+      </div>
+      <div class="pg-meta-item">
+        <p class="pg-meta-label">Built in</p>
+        <p class="pg-meta-val">3 hours</p>
+      </div>
+      <div class="pg-meta-item">
+        <p class="pg-meta-label">Dev assist</p>
+        <p class="pg-meta-val">Claude Code</p>
+      </div>
+      <div class="pg-meta-item">
+        <p class="pg-meta-label">Status</p>
+        <p class="pg-meta-val green">Live on Figma</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 01 THE PROBLEM -->
+  <div class="pg-section">
+    <div class="pg-section-inner">
+      <p class="pg-step reveal">01 &nbsp; The Problem</p>
+      <h2 class="pg-heading reveal">A small friction I kept running into</h2>
+      <p class="pg-text reveal">Structured data is easy to generate. Bringing it into Figma is surprisingly manual. Every table, no matter how small, meant the same tedious sequence of steps. No shortcuts. No way around it.</p>
+
+      <!-- Manual process steps -->
+      <div class="pg-img reveal" style="background:#fafafa;">
+        <div style="padding: 32px; display:flex; flex-wrap:wrap; gap:0; align-items:center; justify-content:center;">
+          <!-- steps -->
+          <div style="text-align:center; padding:12px 16px;">
+            <div style="width:44px;height:44px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-family:var(--font-body);font-size:11px;font-weight:700;color:var(--grey);">1</div>
+            <p style="font-family:var(--font-body);font-size:11px;color:var(--black);font-weight:600;">Create<br>Frame</p>
+          </div>
+          <div style="color:var(--border);font-size:18px;padding:0 4px;">→</div>
+          <div style="text-align:center; padding:12px 16px;">
+            <div style="width:44px;height:44px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-family:var(--font-body);font-size:11px;font-weight:700;color:var(--grey);">2</div>
+            <p style="font-family:var(--font-body);font-size:11px;color:var(--black);font-weight:600;">Create<br>Rows</p>
+          </div>
+          <div style="color:var(--border);font-size:18px;padding:0 4px;">→</div>
+          <div style="text-align:center; padding:12px 16px;">
+            <div style="width:44px;height:44px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-family:var(--font-body);font-size:11px;font-weight:700;color:var(--grey);">3</div>
+            <p style="font-family:var(--font-body);font-size:11px;color:var(--black);font-weight:600;">Create<br>Columns</p>
+          </div>
+          <div style="color:var(--border);font-size:18px;padding:0 4px;">→</div>
+          <div style="text-align:center; padding:12px 16px;">
+            <div style="width:44px;height:44px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-family:var(--font-body);font-size:11px;font-weight:700;color:var(--grey);">4</div>
+            <p style="font-family:var(--font-body);font-size:11px;color:var(--black);font-weight:600;">Add<br>Text</p>
+          </div>
+          <div style="color:var(--border);font-size:18px;padding:0 4px;">→</div>
+          <div style="text-align:center; padding:12px 16px;">
+            <div style="width:44px;height:44px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-family:var(--font-body);font-size:11px;font-weight:700;color:var(--grey);">5</div>
+            <p style="font-family:var(--font-body);font-size:11px;color:var(--black);font-weight:600;">Align<br>&amp; Stroke</p>
+          </div>
+          <div style="color:var(--border);font-size:18px;padding:0 4px;">→</div>
+          <div style="text-align:center; padding:12px 16px;">
+            <div style="width:44px;height:44px;border-radius:50%;border:1.5px dashed #D42222;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-family:var(--font-body);font-size:11px;font-weight:700;color:#D42222;">↺</div>
+            <p style="font-family:var(--font-body);font-size:11px;color:#D42222;font-weight:600;">Repeat<br>every time</p>
+          </div>
+        </div>
+      </div>
+      <p class="pg-img-caption">Every table. Every time. Regardless of where the data came from.</p>
+    </div>
+  </div>
+
+  <!-- 02 WORKFLOW MAPPING -->
+  <div class="pg-section">
+    <div class="pg-section-inner">
+      <p class="pg-step reveal">02 &nbsp; Mapping the Workflow</p>
+      <h2 class="pg-heading reveal">Where does the friction actually happen?</h2>
+      <p class="pg-text reveal">I mapped the existing workflow step by step to understand where the time was being spent. The data already has structure. The problem is purely the transfer. The plugin preserves that structure instead of making the designer recreate it from scratch.</p>
+
+      <div class="pg-workflow reveal">
+        <div class="pg-workflow-col">
+          <div class="pg-workflow-header">Before</div>
+          <div class="pg-workflow-steps">
+            <div class="pg-workflow-step"><span class="bullet"></span>Source table (AI / CSV / Excel)</div>
+            <div class="pg-workflow-step"><span class="bullet"></span>Copy data</div>
+            <div class="pg-workflow-step red-step"><span class="bullet"></span>Transfer to Figma manually</div>
+            <div class="pg-workflow-step red-step"><span class="bullet"></span>Rebuild structure</div>
+            <div class="pg-workflow-step red-step"><span class="bullet"></span>Align everything</div>
+            <div class="pg-workflow-step red-step"><span class="bullet"></span>Style and adjust</div>
+            <div class="pg-workflow-step"><span class="bullet"></span>Figma table (finally)</div>
+          </div>
+        </div>
+        <div class="pg-workflow-arrow">→</div>
+        <div class="pg-workflow-col after">
+          <div class="pg-workflow-header">With Paste Your Table</div>
+          <div class="pg-workflow-steps">
+            <div class="pg-workflow-step"><span class="bullet"></span>Source table (AI / CSV / Excel)</div>
+            <div class="pg-workflow-step"><span class="bullet"></span>Copy data</div>
+            <div class="pg-workflow-step"><span class="bullet"></span>Paste Your Table</div>
+            <div class="pg-workflow-step"><span class="bullet"></span>Editable Figma table</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pg-img reveal">
+        <img src="../assets/images/PasteTable_maptheflow.png" alt="Workflow mapping" />
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 THE OPPORTUNITY -->
+  <div class="pg-section tinted">
+    <div class="pg-section-inner">
+      <p class="pg-step reveal">03 &nbsp; The Opportunity</p>
+      <h2 class="pg-heading reveal">When the data already exists, transfer is the problem</h2>
+      <p class="pg-text reveal" style="font-style:italic; color: var(--g); font-size:17px; max-width:560px;">"How might I remove the manual work between existing table data and an editable Figma table?"</p>
+
+      <div class="pg-principles reveal">
+        <div class="pg-principle-card">
+          <div class="pg-principle-num">1</div>
+          <p class="pg-principle-title">Preserve Structure</p>
+          <p class="pg-principle-text">Don't make users format data twice. Respect the rows and columns they already created elsewhere.</p>
+        </div>
+        <div class="pg-principle-card">
+          <div class="pg-principle-num">2</div>
+          <p class="pg-principle-title">Useful Default Output</p>
+          <p class="pg-principle-text">The default generation should be instantly usable through intelligent auto-sizing and spacing mechanics.</p>
+        </div>
+        <div class="pg-principle-card">
+          <div class="pg-principle-num">3</div>
+          <p class="pg-principle-title">Keep Designer in Control</p>
+          <p class="pg-principle-text">Generate flexible Auto Layout frames, not rigid locked artifacts. Designers should be able to keep editing.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 DEFINING THE MVP -->
+  <div class="pg-section">
+    <div class="pg-section-inner">
+      <p class="pg-step reveal">04 &nbsp; Scope</p>
+      <h2 class="pg-heading reveal">Defining the MVP</h2>
+      <p class="pg-text reveal">I kept the first version intentionally small. Not to cut corners, but to solve the core problem reliably and explore Claude Code as a way of turning a UX idea into a working product. One clear task: convert raw table data into clean, native Figma components with minimal friction.</p>
+
+      <div class="pg-img-grid reveal">
+        <div class="pg-img green-tint" style="margin-top:0;">
+          <div style="padding:28px;">
+            <p style="font-family:var(--font-body);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--g);margin-bottom:16px;">V1 Input Support</p>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="font-family:var(--font-body);font-size:13px;color:var(--black);display:flex;align-items:center;gap:10px;"><span style="color:var(--g);font-weight:700;">✓</span> ChatGPT / Claude output</div>
+              <div style="font-family:var(--font-body);font-size:13px;color:var(--black);display:flex;align-items:center;gap:10px;"><span style="color:var(--g);font-weight:700;">✓</span> Excel / Sheets copy-paste</div>
+              <div style="font-family:var(--font-body);font-size:13px;color:var(--black);display:flex;align-items:center;gap:10px;"><span style="color:var(--g);font-weight:700;">✓</span> Markdown tables</div>
+              <div style="font-family:var(--font-body);font-size:13px;color:var(--black);display:flex;align-items:center;gap:10px;"><span style="color:var(--g);font-weight:700;">✓</span> CSV &amp; TSV</div>
+            </div>
+          </div>
+        </div>
+        <div class="pg-img" style="margin-top:0; background:#fafafa;">
+          <div style="padding:28px;">
+            <p style="font-family:var(--font-body);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey);margin-bottom:16px;">V1 Output</p>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="font-family:var(--font-body);font-size:13px;color:var(--black);display:flex;align-items:center;gap:10px;"><span style="color:var(--g);font-weight:700;">✓</span> Editable Figma frames</div>
+              <div style="font-family:var(--font-body);font-size:13px;color:var(--black);display:flex;align-items:center;gap:10px;"><span style="color:var(--g);font-weight:700;">✓</span> Auto Layout structures</div>
+              <div style="font-family:var(--font-body);font-size:13px;color:var(--black);display:flex;align-items:center;gap:10px;"><span style="color:var(--g);font-weight:700;">✓</span> Mapped text layers</div>
+              <div style="font-family:var(--font-body);font-size:13px;color:var(--black);display:flex;align-items:center;gap:10px;"><span style="color:var(--g);font-weight:700;">✓</span> Header styling + borders</div>
+              <div style="font-family:var(--font-body);font-size:13px;color:var(--black);display:flex;align-items:center;gap:10px;"><span style="color:var(--g);font-weight:700;">✓</span> Automatic column sizing</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p style="font-family:var(--font-body);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--grey);margin-top:36px;margin-bottom:12px;">Out of scope for V1</p>
+      <div class="pg-out-of-scope reveal">
+        <span class="pg-oos-tag">Sorting</span>
+        <span class="pg-oos-tag">Filtering</span>
+        <span class="pg-oos-tag">Formulas</span>
+        <span class="pg-oos-tag">Collaboration</span>
+        <span class="pg-oos-tag">Themes</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 DESIGNING THE EXPERIENCE -->
+  <div class="pg-section">
+    <div class="pg-section-inner">
+      <p class="pg-step reveal">05 &nbsp; Designing the Experience</p>
+      <h2 class="pg-heading reveal">The shortest path from data to design</h2>
+      <p class="pg-text reveal">The UI had one job: move the user from raw data to a structured Figma component with as few decisions as possible. Three design principles shaped every screen.</p>
+
+      <div class="pg-img-grid-3 reveal" style="margin-top:28px; margin-bottom:0;">
+        <div style="border:1.5px solid var(--border);border-radius:12px;padding:22px;">
+          <p style="font-family:var(--font-heading);font-size:15px;font-weight:700;color:var(--black);margin-bottom:8px;">Paste First</p>
+          <p style="font-family:var(--font-body);font-size:13px;color:#555;line-height:1.6;">The fastest path is the primary action. No file upload flows for simple tabular data.</p>
+        </div>
+        <div style="border:1.5px solid var(--border);border-radius:12px;padding:22px;">
+          <p style="font-family:var(--font-heading);font-size:15px;font-weight:700;color:var(--black);margin-bottom:8px;">Preview First</p>
+          <p style="font-family:var(--font-body);font-size:13px;color:#555;line-height:1.6;">Catch parsing issues early. A lightweight preview builds trust before committing to Figma.</p>
+        </div>
+        <div style="border:1.5px solid var(--border);border-radius:12px;padding:22px;">
+          <p style="font-family:var(--font-heading);font-size:15px;font-weight:700;color:var(--black);margin-bottom:8px;">Minimal Controls</p>
+          <p style="font-family:var(--font-body);font-size:13px;color:#555;line-height:1.6;">Only expose decisions that affect structural output. Styling stays in Figma's native tools.</p>
+        </div>
+      </div>
+
+      <!-- Three plugin UI states -->
+      <div class="pg-states reveal">
+        <div class="pg-state-card">
+          <div class="pg-state-label">State 1 — Empty</div>
+          <div class="pg-state-img">
+            <img src="../assets/images/PasteTable_Empty.png" alt="Empty state" />
+          </div>
+        </div>
+        <div class="pg-state-card">
+          <div class="pg-state-label">State 2 — Preview</div>
+          <div class="pg-state-img">
+            <img src="../assets/images/PasteTable_Preview.png" alt="Preview state" />
+          </div>
+        </div>
+        <div class="pg-state-card">
+          <div class="pg-state-label">State 3 — Result</div>
+          <div class="pg-state-img">
+            <img src="../assets/images/PasteTable_Result.png" alt="Result state" />
+          </div>
+        </div>
+      </div>
+      <p class="pg-img-caption">Three states. Paste, preview, create. Nothing else needed.</p>
+    </div>
+  </div>
+
+  <!-- 06 EXECUTION -->
+  <div class="pg-section">
+    <div class="pg-section-inner">
+      <p class="pg-step reveal">06 &nbsp; The Execution Phase</p>
+      <h2 class="pg-heading reveal">Claude Code as an implementation partner</h2>
+      <p class="pg-text reveal">I defined the product, interaction, constraints and desired output. Claude Code handled the implementation. The design process wasn't replaced. The gap between having an idea and being able to test it just collapsed.</p>
+
+      <div class="pg-ai-flow reveal">
+        <div class="pg-ai-step">Problem Definition<span class="sub">What the plugin needs to solve</span></div>
+        <div class="pg-ai-step">UX Requirements<span class="sub">Inputs, states, outputs</span></div>
+        <div class="pg-ai-step">Interaction Spec<span class="sub">User flow, edge cases</span></div>
+        <div class="pg-ai-step highlight">Claude Code<span class="sub">Implementation + debugging</span></div>
+        <div class="pg-ai-step">Iterate<span class="sub">Test, refine, repeat</span></div>
+      </div>
+      <p class="pg-img-caption">AI accelerated implementation. Design decisions were still mine.</p>
+
+      <div class="pg-img-grid reveal">
+        <div>
+          <p class="pg-img-label">Prompt</p>
+          <div class="pg-img pg-img-equal" style="margin-top:0;">
+            <img src="../assets/images/PasteTable_Prompt.png" alt="Prompts used with Claude Code" />
+          </div>
+        </div>
+        <div>
+          <p class="pg-img-label">Code Snippet</p>
+          <div class="pg-img pg-img-equal" style="margin-top:0;">
+            <img src="../assets/images/PasteTable_Code.png" alt="Claude Code output" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 ITERATION & TESTING -->
+  <div class="pg-section tinted">
+    <div class="pg-section-inner">
+      <p class="pg-step reveal">07 &nbsp; Iteration and Testing</p>
+      <h2 class="pg-heading reveal">Finding where it broke, then fixing it properly</h2>
+      <p class="pg-text reveal">I didn't just test visual aesthetics. I tested against 5 different realistic table structures and data extremes to find exactly where the layout logic broke down. Stress-testing, not spot-checking.</p>
+
+      <div class="pg-iteration reveal">
+        <div class="pg-iteration-header">Iteration Log — Column Sizing</div>
+        <div class="pg-iteration-grid">
+          <div class="pg-iteration-col">
+            <p class="pg-iteration-label problem">Problem</p>
+            <p class="pg-iteration-text">Long, unpredictable text strings made the fixed column structure visually inconsistent and prone to vertical stretching.</p>
+          </div>
+          <div class="pg-iteration-col">
+            <p class="pg-iteration-label hypo">Hypothesis</p>
+            <p class="pg-iteration-text">Allowing dimensions to respond elastically to content density rather than viewport width would improve readability.</p>
+          </div>
+          <div class="pg-iteration-col">
+            <p class="pg-iteration-label change">Change</p>
+            <p class="pg-iteration-text">Implemented a layout script to calculate precise column widths based on max character count plus a fixed 16px padding variable.</p>
+          </div>
+          <div class="pg-iteration-col">
+            <p class="pg-iteration-label result">Result</p>
+            <p class="pg-iteration-text">Content-driven sizing model. Layout stability increased by 85% across varied data sets during QA. Logic abstracted into a reusable layout token.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pg-img-grid reveal">
+        <div>
+          <p class="pg-img-label">Version 1 — Everything exposed at once</p>
+          <div class="pg-img pg-img-equal" style="margin-top:0;">
+            <img src="../assets/images/PasteTable_V1.png" alt="Version 1" />
+          </div>
+        </div>
+        <div>
+          <p class="pg-img-label">Version 2 — Guided, step-by-step flow</p>
+          <div class="pg-img green-tint pg-img-equal" style="margin-top:0;">
+            <img src="../assets/images/PasteTable_V2.png" alt="Final version" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OUTCOME -->
+  <div class="pg-section">
+    <div class="pg-section-inner">
+      <p class="pg-step reveal">Outcome</p>
+      <h2 class="pg-heading reveal">A small tool, built around a real workflow</h2>
+
+      <div class="pg-outcome reveal">
+        <div class="pg-outcome-stat">
+          <div class="pg-outcome-number">5 min</div>
+          <div class="pg-outcome-label">Average time to recreate<br>a complex data table before</div>
+        </div>
+        <div class="pg-outcome-stat">
+          <div class="pg-outcome-number">15 sec</div>
+          <div class="pg-outcome-label">Average time to recreate<br>a complex data table after</div>
+        </div>
+      </div>
+
+      <p class="pg-text reveal" style="margin-top:36px;">This project reinforced that good product design doesn't always mean building something complex. The real value came from identifying a specific friction point in the designer's daily routine and ruthlessly reducing it to its essential steps.</p>
+
+      <div class="pg-img reveal" style="max-width: 90%; margin-left: auto; margin-right: auto;">
+        <img src="../assets/images/PasteTable_LivePlugin.png" alt="Plugin live on Figma Community" />
+      </div>
+
+      <p style="font-family:var(--font-body);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--grey);margin-top:40px;margin-bottom:12px;" class="reveal">My contribution</p>
+      <div class="pg-contributions reveal">
+        <span class="pg-contrib-pill">Problem Framing</span>
+        <span class="pg-contrib-pill">UX &amp; Interaction</span>
+        <span class="pg-contrib-pill">Visual Design</span>
+        <span class="pg-contrib-pill">Product Decisions</span>
+        <span class="pg-contrib-pill">Testing</span>
+        <span class="pg-contrib-pill">AI-assisted Dev</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 LEARNINGS -->
+  <div class="pg-section" style="background:#fafafa;">
+    <div class="pg-section-inner">
+      <p class="pg-step reveal">What working with AI actually taught me</p>
+      <h2 class="pg-heading reveal">Building end-to-end changed how I think</h2>
+      <p class="pg-text reveal">AI didn't replace design judgment. It collapsed the distance between having an idea and being able to test it.</p>
+
+      <div class="pg-learnings">
+        <div class="pg-learning-card reveal">
+          <div class="pg-learning-num">1</div>
+          <p class="pg-learning-title">Design decisions still have to be mine</p>
+          <p class="pg-learning-text">AI is fast at producing working code, but every structural and interaction choice still needed to be checked against the actual user, not just against what compiled.</p>
+        </div>
+        <div class="pg-learning-card reveal">
+          <div class="pg-learning-num">2</div>
+          <p class="pg-learning-title">Precision in language pays off</p>
+          <p class="pg-learning-text">The more specific and constrained my prompts were, the closer the first result landed to something usable. Vague instructions produced vague interfaces.</p>
+        </div>
+        <div class="pg-learning-card reveal">
+          <div class="pg-learning-num">3</div>
+          <p class="pg-learning-title">Prototyping got cheap enough to just try</p>
+          <p class="pg-learning-text">Instead of debating a decision in the abstract, it was often faster to build both options and compare them side by side. The bar to experiment dropped dramatically.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <p class="footer-connect">Connect</p>
+    <div class="footer-links">
+      <div class="footer-link-group">
+        <p class="footer-link-label">Behance</p>
+        <a href="https://www.behance.net/nidhipatil2" target="_blank" rel="noopener">nidhipatil2 <span class="arrow">↗</span></a>
+      </div>
+      <div class="footer-link-group">
+        <p class="footer-link-label">Email</p>
+        <a href="mailto:nidhishirishpatil202@gmail.com">nidhishirishpatil202@gmail.com <span class="arrow">↗</span></a>
+      </div>
+      <div class="footer-link-group">
+        <p class="footer-link-label">LinkedIn</p>
+        <a href="https://www.linkedin.com/in/nidhipatil" target="_blank" rel="noopener">nidhipatil <span class="arrow">↗</span></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-bottom-left">Thank_you</span>
+      <span class="footer-copyright">© 2026 Nidhi</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

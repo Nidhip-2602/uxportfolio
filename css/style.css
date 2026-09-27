@@ -29,16 +29,65 @@
    ============================================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html {
-  scroll-behavior: smooth;
+  /* No global scroll-behavior:smooth — the one in-page anchor link (#works)
+     already does its own scrollIntoView({behavior:'smooth'}) in JS with
+     preventDefault, so this was doing nothing for navigation but was still
+     applied to every plain wheel/trackpad scroll — that's what caused the
+     page to overshoot and spring back ("bounce") when scrolling past the
+     footer on Chrome/Edge on Windows. */
   overflow-x: hidden; /* belt-and-braces alongside body's own overflow-x:hidden below — some content (e.g. the arc carousel, which needs overflow:visible for its own vertical bleed) can end up wider than the viewport, and relying on body alone to clip that isn't reliable in every browser */
   background: #0d0d0d; /* matches .footer — every page ends on the dark footer, so any residual overscroll edge shows this instead of flashing white */
   overscroll-behavior-y: contain; /* stops Chrome/Edge's scroll-past-the-end glow on Windows touchpads. "contain" only (not "none") and only on html, not body — the html+body "none" combo previously locked up scrolling entirely */
+  /* Horizontal counterpart of the line above. Checked with a script that
+     flags every element whose rendered box extends past the viewport
+     edge, on this page and a case-study page, at both desktop and
+     mobile widths, with the arc carousel animating and idle:
+     document.documentElement.scrollWidth and document.body.scrollWidth
+     matched window.innerWidth exactly every time — there's no element
+     actually wider than the page (the hero marquee is, deliberately,
+     but .hero-banner already clips it locally with its own
+     overflow:hidden). So there's no real horizontal scroll distance to
+     be at the "end" of; the sideways slide-and-snap-back on drag/scroll
+     near the left/right edge is the browser's native edge-swipe/scroll
+     -chaining gesture (e.g. the swipe-back-navigation affordance),
+     which fires regardless of whether there's anything to scroll to.
+     `contain` alone (stops chaining, but per spec still allows the
+     element's own local bounce/glow affordance to play) wasn't enough —
+     confirmed still visible after trying it — so this is `none` (also
+     suppresses that local affordance), unlike the `-y` line above which
+     stays `contain`. This is a narrower risk than a `none` on the
+     vertical axis would be: html has no horizontal scroll content at
+     all (overflow-x:hidden, scrollWidth already == innerWidth per the
+     check above), so there's nothing for this to "lock up" — it can
+     only suppress a gesture with no scrollable destination anyway. Only
+     set on html, not body, same as -y. */
+  overscroll-behavior-x: none;
 }
 body {
   font-family: var(--font-body);
   background: var(--white);
   color: var(--black);
-  overflow-x: hidden;
+  /* overflow: hidden (not just overflow-x) is load-bearing: html is the
+     only element that should ever scroll (confirmed via
+     document.scrollingElement). Because overflow-x was hidden here but
+     overflow-y was left unset, the CSS overflow spec forces overflow-y
+     to compute to `auto` instead of `visible` (an element can't mix
+     visible on one axis with non-visible on the other) — quietly
+     turning body into its own scroll container. The arc carousel's
+     cards (deliberately transform-only, see js/main.js) dip past
+     .arc-section/.arc-stage's `overflow: visible` into the footer's
+     area, and with body an `auto` container, its scrollHeight kept
+     recomputing to include however far the currently-mid-swing cards
+     reached — a value that grew and shrank every frame as the carousel
+     spun, even though html's real scrollHeight (the actual scroll
+     limit) stayed fixed at the footer's bottom. That phantom, oscillating
+     region is what showed up as a white gap under the footer and a
+     spring-back/bounce when scrolling to the bottom. Explicitly clipping
+     both axes here removes the ambiguity — the dipping cards still
+     paint into the footer's area fine (that area is well within body's
+     natural height), they just stop inflating body's own overflow.
+     Do not narrow this back to overflow-x alone. */
+  overflow: hidden;
   cursor: none;
 }
 a { color: inherit; text-decoration: none; }
@@ -244,7 +293,47 @@ img { display: block; max-width: 100%; }
 /* ============================================================
    PAGE WRAPPER
    ============================================================ */
-.page-body { padding-top: var(--nav-h); }
+.page-body {
+  padding-top: var(--nav-h);
+  /* Hard vertical clip at the true end of the page (this <main> wraps
+     everything through the footer). The arc carousel's cards
+     (index.html only) are animated purely via CSS transform so nothing
+     is added/removed from layout each frame, but .arc-section/.arc-stage
+     use overflow:visible so the outer cards can dip past their own box
+     into the footer's area (see the ARC CAROUSEL comment in js/main.js).
+     Without a clip somewhere past the footer, that transform overflow
+     keeps leaking up to body/html's scrollable-overflow calculation,
+     and since the cards are mid-swing at different depths every frame,
+     that leaked overflow grows and shrinks continuously — confirmed via
+     document.body.scrollHeight polling, which sawtoothed between ~5195
+     and ~5295 while document.documentElement.scrollHeight (the real,
+     intended scroll limit) stayed rock solid. That fluctuating phantom
+     region below the footer is what showed up as a white gap and a
+     spring-back/bounce when scrolling to the bottom. Clipping here
+     absorbs it: this element's own natural height already ends exactly
+     at the footer's bottom, so the cards still visually dip into the
+     footer's area fine (that's well inside this box) — they just can't
+     inflate anything above it anymore.
+
+     overflow-x must be set here too (not left implicit) — this was the
+     actual cause of a follow-up horizontal-bounce bug. The arc cards
+     swing wide as well as low (same transform, same overflow:visible on
+     .arc-section/.arc-stage), and with only overflow-y declared here,
+     the CSS overflow spec forces this element's overflow-x to compute
+     to `auto` instead of `visible` (an element can't mix visible on one
+     axis with non-visible on the other — the same rule documented on
+     body below). That quietly turned this <main> into its own
+     independent, genuinely-scrollable horizontal container: measured
+     clientWidth 1422 vs scrollWidth 1690, a real 268px of horizontal
+     scroll room, traced to specific .arc-card elements extending exactly
+     268px past this element's right edge. html's own overflow-x/
+     overscroll-behavior-x were already correctly locked down, but that's
+     a different element — dragging near the edge was scrolling *this*
+     nested auto container instead, which had no overscroll-behavior set
+     at all. Explicit `hidden` on both axes removes the ambiguity, same
+     fix as body's overflow below. */
+  overflow: hidden;
+}
 
 /* ============================================================
    HERO
@@ -435,6 +524,82 @@ img { display: block; max-width: 100%; }
 }
 
 /* ============================================================
+   AI LAB (part of Works)
+   ============================================================ */
+.ai-lab-divider {
+  width: 100%;
+  max-width: 1040px;
+  height: 1px;
+  margin: 56px auto 56px;
+  background: rgba(0,0,0,0.1);
+}
+
+.ai-lab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ai-lab-label {
+  font-family: var(--font-heading);
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 8px;
+}
+
+.ai-lab-subtitle {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: rgba(0,0,0,0.55);
+  margin-bottom: 32px;
+}
+
+.ai-lab-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+  width: 100%;
+}
+
+.ai-lab-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  display: block;
+  width: 100%;
+  max-width: 504px; /* half the main project card's dimensions */
+  aspect-ratio: 1672 / 941;
+  background: #111;
+  text-align: left;
+}
+.ai-lab-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  display: block;
+}
+.ai-lab-card:hover img { transform: scale(1.03); }
+
+.ai-lab-card .project-card-info {
+  padding: 16px 18px;
+}
+.ai-lab-card .project-card-tag {
+  font-size: 10px;
+}
+.ai-lab-card .project-card-title {
+  font-size: clamp(15px, 1.6vw, 19px);
+}
+
+@media (max-width: 640px) {
+  .ai-lab-divider { margin: 40px auto; }
+  .ai-lab-card { max-width: 100%; }
+}
+
+/* ============================================================
    ABOUT
    ============================================================ */
 .about {
@@ -515,22 +680,32 @@ img { display: block; max-width: 100%; }
 }
 
 @media (max-width: 900px) {
+  /* Below this width the photo drops from beside the text (where it's
+     sticky and costs no extra scroll height) to stacked below it —
+     that adds the photo's full height on top of the text, so this
+     section gets its own smaller padding + a smaller photo here rather
+     than waiting for the general 768px breakpoint, to keep the section
+     from ballooning to ~2 viewports tall. */
+  #about {
+    padding: 64px var(--pad-x);
+  }
   .about-inner {
     grid-template-columns: 1fr;
-    gap: 48px;
+    gap: 32px;
   }
   .about-photo-wrap {
     position: relative;
-    max-width: 380px;
+    max-width: 300px;
     margin: 0 auto;
   }
   .about-stamp {
-    width: 84px;
-    height: 84px;
+    width: 68px;
+    height: 68px;
   }
   .about-row {
     grid-template-columns: 1fr;
     gap: 8px;
+    padding: 24px 0;
   }
 }
 
