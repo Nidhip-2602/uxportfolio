@@ -203,17 +203,26 @@
     .bb-gap-steps b { display: block; font-size: 15px; color: #2b2850; margin-bottom: 4px; }
     .bb-gap-end { margin-top: 20px; font-family: var(--font-heading); font-size: 17px; font-weight: 600; color: #4A41A8; }
     @media (max-width: 800px) { .bb-seen-row { flex-wrap: wrap; gap: 12px; } .bb-seen { flex: 1 1 calc(50% - 6px); } .bb-link { display: none; } .bb-gap-steps { grid-template-columns: 1fr; } }
-    .bb-idea-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 24px; }
-    .bb-idea { position: relative; background: var(--c); border-radius: 18px; padding: 22px 22px 20px; display: flex; flex-direction: column; gap: 14px; min-height: 190px; transition: transform .2s ease; }
-    .bb-idea:hover { transform: translateY(-3px); }
-    .bb-idea-n { position: absolute; top: 18px; right: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; color: #4A41A8; opacity: .7; }
-    .bb-idea-ic { width: 56px; height: 56px; border-radius: 16px; background: rgba(255,255,255,.75); display: grid; place-items: center; }
-    .bb-idea-ic svg { width: 30px; height: 30px; fill: none; stroke: #4A41A8; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-    .bb-idea h3 { font-family: var(--font-heading); font-size: 17px; line-height: 1.25; color: #2b2850; margin: 0; }
-    .bb-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
-    .bb-chips span { font-size: 12px; line-height: 1; padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,.8); color: #4a4660; }
-    @media (max-width: 900px) { .bb-idea-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 560px) { .bb-idea-grid { grid-template-columns: 1fr; } .bb-idea { min-height: 0; } }
+    .bb-idea-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 24px; }
+    .bb-idea { position: relative; background: #fff; border: 1px solid #E6E3F0; border-radius: 10px; padding: 10px 12px; display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto 1fr; column-gap: 8px; row-gap: 6px; align-items: start; }
+    .bb-idea h3 { grid-column: 1; grid-row: 1; font-family: var(--font-heading); font-size: 15px; line-height: 1.25; color: #2b2850; margin: 0; }
+    .bb-idea-ic { grid-column: 2; grid-row: 1 / span 2; width: 34px; height: 34px; border-radius: 8px; background: #F3F1FA; display: grid; place-items: center; }
+    .bb-idea-ic svg { width: 20px; height: 20px; fill: none; stroke: #6259D8; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .bb-chips { grid-column: 1; grid-row: 2; display: flex; flex-wrap: wrap; gap: 3px; align-content: flex-start; }
+    .bb-chips span { font-size: 11.5px; line-height: 1; padding: 4px 8px; border-radius: 999px; background: #F5F4F9; color: #5b576f; }
+    @media (max-width: 900px) { .bb-idea-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .bb-idea-grid { grid-template-columns: 1fr; } }
+    .bb-xp-label { display: inline-block; margin-top: 56px; padding: 6px 16px; border: 1px solid #C9C4EC; border-radius: 999px; font-size: 13px; font-weight: 600; color: #6259D8; background: #fff; }
+    .bb-xp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; }
+    .bb-xp { background: #fff; border: 1px solid #E6E3F0; border-radius: 16px; padding: 12px 12px 20px; display: flex; flex-direction: column; }
+    .bb-xp.is-selected { border: 2px solid #6259D8; padding: 11px 11px 19px; }
+    .bb-xp-img { aspect-ratio: 4/3; border-radius: 10px; background: #FAF7F2; display: grid; place-items: center; text-align: center; font-size: 12px; color: #9a96ad; padding: 12px; overflow: hidden; }
+    .bb-xp-img img { width: 100%; height: 100%; object-fit: cover; }
+    .bb-xp-eyebrow { margin: 18px 8px 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #6259D8; }
+    .bb-xp h3 { margin: 0 8px 8px; font-family: var(--font-heading); font-size: 17px; color: #1f1f1f; }
+    .bb-xp p { margin: 0 8px; font-size: 14px; line-height: 1.6; color: #4a4660; }
+    @media (max-width: 1000px) { .bb-xp-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 520px) { .bb-xp-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -622,18 +631,28 @@
         <h2 class="cs-section-heading">From a wide feature brainstorm to a focused concept.</h2>
         <p class="cs-section-text">Ideation was organised into twelve themes, each one tracing back to a specific research or interview insight, before converging on Brave Buddy.</p>
         <div class="bb-idea-grid">
-          <div class="bb-idea" style="--c:#DDEFD9;"><span class="bb-idea-n">01</span><div class="bb-idea-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="7" r="2.5"/><circle cx="18" cy="7" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8 8.5l3 7M16 8.5l-3 7M8.5 7h7"/></svg></div><h3>Goal map &amp; goal setting</h3><div class="bb-chips"><span>People × places</span><span>Comfort colours</span><span>Shared goals</span></div></div>
-          <div class="bb-idea" style="--c:#DDEFD9;"><span class="bb-idea-n">02</span><div class="bb-idea-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-4 3-6 7-6s7 2 7 6"/></svg></div><h3>Child profile &amp; comfort</h3><div class="bb-chips"><span>Age &amp; interests</span><span>Comfort zones</span><span>Tough moments</span></div></div>
-          <div class="bb-idea" style="--c:#DDEFD9;"><span class="bb-idea-n">03</span><div class="bb-idea-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="10" rx="5"/><path d="M8 11v4M6 13h4M16 12h.01M18 14h.01"/></svg></div><h3>Practice &amp; games</h3><div class="bb-chips"><span>Real-world goals</span><span>Gentle prompts</span><span>Earned rewards</span></div></div>
-          <div class="bb-idea" style="--c:#FBDDE5;"><span class="bb-idea-n">04</span><div class="bb-idea-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2.5A4 4 0 0119 10c0 5.5-7 10-7 10z"/><path d="M9.5 11h.01M14.5 11h.01"/></svg></div><h3>Companion character</h3><div class="bb-chips"><span>Consistent personality</span><span>Sound feedback</span><span>Watch · keychain · locket</span></div></div>
-          <div class="bb-idea" style="--c:#FBDDE5;"><span class="bb-idea-n">05</span><div class="bb-idea-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.6 5.5 6 .8-4.4 4.2 1.1 6L12 16.5 6.700 19.500l1.100-6L3.400 9.300l6-.8z"/></svg></div><h3>Rewards &amp; celebration</h3><div class="bb-chips"><span>Points</span><span>Object celebrates</span></div></div>
-          <div class="bb-idea" style="--c:#FBDDE5;"><span class="bb-idea-n">06</span><div class="bb-idea-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0"/><path d="M3 18c2-4 4-4 6 0s4 4 6 0 4-4 6 0" opacity=".5"/></svg></div><h3>Calm &amp; help</h3><div class="bb-chips"><span>Discreet signal</span><span>Reduce anxiety</span><span>Alternatives</span></div></div>
-          <div class="bb-idea" style="--c:#DCEAFB;"><span class="bb-idea-n">07</span><div class="bb-idea-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M8.5 11l1.5 1.5L13 9.5M8.5 17h7"/></svg></div><h3>Recording what happened</h3><div class="bb-chips"><span>Multiple choice</span><span>Parent or child</span></div></div>
-          <div class="bb-idea" style="--c:#DCEAFB;"><span class="bb-idea-n">08</span><div class="bb-idea-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V4M4 20h16"/><path d="M7 15l4-4 3 3 5-6"/></svg></div><h3>Progress &amp; reports</h3><div class="bb-chips"><span>Progress curve</span><span>Weekly tracker</span><span>Journey, not score</span></div></div>
-          <div class="bb-idea" style="--c:#DCEAFB;"><span class="bb-idea-n">09</span><div class="bb-idea-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 00-3.5 10.9c.6.5 1 1.200 1 2.100h5c0-.9.4-1.600 1-2.100A6 6 0 0012 3z"/></svg></div><h3>Guidance &amp; coaching</h3><div class="bb-chips"><span>Teacher tips</span><span>Adult stress support</span></div></div>
-          <div class="bb-idea" style="--c:#ECE9F7;"><span class="bb-idea-n">10</span><div class="bb-idea-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2 20c0-3.5 2.5-5.5 6-5.5s6 2 6 5.5M15 14.5c3 0 5 1.5 5 4.5"/></svg></div><h3>Care team &amp; sessions</h3><div class="bb-chips"><span>No app for teachers</span><span>Session calendar</span></div></div>
-          <div class="bb-idea" style="--c:#ECE9F7;"><span class="bb-idea-n">11</span><div class="bb-idea-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8"/></svg></div><h3>Community</h3><div class="bb-chips"><span>Parent tips</span><span>Therapist space</span></div></div>
-          <div class="bb-idea" style="--c:#ECE9F7;"><span class="bb-idea-n">12</span><div class="bb-idea-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.5 7.5-8 9-4.5-1.5-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>Design principles</h3><div class="bb-chips"><span>No harsh vibration</span><span>Simple interface</span><span>Earns trust</span></div></div>
+          <div class="bb-idea" style="--c:#DDEFD9;"><div class="bb-idea-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="7" r="2.5"/><circle cx="18" cy="7" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8 8.5l3 7M16 8.5l-3 7M8.5 7h7"/></svg></div><h3>Goal map &amp; goal setting</h3><div class="bb-chips"><span>People × places</span><span>Comfort colours</span><span>Shared goals</span></div></div>
+          <div class="bb-idea" style="--c:#DDEFD9;"><div class="bb-idea-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-4 3-6 7-6s7 2 7 6"/></svg></div><h3>Child profile &amp; comfort</h3><div class="bb-chips"><span>Age &amp; interests</span><span>Comfort zones</span><span>Tough moments</span></div></div>
+          <div class="bb-idea" style="--c:#DDEFD9;"><div class="bb-idea-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="10" rx="5"/><path d="M8 11v4M6 13h4M16 12h.01M18 14h.01"/></svg></div><h3>Practice &amp; games</h3><div class="bb-chips"><span>Real-world goals</span><span>Gentle prompts</span><span>Earned rewards</span></div></div>
+          <div class="bb-idea" style="--c:#FBDDE5;"><div class="bb-idea-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2.5A4 4 0 0119 10c0 5.5-7 10-7 10z"/><path d="M9.5 11h.01M14.5 11h.01"/></svg></div><h3>Companion character</h3><div class="bb-chips"><span>Consistent personality</span><span>Sound feedback</span><span>Watch · keychain · locket</span></div></div>
+          <div class="bb-idea" style="--c:#FBDDE5;"><div class="bb-idea-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.6 5.5 6 .8-4.4 4.2 1.1 6L12 16.5 6.700 19.500l1.100-6L3.400 9.300l6-.8z"/></svg></div><h3>Rewards &amp; celebration</h3><div class="bb-chips"><span>Points</span><span>Object celebrates</span></div></div>
+          <div class="bb-idea" style="--c:#FBDDE5;"><div class="bb-idea-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0"/><path d="M3 18c2-4 4-4 6 0s4 4 6 0 4-4 6 0" opacity=".5"/></svg></div><h3>Calm &amp; help</h3><div class="bb-chips"><span>Discreet signal</span><span>Reduce anxiety</span><span>Alternatives</span></div></div>
+          <div class="bb-idea" style="--c:#DCEAFB;"><div class="bb-idea-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M8.5 11l1.5 1.5L13 9.5M8.5 17h7"/></svg></div><h3>Recording what happened</h3><div class="bb-chips"><span>Multiple choice</span><span>Parent or child</span></div></div>
+          <div class="bb-idea" style="--c:#DCEAFB;"><div class="bb-idea-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V4M4 20h16"/><path d="M7 15l4-4 3 3 5-6"/></svg></div><h3>Progress &amp; reports</h3><div class="bb-chips"><span>Progress curve</span><span>Weekly tracker</span><span>Journey, not score</span></div></div>
+          <div class="bb-idea" style="--c:#DCEAFB;"><div class="bb-idea-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 00-3.5 10.9c.6.5 1 1.200 1 2.100h5c0-.9.4-1.600 1-2.100A6 6 0 0012 3z"/></svg></div><h3>Guidance &amp; coaching</h3><div class="bb-chips"><span>Teacher tips</span><span>Adult stress support</span></div></div>
+          <div class="bb-idea" style="--c:#ECE9F7;"><div class="bb-idea-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2 20c0-3.5 2.5-5.5 6-5.5s6 2 6 5.5M15 14.5c3 0 5 1.5 5 4.5"/></svg></div><h3>Care team &amp; sessions</h3><div class="bb-chips"><span>No app for teachers</span><span>Session calendar</span></div></div>
+          <div class="bb-idea" style="--c:#ECE9F7;"><div class="bb-idea-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8"/></svg></div><h3>Community</h3><div class="bb-chips"><span>Parent tips</span><span>Therapist space</span></div></div>
+          <div class="bb-idea" style="--c:#ECE9F7;"><div class="bb-idea-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.5 7.5-8 9-4.5-1.5-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>Design principles</h3><div class="bb-chips"><span>No harsh vibration</span><span>Simple interface</span><span>Earns trust</span></div></div>
+        </div>
+
+        <span class="bb-xp-label">Concept exploration</span>
+        <h2 class="cs-section-heading" style="margin-top:18px;">We then started exploring concepts</h2>
+        <p class="cs-section-text">With comfort and continuity as priorities, we explored four ways to make support feel familiar and usable in a child’s day.</p>
+        <div class="bb-xp-grid">
+          <div class="bb-xp"><div class="bb-xp-img">Add image: assets/images/bb-concept-01.png</div><p class="bb-xp-eyebrow">Concept 01</p><h3>Communication Companion</h3><p>A friendly object that encourages and appreciates communication attempts.</p></div>
+          <div class="bb-xp"><div class="bb-xp-img">Add image: assets/images/bb-concept-02.png</div><p class="bb-xp-eyebrow">Concept 02</p><h3>Adaptable to Environment</h3><p>One core device used in different ways across school, home and play.</p></div>
+          <div class="bb-xp is-selected"><div class="bb-xp-img">Add image: assets/images/bb-concept-03.png</div><p class="bb-xp-eyebrow">Concept 03 · Selected</p><h3>Personal Tracker + App</h3><p>A compact wearable that records everyday moments and connects to an app so progress can be seen over time.</p></div>
+          <div class="bb-xp"><div class="bb-xp-img">Add image: assets/images/bb-concept-04.png</div><p class="bb-xp-eyebrow">Concept 04</p><h3>Sling Type Bag</h3><p>A wearable bag that makes the device part of everyday carry.</p></div>
         </div>
       </div>
 
