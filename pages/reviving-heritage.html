@@ -67,6 +67,16 @@
       background: #eadfc4;
       color: #8a7857;
     }
+    .cs-screen-list { margin-top: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px 40px; }
+    .cs-screen-row { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; width: 100%; max-width: 280px; justify-self: center; }
+    .cs-screen-row img { width: 100%; max-width: 260px; height: auto; aspect-ratio: 393/852; object-fit: contain; display: block; }
+    .cs-screen-row:last-child:nth-child(odd) { grid-column: 1 / -1; }
+    .cs-screen-num { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #6B1F2E; margin-bottom: 8px; }
+    .cs-screen-insight { font-size: 13px; color: #7a6a4d; margin-bottom: 10px; }
+    .cs-screen-insight em { color: #1F1F1F; }
+    .cs-screen-text h4 { font-family: var(--font-heading); font-size: 20px; color: #1F1F1F; margin-bottom: 8px; }
+    .cs-screen-text p:last-child { font-size: 14px; line-height: 1.6; color: #453824; }
+    @media (max-width: 640px) { .cs-screen-list { gap: 40px 16px; } .cs-screen-text h4 { font-size: 16px; } .cs-screen-text p:last-child { font-size: 13px; } }
   </style>
 </head>
 <body>
@@ -590,79 +600,70 @@
           <img src="../assets/images/wada-gamification.png" alt="App map screen: Wadas in Sadashiv Peth" loading="lazy" decoding="async" />
         </div>
 
-        <h3 style="font-family:var(--font-heading);font-size:19px;margin-top:48px;margin-bottom:16px;color:#1F1F1F;">A seven-step ritual, designed to feel like joining a scavenger myth, not installing another tourism app.</h3>
-        <div class="cs-journey-list">
-          <div class="cs-journey-step">
-            <div class="cs-journey-num">01</div>
-            <div class="cs-journey-titles"><p class="cs-eyebrow">Begin</p><strong>The passport</strong></div>
-            <p>Download the app or pick up a physical charm from a partner shop. Onboarding feels playful: not "create account," but "begin your trail." Your charm is your ticket, collector's item and identity link rolled into one object.</p>
+        <h3 style="font-family:var(--font-heading);font-size:19px;margin-top:48px;margin-bottom:6px;color:#1F1F1F;text-align:center;">Every choice traces back to a field insight.</h3>
+        <div class="cs-screen-list">
+          <div class="cs-screen-row">
+            <img src="../assets/images/wada-screen-01-home.png" alt="App screen: Home" loading="lazy" decoding="async" />
+            <div class="cs-screen-text">
+              <p class="cs-screen-num">01 · Home</p>
+              <p class="cs-screen-insight">Insight: <em>Wadas hide in plain sight.</em></p>
+              <h4>Every Wada, one tap away.</h4>
+              <p>Tap any Wada on home and land straight on its page.</p>
+            </div>
           </div>
-          <div class="cs-journey-step">
-            <div class="cs-journey-num">02</div>
-            <div class="cs-journey-titles"><p class="cs-eyebrow">Arrive</p><strong>Recognition at the gate</strong></div>
-            <p>Each Wada is a checkpoint. Tap your charm or scan a QR, the Wada "recognises" you. A short personalised welcome plays: a fragment of the building's story, calibrated to whether you're a first-time or returning visitor.</p>
+          <div class="cs-screen-row">
+            <img src="../assets/images/wada-screen-02-map.png" alt="App screen: Map" loading="lazy" decoding="async" />
+            <div class="cs-screen-text">
+              <p class="cs-screen-num">02 · Map</p>
+              <p class="cs-screen-insight">Insight: <em>No wayfinding exists for the city's Wadas.</em></p>
+              <h4>Know where you are. See what's near.</h4>
+              <p>A live map turns scattered Wadas into one walkable trail.</p>
+            </div>
           </div>
-          <div class="cs-journey-step">
-            <div class="cs-journey-num">03</div>
-            <div class="cs-journey-titles"><p class="cs-eyebrow">Capture</p><strong>The selfie mirror</strong></div>
-            <p>Step into a tasteful mirror frame at the entrance. The mirror or the app camera adds AR motifs from that Wada's signature carvings. Photography becomes a small ritual instead of just a backdrop habit.</p>
+          <div class="cs-screen-row">
+            <img src="../assets/images/wada-screen-03-wada.png" alt="App screen: Wada page" loading="lazy" decoding="async" />
+            <div class="cs-screen-text">
+              <p class="cs-screen-num">03 · Wada page</p>
+              <p class="cs-screen-insight">Insight: <em>"I have no idea what I'm looking at."</em></p>
+              <h4>A trailer first. Stories as you check in.</h4>
+              <p>An ad-style video shows what you'll learn. The first audio plays free; each check-in unlocks the next.</p>
+            </div>
           </div>
-          <div class="cs-journey-step">
-            <div class="cs-journey-num">04</div>
-            <div class="cs-journey-titles"><p class="cs-eyebrow">Collect</p><strong>Stamp the passport</strong></div>
-            <p>Each visit adds a stamp and your selfie to your digital passport, a scrapbook the app weaves into a living collage you can rearrange, narrate, and export.</p>
+          <div class="cs-screen-row">
+            <img src="../assets/images/wada-screen-04-camera.png" alt="App screen: AR mirror" loading="lazy" decoding="async" />
+            <div class="cs-screen-text">
+              <p class="cs-screen-num">04 · AR mirror</p>
+              <p class="cs-screen-insight">Insight: <em>Young visitors treat courtyards as photo backdrops.</em></p>
+              <h4>Step into another era.</h4>
+              <p>An AR camera places you in Peshwa, Maratha, Mughal settings, so a photo delivers story.</p>
+            </div>
           </div>
-          <div class="cs-journey-step">
-            <div class="cs-journey-num">05</div>
-            <div class="cs-journey-titles"><p class="cs-eyebrow">Progress</p><strong>Badges &amp; unlocks</strong></div>
-            <p>As more Wadas are visited, the collage grows and themed badges unlock, "Peshwa-era trail," "monsoon visit," "wooden carvings deep-dive." Visible markers fuel the pride, share, new-visitor loop.</p>
+          <div class="cs-screen-row">
+            <img src="../assets/images/wada-screen-05-snap.png" alt="App screen: Snap" loading="lazy" decoding="async" />
+            <div class="cs-screen-text">
+              <p class="cs-screen-num">05 · Snap</p>
+              <p class="cs-screen-insight">Insight: <em>Young visitors treat courtyards as photo backdrops.</em></p>
+              <h4>Photos become a scrapbook.</h4>
+              <p>Every snap joins a collage you can rearrange and share.</p>
+            </div>
           </div>
-          <div class="cs-journey-step">
-            <div class="cs-journey-num">06</div>
-            <div class="cs-journey-titles"><p class="cs-eyebrow">Celebrate</p><strong>The completion ritual</strong></div>
-            <p>Finishing a trail earns a certificate, a limited-edition charm patch, and a prompt to choose the next route, Saswad Wadas, Nashik Wadas, or seasonal festival trails.</p>
+          <div class="cs-screen-row">
+            <img src="../assets/images/wada-screen-06-collection.png" alt="App screen: Collection" loading="lazy" decoding="async" />
+            <div class="cs-screen-text">
+              <p class="cs-screen-num">06 · Collection</p>
+              <p class="cs-screen-insight">Insight: <em>74% visit only once.</em></p>
+              <h4>Something to come back for.</h4>
+              <p>Stamps, collectibles, discounts on your next Wada and surprise gifts reward every return.</p>
+            </div>
           </div>
-          <div class="cs-journey-step">
-            <div class="cs-journey-num">07</div>
-            <div class="cs-journey-titles"><p class="cs-eyebrow">Return</p><strong>Hidden layers</strong></div>
-            <p>Revisiting a Wada reveals what wasn't visible the first time, behind-the-scenes craftsperson workshops, secret micro-trails, time-bound festival overlays. The same building, deeper each time.</p>
-          </div>
-        </div>
-
-        <h3 style="font-family:var(--font-heading);font-size:19px;margin-top:48px;margin-bottom:16px;color:#1F1F1F;">The four moments that carry the experience.</h3>
-        <div class="cs-touchpoint-grid">
-          <img src="../assets/images/wada-splashscreen.png" alt="App: Wada Marathon splash" loading="lazy" decoding="async" />
-          <img src="../assets/images/wada-map-withpins.png" alt="App: map with Wada pins" loading="lazy" decoding="async" />
-          <img src="../assets/images/wada-memory-collage.png" alt="App: memory collage" loading="lazy" decoding="async" />
-          <img src="../assets/images/wada-quest-complete.png" alt="App: quest complete screen" loading="lazy" decoding="async" />
-        </div>
-
-        <h3 style="font-family:var(--font-heading);font-size:19px;margin-top:48px;margin-bottom:6px;color:#1F1F1F;">Every choice traces back to a field insight.</h3>
-        <div class="cs-insight-table">
-          <div class="cs-insight-row">
-            <p class="cs-insight-text">Insight: <em>"I have no idea what I'm looking at."</em></p>
-            <span class="cs-arrow-col">→</span>
-            <p class="cs-response-text">Charm-triggered audio stories at every Wada, narrated, not signposted.</p>
-          </div>
-          <div class="cs-insight-row">
-            <p class="cs-insight-text">Insight: <em>74% visit only once.</em></p>
-            <span class="cs-arrow-col">→</span>
-            <p class="cs-response-text">Layered unlocks &amp; seasonal trails reward return, not just first arrival.</p>
-          </div>
-          <div class="cs-insight-row">
-            <p class="cs-insight-text">Insight: <em>Young visitors treat courtyards as photo backdrops.</em></p>
-            <span class="cs-arrow-col">→</span>
-            <p class="cs-response-text">Selfie-mirror frames make photography a ritual that delivers story, not just takes one.</p>
-          </div>
-          <div class="cs-insight-row">
-            <p class="cs-insight-text">Insight: <em>Wadas hide in plain sight.</em></p>
-            <span class="cs-arrow-col">→</span>
-            <p class="cs-response-text">City-wide trail creates wayfinding the city itself never built.</p>
-          </div>
-          <div class="cs-insight-row">
-            <p class="cs-insight-text">Insight: <em>Pride and ownership matter to locals.</em></p>
-            <span class="cs-arrow-col">→</span>
-            <p class="cs-response-text">Physical charm and shareable collage turn visitors into ambassadors.</p>
+          <div class="cs-screen-row">
+            <img src="../assets/images/wada-screen-07-trail.png" alt="App screen: Trail" loading="lazy" decoding="async" />
+            <div class="cs-screen-text">
+              <p class="cs-screen-num">07 · Trail</p>
+              <p class="cs-screen-insight">Insight: <em>Pride and ownership matter to locals.</em></p>
+              <h4>Your trail, in your name.</h4>
+              <p>Every Wada you've visited, on record. Visitors become ambassadors.</p>
+            </div>
           </div>
         </div>
       </div>
