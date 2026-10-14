@@ -265,6 +265,13 @@
       .bb-trail-loop::before, .bb-trail-loop::after, .bb-lp-a { display: none; }
       .bb-trail-loop .bb-tl-pill { top: -20px; bottom: auto; }
     }
+    .bb-ia { grid-template-columns: repeat(6, 1fr); gap: 12px; margin-top: 24px; }
+    .bb-ia .cs-process-step { border-top-width: 2px; padding-top: 10px; }
+    .bb-ia .cs-process-eyebrow { font-size: 9px; margin-bottom: 4px; }
+    .bb-ia .cs-process-step h3 { font-size: 14px; line-height: 1.25; margin-bottom: 4px; }
+    .bb-ia .cs-process-step p { font-size: 11px; line-height: 1.45; margin-bottom: 0; }
+    @media (max-width: 900px) { .bb-ia { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 520px) { .bb-ia { grid-template-columns: 1fr 1fr; } }
   </style>
 </head>
 <body>
@@ -758,7 +765,7 @@
         <p class="cs-section-label">08 · Information Architecture</p>
         <h2 class="cs-section-heading">Mapping the parent app.</h2>
         <p class="cs-section-text">Six top-level sections, each tracing back to a flow or research insight above.</p>
-        <div class="cs-process-grid" style="margin-top:24px;">
+        <div class="cs-process-grid bb-ia">
           <div class="cs-process-step"><p class="cs-process-eyebrow">01</p><h3>Home</h3><p>Today's activities, current goal, quick progress, add observation, view progress.</p></div>
           <div class="cs-process-step"><p class="cs-process-eyebrow">02</p><h3>Activities</h3><p>Assigned (today / upcoming / completed) and real-world (home, school, social, public, parent–child) activities, each with goal, situation, difficulty and instructions.</p></div>
           <div class="cs-process-step"><p class="cs-process-eyebrow">03</p><h3>Progress</h3><p>Overview, current goals, timeline, People × Places map, communication attempts, situation-wise progress, observations, reports.</p></div>
