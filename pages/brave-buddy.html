@@ -230,33 +230,35 @@
     .bb-parts { display: flex; flex-wrap: wrap; gap: 8px; }
     .bb-part { font-size: 13px; line-height: 1; padding: 8px 14px; border-radius: 999px; background: #fff; border: 1px solid rgba(98,89,216,0.3); color: #4a4660; }
     .bb-part b { color: #2b2850; font-weight: 600; }
-    .bb-trail { display: grid; grid-template-columns: 150px 1fr 150px 1fr 150px 1fr 150px; align-items: start; margin-top: 36px; }
-    .bb-tn { text-align: center; }
-    .bb-tn-ic { width: 84px; height: 84px; margin: 0 auto 12px; border-radius: 50%; background: #fff; border: 2px solid #6259D8; display: grid; place-items: center; }
-    .bb-tn-ic svg { width: 40px; height: 40px; fill: none; stroke: #6259D8; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-    .bb-tn h4 { font-family: var(--font-heading); font-size: 17px; color: #2b2850; margin: 0 0 4px; }
-    .bb-tn p { font-size: 13.5px; line-height: 1.5; color: #4a4660; margin: 0; }
-    .bb-tl { display: flex; flex-direction: column; align-items: center; padding: 0 8px; }
-    .bb-tl-pill { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; background: #6259D8; border-radius: 999px; padding: 7px 16px; white-space: nowrap; margin-top: 4px; }
-    .bb-tl-pill.is-soft { background: #fff; color: #6259D8; border: 2px solid #6259D8; padding: 5px 14px; }
-    .bb-tl-line { position: relative; display: block; width: 100%; height: 3px; background: #6259D8; margin: 22px 0 14px; border-radius: 2px; }
-    .bb-tl-line::after { content: ""; position: absolute; right: -2px; top: 50%; transform: translateY(-50%); border: 7px solid transparent; border-left: 11px solid #6259D8; border-right: 0; }
-    .bb-tl p { font-size: 13px; line-height: 1.45; color: #4a4660; text-align: center; margin: 0; }
-    .bb-trail-loop { grid-column: 1 / 4; margin: 26px 75px 0; position: relative; border: 3px solid #6259D8; border-top: 0; border-radius: 0 0 18px 18px; padding: 16px 12px 0; text-align: center; height: 74px; }
-    .bb-trail-loop::before { content: ""; position: absolute; left: -9px; top: -37px; height: 0; border: 7px solid transparent; border-bottom: 11px solid #6259D8; border-top: 0; }
-    .bb-trail-loop::after { content: ""; position: absolute; left: -3px; top: -26px; width: 3px; height: 26px; background: #6259D8; }
-    .bb-lp-r { position: absolute; right: -3px; top: -26px; width: 3px; height: 26px; background: #6259D8; }
-    .bb-trail-loop .bb-tl-pill { position: absolute; left: 50%; bottom: -17px; transform: translateX(-50%); margin: 0; }
-    .bb-trail-loop p { font-size: 13px; line-height: 1.4; color: #4a4660; max-width: 360px; margin: 0 auto; }
-    @media (max-width: 860px) {
-      .bb-trail { grid-template-columns: 1fr; gap: 0; }
-      .bb-tn { max-width: 340px; margin: 0 auto; }
-      .bb-tl { padding: 14px 0; }
-      .bb-tl-line { width: 3px; height: 28px; margin: 12px 0; }
-      .bb-tl-line::after { right: auto; left: 50%; top: auto; bottom: -2px; transform: translateX(-50%); border: 7px solid transparent; border-top: 11px solid #6259D8; border-bottom: 0; }
-      .bb-trail-loop { grid-column: 1; margin: 26px auto 0; height: auto; border: 2px dashed #6259D8; border-radius: 14px; padding: 28px 16px 14px; max-width: 420px; }
-      .bb-trail-loop::before, .bb-trail-loop::after, .bb-lp-r { display: none; }
-      .bb-trail-loop .bb-tl-pill { top: -17px; bottom: auto; }
+    .bb-trail { display: grid; grid-template-columns: 160px 1fr 160px 1fr 160px 1fr 215px; align-items: center; margin-top: 40px; }
+    .bb-tn { aspect-ratio: 1; border-radius: 50%; background: var(--c); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 20px; }
+    .bb-tn h4 { font-family: var(--font-heading); font-size: 18px; line-height: 1.2; color: #1f1f2e; margin: 0 0 8px; }
+    .bb-tn p { font-size: 13px; line-height: 1.45; color: #4a4660; margin: 0; }
+    .bb-tn.is-wide { padding: 0 26px; }
+    .bb-tn.is-wide p { font-size: 12.5px; }
+    .bb-tl { display: flex; flex-direction: column; align-items: center; padding: 0 12px; }
+    .bb-tl-pill { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #2b2850; background: var(--c, #D9D5F7); border-radius: 999px; padding: 10px 26px; white-space: nowrap; }
+    .bb-tl-line { position: relative; display: block; width: 100%; height: 3px; background: #5b5878; margin: 22px 0 16px; border-radius: 2px; }
+    .bb-tl-line::after { content: ""; position: absolute; right: -2px; top: 50%; transform: translateY(-50%); border: 8px solid transparent; border-left: 13px solid #5b5878; border-right: 0; }
+    .bb-tl p { font-size: 13.5px; line-height: 1.5; color: #4a4660; text-align: center; margin: 0; max-width: 150px; }
+    .bb-trail-loop { grid-column: 1 / 4; margin: 12px 80px 0; position: relative; border: 3px solid #6259D8; border-top: 0; border-radius: 0 0 26px 26px; padding: 22px 12px 0; text-align: center; height: 104px; align-self: start; }
+    .bb-trail-loop::before, .bb-trail-loop::after { content: ""; position: absolute; top: -26px; width: 3px; height: 26px; background: #6259D8; }
+    .bb-trail-loop::before { left: -3px; }
+    .bb-trail-loop::after { right: -3px; }
+    .bb-lp-a { position: absolute; top: -39px; width: 0; height: 0; border: 8px solid transparent; border-bottom: 13px solid #6259D8; border-top: 0; }
+    .bb-lp-a.l { left: -10.5px; } .bb-lp-a.r { right: -10.5px; }
+    .bb-trail-loop .bb-tl-pill { position: absolute; left: 50%; bottom: -20px; transform: translateX(-50%); background: #6259D8; color: #fff; }
+    .bb-trail-loop p { font-size: 13.5px; line-height: 1.5; color: #4a4660; max-width: 380px; margin: 0 auto; }
+    @media (max-width: 980px) {
+      .bb-trail { grid-template-columns: 1fr; justify-items: center; }
+      .bb-tn { width: 230px; }
+      .bb-tn.is-wide { width: 270px; }
+      .bb-tl { padding: 16px 0; }
+      .bb-tl-line { width: 3px; height: 30px; margin: 14px 0; }
+      .bb-tl-line::after { right: auto; left: 50%; top: auto; bottom: -2px; transform: translateX(-50%); border: 8px solid transparent; border-top: 13px solid #5b5878; border-bottom: 0; }
+      .bb-trail-loop { grid-column: 1; margin: 30px 0 0; height: auto; border: 3px dashed #6259D8; border-radius: 18px; padding: 30px 18px 18px; max-width: 420px; }
+      .bb-trail-loop::before, .bb-trail-loop::after, .bb-lp-a { display: none; }
+      .bb-trail-loop .bb-tl-pill { top: -20px; bottom: auto; }
     }
   </style>
 </head>
@@ -703,14 +705,14 @@
         <p class="cs-section-text">Brave Buddy is a clip-on companion for the child, paired with an app for activities, guidance and progress. It listens and cheers gently, so communicating feels easier.</p>
 
         <div class="bb-trail">
-          <div class="bb-tn"><div class="bb-tn-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5c1 1.5 2 2 3.5 2s2.5-.5 3.5-2M9 9.5h.01M15 9.5h.01"/></svg></div><h4>Child</h4><p>Tries a small activity in real life.</p></div>
-          <div class="bb-tl"><span class="bb-tl-pill">1 · Track</span><i class="bb-tl-line"></i><p>The companion notes each attempt.</p></div>
-          <div class="bb-tn"><div class="bb-tn-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="5"/><path d="M12 8v5"/><circle cx="12" cy="17" r="1"/></svg></div><h4>Companion</h4><p>Clipped on to clothes or a bag.</p></div>
-          <div class="bb-tl"><span class="bb-tl-pill">2 · Sync</span><i class="bb-tl-line"></i><p>Data goes to the app.</p></div>
-          <div class="bb-tn"><div class="bb-tn-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M10 6h4M9.5 17l1.5-3 2 2 1.5-4"/></svg></div><h4>App</h4><p>Progress shows up over time.</p></div>
-          <div class="bb-tl"><span class="bb-tl-pill is-soft">Guide</span><i class="bb-tl-line"></i><p>The app helps the adults support the child.</p></div>
-          <div class="bb-tn"><div class="bb-tn-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2 20c0-3.5 2.5-5.5 6-5.5s6 2 6 5.5M15 14.5c3 0 5 1.5 5 4.5"/></svg></div><h4>Parent + Therapist</h4><p>Parent follows the steps and records what happened. Therapist sets goals. Teachers share tips to help parents.</p></div>
-          <div class="bb-trail-loop"><i class="bb-lp-r"></i><span class="bb-tl-pill">3 · Appreciate</span><p>The companion gives gentle feedback that celebrates every effort.</p></div>
+          <div class="bb-tn" style="--c:#FBD9DC;"><h4>Child</h4><p>Tries a small activity in real life.</p></div>
+          <div class="bb-tl"><span class="bb-tl-pill" style="--c:#D9D5F7;">Track</span><i class="bb-tl-line"></i><p>The companion notes each attempt.</p></div>
+          <div class="bb-tn" style="--c:#FFF0CC;"><h4>Companion</h4><p>Clipped on to clothes or a bag.</p></div>
+          <div class="bb-tl"><span class="bb-tl-pill" style="--c:#D3E3FA;">Sync</span><i class="bb-tl-line"></i><p>Data goes to the app.</p></div>
+          <div class="bb-tn" style="--c:#D8F3DF;"><h4>App</h4><p>Progress shows up over time.</p></div>
+          <div class="bb-tl"><span class="bb-tl-pill" style="--c:#E3D6F6;">Guide</span><i class="bb-tl-line"></i><p>The app helps the adults support the child.</p></div>
+          <div class="bb-tn is-wide" style="--c:#D9E8FB;"><h4>Parent + Therapist</h4><p>Parent follows the steps and records what happened. Therapist sets goals. Teachers share tips to help parents.</p></div>
+          <div class="bb-trail-loop"><i class="bb-lp-a l"></i><i class="bb-lp-a r"></i><p>The companion gives gentle feedback that celebrates every effort.</p><span class="bb-tl-pill">Appreciate</span></div>
         </div>
 
         <h3 style="font-family:var(--font-heading);font-size:17px;margin-top:44px;margin-bottom:16px;color:#2b2850;">What's on the device?</h3>
