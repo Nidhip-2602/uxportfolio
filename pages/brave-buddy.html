@@ -227,6 +227,9 @@
     .bb-xp p { margin: 0 8px; font-size: 14px; line-height: 1.6; color: #4a4660; }
     @media (max-width: 1000px) { .bb-xp-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 520px) { .bb-xp-grid { grid-template-columns: 1fr; } }
+    .bb-parts { display: flex; flex-wrap: wrap; gap: 8px; }
+    .bb-part { font-size: 13px; line-height: 1; padding: 8px 14px; border-radius: 999px; background: #fff; border: 1px solid rgba(98,89,216,0.3); color: #4a4660; }
+    .bb-part b { color: #2b2850; font-weight: 600; }
     .bb-trail { display: grid; grid-template-columns: 150px 1fr 150px 1fr 150px 1fr 150px; align-items: start; margin-top: 36px; }
     .bb-tn { text-align: center; }
     .bb-tn-ic { width: 84px; height: 84px; margin: 0 auto 12px; border-radius: 50%; background: #fff; border: 2px solid #6259D8; display: grid; place-items: center; }
@@ -711,28 +714,7 @@
         </div>
 
         <h3 style="font-family:var(--font-heading);font-size:17px;margin-top:44px;margin-bottom:16px;color:#2b2850;">What's on the device?</h3>
-        <div class="cs-shortlist-grid">
-          <div>
-            <h4 style="color:#2b2850;">The companion</h4>
-            <div class="cs-numbered-list">
-              <div class="cs-numbered-item" style="border-top-color:rgba(98,89,216,0.2);"><span class="cs-num">—</span><p style="color:#4a4660;"><strong style="color:#2b2850;">Microphone.</strong> Records audio.</p></div>
-              <div class="cs-numbered-item" style="border-top-color:rgba(98,89,216,0.2);"><span class="cs-num">—</span><p style="color:#4a4660;"><strong style="color:#2b2850;">LED indicator.</strong> Shows feedback.</p></div>
-              <div class="cs-numbered-item" style="border-top-color:rgba(98,89,216,0.2);"><span class="cs-num">—</span><p style="color:#4a4660;"><strong style="color:#2b2850;">Main button.</strong> Tap or long press.</p></div>
-              <div class="cs-numbered-item" style="border-top-color:rgba(98,89,216,0.2);"><span class="cs-num">—</span><p style="color:#4a4660;"><strong style="color:#2b2850;">Speaker.</strong> Voice support.</p></div>
-              <div class="cs-numbered-item" style="border-top-color:rgba(98,89,216,0.2);"><span class="cs-num">—</span><p style="color:#4a4660;"><strong style="color:#2b2850;">Clip.</strong> Attaches to clothes or a bag.</p></div>
-              <div class="cs-numbered-item" style="border-top-color:rgba(98,89,216,0.2);"><span class="cs-num">—</span><p style="color:#4a4660;"><strong style="color:#2b2850;">USB-C port.</strong> For charging.</p></div>
-            </div>
-          </div>
-          <div>
-            <h4 style="color:#2b2850;">Power and size</h4>
-            <div class="cs-numbered-list">
-              <div class="cs-numbered-item" style="border-top-color:rgba(98,89,216,0.2);"><span class="cs-num">—</span><p style="color:#4a4660;"><strong style="color:#2b2850;">Battery.</strong> Rechargeable, 300–500 mAh.</p></div>
-              <div class="cs-numbered-item" style="border-top-color:rgba(98,89,216,0.2);"><span class="cs-num">—</span><p style="color:#4a4660;"><strong style="color:#2b2850;">Safety.</strong> Built-in battery protection.</p></div>
-              <div class="cs-numbered-item" style="border-top-color:rgba(98,89,216,0.2);"><span class="cs-num">—</span><p style="color:#4a4660;"><strong style="color:#2b2850;">Size.</strong> About 45 × 30 × 12 mm, small enough for a pocket.</p></div>
-            </div>
-            <p class="cs-caption-note" style="margin-top:14px;">Prototype built on an ESP32-S3 board with an INMP441 microphone.</p>
-          </div>
-        </div>
+        <div class="bb-parts"><span class="bb-part"><b>Microphone</b> · records audio</span><span class="bb-part"><b>LED indicator</b> · shows feedback</span><span class="bb-part"><b>Main button</b> · tap or long press</span><span class="bb-part"><b>Speaker</b> · voice support</span><span class="bb-part"><b>Clip</b> · attaches to clothes or a bag</span><span class="bb-part"><b>USB-C port</b> · for charging</span></div>
       </div>
     </div>
   </div>
