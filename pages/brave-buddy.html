@@ -273,7 +273,9 @@
     @media (max-width: 900px) { .bb-ia { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 520px) { .bb-ia { grid-template-columns: 1fr 1fr; } }
     .bb-screens { margin-top: 24px; }
-    .bb-screens img { width: 100%; height: auto; aspect-ratio: auto; object-fit: initial; }
+    .bb-screens { justify-items: center; row-gap: 28px; }
+    /* Size from window height so the tallest screen (390 x 918) always fits in view, uncropped */
+    .bb-screens img { width: min(100%, calc((100vh - 130px) * 0.4248)); min-width: min(100%, 200px); height: auto; aspect-ratio: auto; object-fit: initial; }
     .page-body .bb-ui-band { background: #2b2850; }
     .page-body .bb-ui-band .cs-section-label { color: #B8B2F0; }
     .page-body .bb-ui-band .cs-section-heading { color: #fff; }
