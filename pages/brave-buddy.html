@@ -273,7 +273,12 @@
     @media (max-width: 900px) { .bb-ia { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 520px) { .bb-ia { grid-template-columns: 1fr 1fr; } }
     .bb-screens { margin-top: 24px; }
-    .bb-screens img { width: 100%; height: auto; aspect-ratio: auto; object-fit: initial; border-radius: 0; }
+    .bb-screens img { width: 100%; height: auto; aspect-ratio: auto; object-fit: initial; }
+    .page-body .bb-ui-band { background: #2b2850; }
+    .page-body .bb-ui-band .cs-section-label { color: #B8B2F0; }
+    .page-body .bb-ui-band .cs-section-heading { color: #fff; }
+    .page-body .bb-ui-band .cs-section-text { color: #d6d2ee; }
+    .bb-screens img { border: 3px solid #B8B2F0; border-radius: 22px; box-sizing: border-box; }
   </style>
 </head>
 <body>
@@ -816,7 +821,7 @@
     </div>
   </div>
 
-  <div class="cs-body">
+  <div class="cs-body bb-ui-band">
     <div class="cs-body-inner">
 
       <!-- 11 · SCREENS -->
@@ -833,6 +838,12 @@
           <img src="../assets/images/sm-%20profile.png" alt="Brave Buddy Profile and Settings screen" width="390" loading="lazy" decoding="async" />
         </div>
       </div>
+
+    </div>
+  </div>
+
+  <div class="cs-body">
+    <div class="cs-body-inner">
 
       <!-- 12 · VALIDATION -->
       <div class="reveal">
