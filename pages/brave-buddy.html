@@ -66,6 +66,7 @@
     /* Secondary research visuals */
     .bb-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 32px; }
     .bb-flow-card { position: relative; background: #fff; border: 1px solid #E0DEF5; border-radius: 16px; padding: 24px 22px 28px; }
+    .bb-flow-3 { grid-template-columns: repeat(3, 1fr); }
     .bb-flow-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #6259D8; margin-bottom: 14px; }
     .bb-flow-card h3 { font-family: var(--font-heading); font-size: 18px; line-height: 1.3; color: var(--black); margin-bottom: 8px; }
     .bb-flow-card p:last-child { font-size: 14px; line-height: 1.5; color: #555; }
@@ -80,7 +81,10 @@
     .bb-exist-item strong { display: block; font-family: var(--font-heading); font-size: 17px; color: var(--black); margin-bottom: 8px; }
     .bb-exist-item p { font-size: 14px; line-height: 1.5; color: #555; }
     @media (max-width: 800px) {
-      .bb-flow { grid-template-columns: 1fr 1fr; }
+      .bb-flow, .bb-flow-3 { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) { .bb-flow, .bb-flow-3 { grid-template-columns: 1fr; } }
+    @media (max-width: 800px) {
       .bb-exist { grid-template-columns: 1fr 1fr; }
       .bb-step { font-size: 11px; padding: 8px; }
     }
@@ -223,6 +227,34 @@
     .bb-xp p { margin: 0 8px; font-size: 14px; line-height: 1.6; color: #4a4660; }
     @media (max-width: 1000px) { .bb-xp-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 520px) { .bb-xp-grid { grid-template-columns: 1fr; } }
+    .bb-trail { display: grid; grid-template-columns: 150px 1fr 150px 1fr 150px 1fr 150px; align-items: start; margin-top: 36px; }
+    .bb-tn { text-align: center; }
+    .bb-tn-ic { width: 84px; height: 84px; margin: 0 auto 12px; border-radius: 50%; background: #fff; border: 2px solid #6259D8; display: grid; place-items: center; }
+    .bb-tn-ic svg { width: 40px; height: 40px; fill: none; stroke: #6259D8; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .bb-tn h4 { font-family: var(--font-heading); font-size: 17px; color: #2b2850; margin: 0 0 4px; }
+    .bb-tn p { font-size: 13.5px; line-height: 1.5; color: #4a4660; margin: 0; }
+    .bb-tl { display: flex; flex-direction: column; align-items: center; padding: 0 8px; }
+    .bb-tl-pill { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; background: #6259D8; border-radius: 999px; padding: 7px 16px; white-space: nowrap; margin-top: 4px; }
+    .bb-tl-pill.is-soft { background: #fff; color: #6259D8; border: 2px solid #6259D8; padding: 5px 14px; }
+    .bb-tl-line { position: relative; display: block; width: 100%; height: 3px; background: #6259D8; margin: 22px 0 14px; border-radius: 2px; }
+    .bb-tl-line::after { content: ""; position: absolute; right: -2px; top: 50%; transform: translateY(-50%); border: 7px solid transparent; border-left: 11px solid #6259D8; border-right: 0; }
+    .bb-tl p { font-size: 13px; line-height: 1.45; color: #4a4660; text-align: center; margin: 0; }
+    .bb-trail-loop { grid-column: 1 / 4; margin: 26px 75px 0; position: relative; border: 3px solid #6259D8; border-top: 0; border-radius: 0 0 18px 18px; padding: 16px 12px 0; text-align: center; height: 74px; }
+    .bb-trail-loop::before { content: ""; position: absolute; left: -9px; top: -37px; height: 0; border: 7px solid transparent; border-bottom: 11px solid #6259D8; border-top: 0; }
+    .bb-trail-loop::after { content: ""; position: absolute; left: -3px; top: -26px; width: 3px; height: 26px; background: #6259D8; }
+    .bb-lp-r { position: absolute; right: -3px; top: -26px; width: 3px; height: 26px; background: #6259D8; }
+    .bb-trail-loop .bb-tl-pill { position: absolute; left: 50%; bottom: -17px; transform: translateX(-50%); margin: 0; }
+    .bb-trail-loop p { font-size: 13px; line-height: 1.4; color: #4a4660; max-width: 360px; margin: 0 auto; }
+    @media (max-width: 860px) {
+      .bb-trail { grid-template-columns: 1fr; gap: 0; }
+      .bb-tn { max-width: 340px; margin: 0 auto; }
+      .bb-tl { padding: 14px 0; }
+      .bb-tl-line { width: 3px; height: 28px; margin: 12px 0; }
+      .bb-tl-line::after { right: auto; left: 50%; top: auto; bottom: -2px; transform: translateX(-50%); border: 7px solid transparent; border-top: 11px solid #6259D8; border-bottom: 0; }
+      .bb-trail-loop { grid-column: 1; margin: 26px auto 0; height: auto; border: 2px dashed #6259D8; border-radius: 14px; padding: 28px 16px 14px; max-width: 420px; }
+      .bb-trail-loop::before, .bb-trail-loop::after, .bb-lp-r { display: none; }
+      .bb-trail-loop .bb-tl-pill { top: -17px; bottom: auto; }
+    }
   </style>
 </head>
 <body>
@@ -663,48 +695,42 @@
   <div class="cs-body cs-body-dark">
     <div class="cs-body-inner">
       <div class="reveal">
-        <p class="cs-section-label">07 · The Concept</p>
-        <h2 class="cs-section-heading">Brave Buddy.</h2>
-        <p class="cs-section-text">Brave Buddy is a pocket-sized soft companion with a mic, a light and haptics. It glows in response to the child's own voice and never speaks words. The child talks to it instead of holding eye contact with a person, addressing the complaint that other tools aren't portable enough for everyday places like the ice-cream parlour or the shop.</p>
+        <p class="cs-section-label">07 · The Chosen Concept</p>
+        <h2 class="cs-section-heading">A connected support system for everyday communication.</h2>
+        <p class="cs-section-text">Brave Buddy is a clip-on companion for the child, paired with an app for activities, guidance and progress. It listens and cheers gently, so communicating feels easier.</p>
 
-        <div class="cs-layer-grid">
-          <div class="cs-layer">
-            <p class="cs-layer-eyebrow">Layer 01</p>
-            <h3>The wearable</h3>
-            <p>A pocket-sized soft companion with a mic, a light and haptics. It glows in response to the child's own voice and never speaks words — the child talks to it, not through it.</p>
-          </div>
-          <div class="cs-layer">
-            <p class="cs-layer-eyebrow">Layer 02</p>
-            <h3>Practice tools</h3>
-            <p>A ladder board hangs on a home wall or fridge; the child moves Buddy up a rung and collects tokens toward a chosen reward. Mission cards use forced-choice scripts ("Ask Ravi uncle: kulfi or mango? Whisper is fine"), a fallback line, and a discreet helper card that tells the other person to wait and not say "just speak."</p>
-          </div>
-          <div class="cs-layer">
-            <p class="cs-layer-eyebrow">Layer 03</p>
-            <h3>The companion app</h3>
-            <p>Three views: the parent plans and logs, the teacher gets cues for quiet check-ins, and the therapist tunes the ladder and exports progress. Audio stays on the device — only volume and attempts are shared.</p>
-          </div>
+        <div class="bb-trail">
+          <div class="bb-tn"><div class="bb-tn-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5c1 1.5 2 2 3.5 2s2.5-.5 3.5-2M9 9.5h.01M15 9.5h.01"/></svg></div><h4>Child</h4><p>Tries a small activity in real life.</p></div>
+          <div class="bb-tl"><span class="bb-tl-pill">1 · Track</span><i class="bb-tl-line"></i><p>The companion notes each attempt.</p></div>
+          <div class="bb-tn"><div class="bb-tn-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="5"/><path d="M12 8v5"/><circle cx="12" cy="17" r="1"/></svg></div><h4>Companion</h4><p>Clipped on to clothes or a bag.</p></div>
+          <div class="bb-tl"><span class="bb-tl-pill">2 · Sync</span><i class="bb-tl-line"></i><p>Data goes to the app.</p></div>
+          <div class="bb-tn"><div class="bb-tn-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M10 6h4M9.5 17l1.5-3 2 2 1.5-4"/></svg></div><h4>App</h4><p>Progress shows up over time.</p></div>
+          <div class="bb-tl"><span class="bb-tl-pill is-soft">Guide</span><i class="bb-tl-line"></i><p>The app helps the adults support the child.</p></div>
+          <div class="bb-tn"><div class="bb-tn-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2 20c0-3.5 2.5-5.5 6-5.5s6 2 6 5.5M15 14.5c3 0 5 1.5 5 4.5"/></svg></div><h4>Parent + Therapist</h4><p>Parent follows the steps and records what happened. Therapist sets goals. Teachers share tips to help parents.</p></div>
+          <div class="bb-trail-loop"><i class="bb-lp-r"></i><span class="bb-tl-pill">3 · Appreciate</span><p>The companion gives gentle feedback that celebrates every effort.</p></div>
         </div>
 
-        <h3 style="font-family:var(--font-heading);font-size:17px;margin-top:44px;margin-bottom:16px;color:var(--white);">Inside the wearable.</h3>
+        <h3 style="font-family:var(--font-heading);font-size:17px;margin-top:44px;margin-bottom:16px;color:#2b2850;">What's on the device?</h3>
         <div class="cs-shortlist-grid">
           <div>
-            <h4 style="color:var(--white);">Core electronics</h4>
+            <h4 style="color:#2b2850;">The companion</h4>
             <div class="cs-numbered-list">
-              <div class="cs-numbered-item" style="border-top-color:rgba(255,255,255,0.15);"><span class="cs-num">—</span><p style="color:#ccc;">ESP32-S3-MINI-1 — microcontroller + Bluetooth/Wi-Fi</p></div>
-              <div class="cs-numbered-item" style="border-top-color:rgba(255,255,255,0.15);"><span class="cs-num">—</span><p style="color:#ccc;">INMP441 MEMS microphone — voice input</p></div>
-              <div class="cs-numbered-item" style="border-top-color:rgba(255,255,255,0.15);"><span class="cs-num">—</span><p style="color:#ccc;">MAX98357A audio amplifier + 15–20mm speaker — voice output</p></div>
-              <div class="cs-numbered-item" style="border-top-color:rgba(255,255,255,0.15);"><span class="cs-num">—</span><p style="color:#ccc;">Tactile push button, RGB LED, LRA/ERM vibration motor</p></div>
+              <div class="cs-numbered-item" style="border-top-color:rgba(98,89,216,0.2);"><span class="cs-num">—</span><p style="color:#4a4660;"><strong style="color:#2b2850;">Microphone.</strong> Records audio.</p></div>
+              <div class="cs-numbered-item" style="border-top-color:rgba(98,89,216,0.2);"><span class="cs-num">—</span><p style="color:#4a4660;"><strong style="color:#2b2850;">LED indicator.</strong> Shows feedback.</p></div>
+              <div class="cs-numbered-item" style="border-top-color:rgba(98,89,216,0.2);"><span class="cs-num">—</span><p style="color:#4a4660;"><strong style="color:#2b2850;">Main button.</strong> Tap or long press.</p></div>
+              <div class="cs-numbered-item" style="border-top-color:rgba(98,89,216,0.2);"><span class="cs-num">—</span><p style="color:#4a4660;"><strong style="color:#2b2850;">Speaker.</strong> Voice support.</p></div>
+              <div class="cs-numbered-item" style="border-top-color:rgba(98,89,216,0.2);"><span class="cs-num">—</span><p style="color:#4a4660;"><strong style="color:#2b2850;">Clip.</strong> Attaches to clothes or a bag.</p></div>
+              <div class="cs-numbered-item" style="border-top-color:rgba(98,89,216,0.2);"><span class="cs-num">—</span><p style="color:#4a4660;"><strong style="color:#2b2850;">USB-C port.</strong> For charging.</p></div>
             </div>
           </div>
           <div>
-            <h4 style="color:var(--white);">Power</h4>
+            <h4 style="color:#2b2850;">Power and size</h4>
             <div class="cs-numbered-list">
-              <div class="cs-numbered-item" style="border-top-color:rgba(255,255,255,0.15);"><span class="cs-num">—</span><p style="color:#ccc;">3.7V Li-Po battery, 300–500mAh</p></div>
-              <div class="cs-numbered-item" style="border-top-color:rgba(255,255,255,0.15);"><span class="cs-num">—</span><p style="color:#ccc;">MCP73831 charging IC + USB-C connector</p></div>
-              <div class="cs-numbered-item" style="border-top-color:rgba(255,255,255,0.15);"><span class="cs-num">—</span><p style="color:#ccc;">3.3V regulator + battery protection circuit</p></div>
-              <div class="cs-numbered-item" style="border-top-color:rgba(255,255,255,0.15);"><span class="cs-num">—</span><p style="color:#ccc;">MAX17048 battery-level monitoring (optional)</p></div>
+              <div class="cs-numbered-item" style="border-top-color:rgba(98,89,216,0.2);"><span class="cs-num">—</span><p style="color:#4a4660;"><strong style="color:#2b2850;">Battery.</strong> Rechargeable, 300–500 mAh.</p></div>
+              <div class="cs-numbered-item" style="border-top-color:rgba(98,89,216,0.2);"><span class="cs-num">—</span><p style="color:#4a4660;"><strong style="color:#2b2850;">Safety.</strong> Built-in battery protection.</p></div>
+              <div class="cs-numbered-item" style="border-top-color:rgba(98,89,216,0.2);"><span class="cs-num">—</span><p style="color:#4a4660;"><strong style="color:#2b2850;">Size.</strong> About 45 × 30 × 12 mm, small enough for a pocket.</p></div>
             </div>
-            <p class="cs-caption-note" style="margin-top:14px;">Target footprint: approximately 45 × 30 × 12 mm</p>
+            <p class="cs-caption-note" style="margin-top:14px;">Prototype built on an ESP32-S3 board with an INMP441 microphone.</p>
           </div>
         </div>
       </div>
@@ -713,6 +739,32 @@
 
   <div class="cs-body">
     <div class="cs-body-inner">
+
+      <!-- 07b · WHY ANIMALS -->
+      <div class="reveal">
+        <p class="cs-section-label">07 · The Form</p>
+        <h2 class="cs-section-heading">But why an animal-shaped product?</h2>
+        <p class="cs-section-text">Our research explored what children with selective mutism may find comforting, and animals emerged as a source of comfort. So the companion comes in different animal forms, giving children a choice.</p>
+        <div class="bb-chips" style="margin-top:20px;gap:8px;"><span style="font-size:14px;padding:8px 16px;background:#fff;border:1px solid #E0DEF5;">Rabbit</span><span style="font-size:14px;padding:8px 16px;background:#fff;border:1px solid #E0DEF5;">Bear</span><span style="font-size:14px;padding:8px 16px;background:#fff;border:1px solid #E0DEF5;">Fox</span><span style="font-size:14px;padding:8px 16px;background:#fff;border:1px solid #E0DEF5;">Cat</span><span style="font-size:14px;padding:8px 16px;background:#fff;border:1px solid #E0DEF5;">Dog</span><span style="font-size:14px;padding:8px 16px;background:#fff;border:1px solid #E0DEF5;">Panda</span></div>
+      </div>
+
+      <!-- 07c · EVERYDAY LIFE -->
+      <div class="reveal">
+        <p class="cs-section-label">07 · In Everyday Life</p>
+        <h2 class="cs-section-heading">So how could this concept work in everyday life?</h2>
+        <p class="cs-section-text">The concept needed to reach beyond the therapy room without adding pressure. We designed a simple cycle: therapist guidance, everyday practice and feedback.</p>
+        <div class="bb-flow">
+          <div class="bb-flow-card"><p class="bb-flow-eyebrow">Guide</p><h3>Therapist sets a goal</h3></div>
+          <div class="bb-flow-card"><p class="bb-flow-eyebrow">Practice</p><h3>Parent opens the activity</h3></div>
+          <div class="bb-flow-card"><p class="bb-flow-eyebrow">Experience</p><h3>Child tries it in real life</h3></div>
+          <div class="bb-flow-card"><p class="bb-flow-eyebrow">Learn</p><h3>Progress informs the next step</h3></div>
+        </div>
+        <div class="bb-flow bb-flow-3">
+          <div class="bb-flow-card"><p class="bb-flow-eyebrow">Therapist</p><h3>Set a small goal</h3><p>The therapist reviews progress and picks an easy activity, with guidance for the parent.</p></div>
+          <div class="bb-flow-card"><p class="bb-flow-eyebrow">Parent + child</p><h3>Try it together</h3><p>The parent introduces the activity and the child tries it in daily life. Teachers share tips to help.</p></div>
+          <div class="bb-flow-card"><p class="bb-flow-eyebrow">Review</p><h3>Plan what comes next</h3><p>Each attempt shows what helped, so the next step fits the child.</p></div>
+        </div>
+      </div>
 
       <!-- 08 · IA -->
       <div class="reveal">
