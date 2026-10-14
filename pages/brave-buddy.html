@@ -272,6 +272,8 @@
     .bb-ia .cs-process-step p { font-size: 11px; line-height: 1.45; margin-bottom: 0; }
     @media (max-width: 900px) { .bb-ia { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 520px) { .bb-ia { grid-template-columns: 1fr 1fr; } }
+    .bb-screens { margin-top: 24px; }
+    .bb-screens img { width: 100%; height: auto; aspect-ratio: auto; object-fit: initial; border-radius: 0; }
   </style>
 </head>
 <body>
@@ -822,15 +824,14 @@
         <p class="cs-section-label">11 · UI &amp; Wireframes</p>
         <h2 class="cs-section-heading">From low-fidelity to a working UI kit.</h2>
         <p class="cs-section-text">Low-fidelity wireframes mapped each flow before the design system (above) was applied, so components solved real navigation problems rather than just looking considered.</p>
-        <div class="cs-mock-grid" style="margin-top:24px;grid-template-columns:repeat(3,1fr);">
-          <div class="cs-image-placeholder" style="aspect-ratio:9/16;">Placeholder — Home</div>
-          <div class="cs-image-placeholder" style="aspect-ratio:9/16;">Placeholder — Activities</div>
-          <div class="cs-image-placeholder" style="aspect-ratio:9/16;">Placeholder — Progress</div>
-          <div class="cs-image-placeholder" style="aspect-ratio:9/16;">Placeholder — Therapist</div>
-          <div class="cs-image-placeholder" style="aspect-ratio:9/16;">Placeholder — Community</div>
-          <div class="cs-image-placeholder" style="aspect-ratio:9/16;">Placeholder — Profile &amp; Settings</div>
+        <div class="cs-mock-grid bb-screens">
+          <img src="../assets/images/sm%20-home.png" alt="Brave Buddy Home screen" width="390" loading="lazy" decoding="async" />
+          <img src="../assets/images/sm-%20activities.png" alt="Brave Buddy Activities screen" width="390" loading="lazy" decoding="async" />
+          <img src="../assets/images/sm-%20progress.png" alt="Brave Buddy Progress screen" width="390" loading="lazy" decoding="async" />
+          <img src="../assets/images/sm-%20therapist.png" alt="Brave Buddy Therapist screen" width="390" loading="lazy" decoding="async" />
+          <img src="../assets/images/sm-%20community.png" alt="Brave Buddy Community screen" width="390" loading="lazy" decoding="async" />
+          <img src="../assets/images/sm-%20profile.png" alt="Brave Buddy Profile and Settings screen" width="390" loading="lazy" decoding="async" />
         </div>
-        <p class="cs-caption-note" style="margin-top:16px;">Export each final screen from its named Figma frame (Home / Activities / Progress / Therapist / Community / Profile &amp; Settings), plus "Icons &amp; Controls" and "More Components" if you want a components spread.</p>
       </div>
 
       <!-- 12 · VALIDATION -->
