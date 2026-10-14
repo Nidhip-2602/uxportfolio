@@ -281,6 +281,11 @@
     .page-body .bb-ui-band .cs-section-heading { color: #fff; }
     .page-body .bb-ui-band .cs-section-text { color: #d6d2ee; }
     .bb-screens img { border: 3px solid #B8B2F0; border-radius: 22px; box-sizing: border-box; }
+    .bb-next-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+    .bb-next { background: var(--c); border-radius: 16px; padding: 24px 28px; }
+    .bb-next h3 { font-family: var(--font-heading); font-size: 18px; color: #4A41A8; margin: 0 0 12px; }
+    .bb-next p { font-size: 15px; line-height: 1.6; color: #2b2850; margin: 0; }
+    @media (max-width: 768px) { .bb-next-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -847,43 +852,21 @@
   <div class="cs-body">
     <div class="cs-body-inner">
 
-      <!-- 12 · VALIDATION -->
+      <!-- 12 · WHAT COMES NEXT -->
       <div class="reveal">
-        <p class="cs-section-label">12 · Validation</p>
-        <h2 class="cs-section-heading">Testing plan.</h2>
-        <p class="cs-section-text">What we want to learn, who we test with, and how we measure it — defined and ready to run.</p>
-        <div class="cs-process-grid" style="grid-template-columns:repeat(3,1fr);margin-top:24px;">
-          <div class="cs-process-step">
-            <p class="cs-process-eyebrow">Goal</p>
-            <h3>What we want to learn</h3>
-            <p>Can parents complete an activity and record results without help? Is the companion comfortable, clear and calm for the child? Do therapists find the progress data useful for planning?</p>
-          </div>
-          <div class="cs-process-step">
-            <p class="cs-process-eyebrow">Who</p>
-            <h3>Participants</h3>
-            <p>3–5 parents of children (4–10) with SM, 1–2 therapists or special educators, 1 primary school teacher. The child only handles the device with a parent present and consent.</p>
-          </div>
-          <div class="cs-process-step">
-            <p class="cs-process-eyebrow">How</p>
-            <h3>Method</h3>
-            <p>Moderated sessions on the clickable app prototype, think-aloud while completing tasks, a comfort/wear check of the physical model, and a short interview at the end.</p>
-          </div>
+        <span class="bb-xp-label" style="margin-top:0;">What comes next</span>
+        <h2 class="cs-section-heading" style="margin-top:18px;">Testing whether the concept works in real life</h2>
+        <p class="cs-section-text">The concept still needs validation in use. The next step is to check whether parents can complete and record an activity without help, whether the companion feels calm and comfortable for a child, and whether therapists find the progress information useful for planning.</p>
+        <div class="bb-next-grid">
+          <div class="bb-next" style="--c:#ECE9F7;"><h3>Parent</h3><p>Can the activity be started and recorded without help?</p></div>
+          <div class="bb-next" style="--c:#FCDDE1;"><h3>Child</h3><p>Does the companion feel comfortable, clear and calm?</p></div>
+          <div class="bb-next" style="--c:#E8F0DC;"><h3>Therapist</h3><p>Is the progress useful when planning the next goal?</p></div>
         </div>
-        <h3 style="font-family:var(--font-heading);font-size:17px;margin-top:32px;margin-bottom:12px;color:var(--black);">Tasks</h3>
-        <div class="cs-tag-row">
-          <span class="cs-tag-pill">01 · Find and start today's activity</span>
-          <span class="cs-tag-pill">02 · Record results and add an observation</span>
-          <span class="cs-tag-pill">03 · Check progress for "public places"</span>
-          <span class="cs-tag-pill">04 · Read the therapist's new goal</span>
-          <span class="cs-tag-pill">05 · Change the device's feedback settings</span>
-        </div>
-        <p class="cs-caption-note" style="margin-top:16px;">We measure: task completed (yes / with help / no) · time on task · ease rating 1–5 · child comfort (calm / unsure / upset) · quotes and suggestions.</p>
-        <div class="bb-status" style="margin-top:20px;">No results yet — sessions haven't been run. This section will be updated with real outcomes once testing is complete, rather than estimated ones.</div>
       </div>
 
       <!-- 13 · REFLECTION -->
       <div class="reveal">
-        <p class="cs-section-label">13 · Reflection</p>
+        <p class="cs-section-label">Reflection</p>
         <h2 class="cs-section-heading">What this project taught me.</h2>
         <p class="cs-section-text" style="font-style:italic;">Placeholders below — add your own 2–3 sentences for each, these are prompts, not pre-written takeaways.</p>
         <div class="cs-reflection-grid">
@@ -901,7 +884,8 @@
   <div class="cs-body cs-body-dark">
     <div class="cs-body-inner">
       <div class="reveal">
-        <h2 class="cs-section-heading" style="font-size:clamp(24px,3vw,34px);">Practising bravery, <em style="font-style:italic;color:#6259D8;">one everyday moment at a time.</em></h2>
+        <h2 class="cs-section-heading" style="margin-bottom:24px;">Thank you.</h2>
+        <h3 style="font-family:var(--font-heading);font-size:clamp(20px,2.4vw,26px);line-height:1.3;margin-bottom:12px;color:#2b2850;">Practising bravery, <em style="font-style:italic;color:#6259D8;">one everyday moment at a time.</em></h3>
         <p class="cs-section-text">A product design case study on supporting children with selective mutism between therapy sessions, developed as part of a design course.</p>
         <div class="cs-credits-row" style="grid-template-columns:1fr;">
           <div>
