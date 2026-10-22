@@ -293,6 +293,10 @@
     .bb-next h3 { font-family: var(--font-heading); font-size: 18px; color: #4A41A8; margin: 0 0 12px; }
     .bb-next p { font-size: 15px; line-height: 1.6; color: #2b2850; margin: 0; }
     @media (max-width: 768px) { .bb-next-grid { grid-template-columns: 1fr; } }
+    /* More breathing room between numbered sections (this page only) */
+    .page-body .cs-body-inner { gap: 120px; }
+    .page-body .cs-body { padding-top: 104px; padding-bottom: 104px; }
+    @media (max-width: 768px) { .page-body .cs-body-inner { gap: 80px; } .page-body .cs-body { padding-top: 64px; padding-bottom: 64px; } }
   </style>
 </head>
 <body>
