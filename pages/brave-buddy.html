@@ -80,17 +80,20 @@
     .bb-mini-label { margin-top: 32px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #6259D8; font-weight: 600; }
     .bb-ladder { display: flex; align-items: flex-end; gap: 10px; margin-top: 16px; }
     .bb-step { flex: 1; height: calc(var(--h) + 36px); background: #E0DEF5; border-radius: 10px; display: flex; align-items: flex-end; padding: 12px 14px; font-size: 13px; font-weight: 600; color: #4A41A8; }
-    .bb-exist { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
-    .bb-exist-item { background: #fff; border: 1px solid #E3E0F1; border-radius: 14px; padding: 22px; }
-    .bb-exist-item span { font-size: 12px; color: #6259D8; font-weight: 600; display: block; margin-bottom: 10px; }
-    .bb-exist-item strong { display: block; font-family: var(--font-heading); font-size: 17px; color: var(--black); margin-bottom: 8px; }
-    .bb-exist-item p { font-size: 14px; line-height: 1.5; color: #555; }
+    .bb-exist { display: grid; grid-template-columns: repeat(6, 1fr); margin-top: 20px; }
+    .bb-exist-item { padding: 4px 14px; text-align: center; border-left: 1px solid #E3E0F1; }
+    .bb-exist-item:first-child { border-left: 0; }
+    .bb-exist-ic { width: 60px; height: 60px; margin: 0 auto 12px; border-radius: 50%; background: var(--c); display: grid; place-items: center; }
+    .bb-exist-ic svg { width: 28px; height: 28px; fill: none; stroke: #2b2850; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .bb-exist-item strong { display: block; font-family: var(--font-heading); font-size: 15px; line-height: 1.25; color: var(--black); margin-bottom: 4px; }
+    .bb-exist-item p { font-size: 12.5px; line-height: 1.45; color: #666; margin: 0; }
     @media (max-width: 800px) {
       .bb-flow, .bb-flow-3 { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 560px) { .bb-flow, .bb-flow-3 { grid-template-columns: 1fr; } }
     @media (max-width: 800px) {
-      .bb-exist { grid-template-columns: 1fr 1fr; }
+      .bb-exist { grid-template-columns: repeat(3, 1fr); row-gap: 24px; }
+      .bb-exist-item:nth-child(4) { border-left: 0; }
       .bb-step { font-size: 11px; padding: 8px; }
     }
     /* Primary research: insights + affinity map */
@@ -447,12 +450,12 @@
 
         <h3 style="font-family:var(--font-heading);font-size:19px;margin-top:40px;margin-bottom:4px;color:var(--black);">What already exists</h3>
         <div class="bb-exist">
-          <div class="bb-exist-item"><span>01</span><strong>Therapy apps</strong><p>Help during sessions, but they speak for the child instead of helping the child find their own voice.</p></div>
-          <div class="bb-exist-item"><span>02</span><strong>VR and online therapy</strong><p>Early trials let children practise between sessions.</p></div>
-          <div class="bb-exist-item"><span>03</span><strong>Screening forms</strong><p>Questionnaires for adults. Made for clinics, not for children.</p></div>
-          <div class="bb-exist-item"><span>04</span><strong>Wearables</strong><p>Track how much a child speaks in different places.</p></div>
-          <div class="bb-exist-item"><span>05</span><strong>Social robots</strong><p>Children find robots easier to talk to than people. None are made for selective mutism yet.</p></div>
-          <div class="bb-exist-item"><span>06</span><strong>Play-based methods</strong><p>Puppets, role play and music keep practice gentle and pressure-free.</p></div>
+          <div class="bb-exist-item"><div class="bb-exist-ic" style="--c:#FBDDE0;"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.2"/><path d="M12 15.5s-2.6-1.6-2.6-3.4a1.5 1.5 0 012.6-1 1.5 1.5 0 012.6 1c0 1.8-2.6 3.4-2.6 3.4z" stroke="#E0525E"/></svg></div><strong>Therapy apps</strong><p>Help during sessions</p></div>
+          <div class="bb-exist-item"><div class="bb-exist-ic" style="--c:#E3E4FA;"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9.5a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2h-3.5l-1.5-2h-4l-1.5 2H5a2 2 0 01-2-2z"/></svg></div><strong>VR &amp; online therapy</strong><p>Early practice between sessions</p></div>
+          <div class="bb-exist-item"><div class="bb-exist-ic" style="--c:#F7EFD9;"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2.2"/><path d="M8.5 8h.01M11 8h5M8.5 12h.01M11 12h5M8.5 16h.01M11 16h3"/></svg></div><strong>Screening forms</strong><p>For clinics, not children</p></div>
+          <div class="bb-exist-item"><div class="bb-exist-ic" style="--c:#DDF1E0;"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="6.5" width="10" height="11" rx="3"/><path d="M9 6.5L9.7 3h4.6L15 6.5M9 17.5L9.7 21h4.6L15 17.5M10 14v-1.5M12 14v-3M14 14v-2" /><path d="M10 14v-1.5M12 14v-3M14 14v-2" stroke="#4FA36B"/></svg></div><strong>Wearables</strong><p>Track how much a child speaks</p></div>
+          <div class="bb-exist-item"><div class="bb-exist-ic" style="--c:#FBE0EC;"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="8" width="14" height="11" rx="3.5"/><path d="M12 8V5M12 5h.01M9.5 13h.01M14.5 13h.01M10 16h4M3 13v2M21 13v2"/></svg></div><strong>Social robots</strong><p>Easier to talk to than people</p></div>
+          <div class="bb-exist-item"><div class="bb-exist-ic" style="--c:#E1E8FB;"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8h10a4.5 4.5 0 014.4 5.4l-.7 3.2a2.2 2.2 0 01-3.8 1L15 15.5H9l-1.9 2.1a2.2 2.2 0 01-3.8-1l-.7-3.2A4.5 4.5 0 017 8z"/><path d="M8 11v3M6.5 12.5h3M15.5 11.5h.01M17.5 13.5h.01"/></svg></div><strong>Play-based methods</strong><p>Puppets, role play and music</p></div>
         </div>
 
         <div class="cs-callout-grid">
