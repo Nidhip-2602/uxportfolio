@@ -302,28 +302,49 @@ img { display: block; max-width: 100%; }
 .nav.nav--hidden { transform: translateY(-100%); }
 
 /* ============================================================
-   SCROLL PROGRESS — project (case study) pages only; the element is
-   created by js/main.js. Thin vertical line on the right edge.
-   mix-blend-mode keeps it visible on light and dark sections alike.
+   CUSTOM SCROLLBAR — project (case study) pages only; created by
+   js/main.js. The native scrollbar stays hidden (see above); this is
+   a slim, draggable replacement on the right edge. mix-blend-mode keeps
+   the thumb visible on light and dark sections alike.
    ============================================================ */
-.scroll-progress {
+.scrollbar {
   position: fixed;
   top: 0; right: 0; bottom: 0;
-  width: 3px;
+  width: 16px;                       /* generous grab area, thumb is slimmer */
   z-index: 1001;
-  pointer-events: none;
-  background: rgba(255, 255, 255, 0.18);
   mix-blend-mode: difference;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
-.scroll-progress__fill {
-  width: 100%;
-  height: 100%;
+.scrollbar[hidden] { display: none; }
+.scrollbar__thumb {
+  position: absolute;
+  top: 0; right: 3px;
+  width: 6px;
+  min-height: 40px;
+  border-radius: 999px;
   background: #fff;
-  transform-origin: top;
-  transform: scaleY(0);
+  opacity: 0.38;
+  will-change: transform;
+  transition: width 0.18s ease, right 0.18s ease, opacity 0.18s ease;
+}
+.scrollbar:hover .scrollbar__thumb { width: 10px; right: 3px; opacity: 0.6; }
+.scrollbar.is-dragging .scrollbar__thumb { width: 10px; opacity: 0.85; }
+html.is-dragging-scrollbar, html.is-dragging-scrollbar * { user-select: none !important; -webkit-user-select: none !important; }
+
+/* Touch devices: wider grab area, and the thumb only shows while
+   scrolling or dragging (like the native mobile scrollbar). */
+@media (hover: none), (pointer: coarse) {
+  .scrollbar { width: 24px; }
+  .scrollbar__thumb { width: 6px; right: 4px; opacity: 0; transition: opacity 0.3s ease; }
+  .scrollbar:hover .scrollbar__thumb { width: 6px; opacity: 0; }
+  .scrollbar.is-active .scrollbar__thumb { opacity: 0.55; }
+  .scrollbar.is-dragging .scrollbar__thumb { width: 8px; opacity: 0.85; }
 }
 @media (prefers-reduced-motion: reduce) {
   .nav { transition: none; }
+  .scrollbar__thumb { transition: none; }
 }
 
 /* ============================================================

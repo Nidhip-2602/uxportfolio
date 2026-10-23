@@ -529,35 +529,95 @@ document.querySelectorAll('a[href="#works"]').forEach(a => {
 })();
 
 /* ============================================================
-   SCROLL PROGRESS BAR — project (case study) pages only
-   Case-study pages are the ones with the "Back to Works" button, so
-   index.html and resume.html are skipped without touching any HTML.
+   CUSTOM SCROLLBAR — project (case study) pages only
+   A slim draggable scrollbar on the right edge. Case-study pages are
+   the ones with the "Back to Works" button, so index.html and
+   resume.html are skipped without touching any HTML. Native scrolling
+   (wheel, touch, keyboard) is untouched; this only mirrors it and adds
+   drag-to-scroll and click-the-track-to-jump.
    ============================================================ */
 (function () {
   if (!document.querySelector('.nav-back')) return;
 
+  const root = document.documentElement;
   const bar = document.createElement('div');
-  bar.className = 'scroll-progress';
+  bar.className = 'scrollbar';
   bar.setAttribute('aria-hidden', 'true');
-  const fill = document.createElement('div');
-  fill.className = 'scroll-progress__fill';
-  bar.appendChild(fill);
+  const thumb = document.createElement('div');
+  thumb.className = 'scrollbar__thumb';
+  bar.appendChild(thumb);
   document.body.appendChild(bar);
 
-  let ticking = false;
-  function update() {
-    ticking = false;
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    const p = max > 0 ? Math.min(Math.max(window.scrollY / max, 0), 1) : 0;
-    fill.style.transform = 'scaleY(' + p + ')';
+  let thumbH = 0, trackH = 0, maxScroll = 0;
+  let ticking = false, idleTimer;
+
+  function measure() {
+    trackH = bar.clientHeight;
+    maxScroll = Math.max(root.scrollHeight - window.innerHeight, 0);
+    bar.hidden = maxScroll <= 0;
+    thumbH = Math.max(trackH * (window.innerHeight / root.scrollHeight), 40);
+    thumbH = Math.min(thumbH, trackH);
+    thumb.style.height = thumbH + 'px';
   }
-  function request() {
-    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  function position() {
+    const range = trackH - thumbH;
+    const p = maxScroll > 0 ? Math.min(Math.max(window.scrollY / maxScroll, 0), 1) : 0;
+    thumb.style.transform = 'translateY(' + (p * range) + 'px)';
+  }
+  function update() { ticking = false; measure(); position(); }
+  function request() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+
+  // Touch devices: reveal the thumb while scrolling, fade out when idle
+  function flash() {
+    bar.classList.add('is-active');
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(() => {
+      if (!bar.classList.contains('is-dragging')) bar.classList.remove('is-active');
+    }, 1200);
   }
 
-  window.addEventListener('scroll', request, { passive: true });
+  window.addEventListener('scroll', () => { request(); flash(); }, { passive: true });
   window.addEventListener('resize', request);
   window.addEventListener('load', request);   // lazy images change the page height
   if ('ResizeObserver' in window) new ResizeObserver(request).observe(document.body);
+
+  // ---- drag the thumb ----
+  let dragStartY = 0, dragStartScroll = 0;
+  thumb.addEventListener('pointerdown', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    measure();
+    dragStartY = e.clientY;
+    dragStartScroll = window.scrollY;
+    thumb.setPointerCapture(e.pointerId);
+    bar.classList.add('is-dragging', 'is-active');
+    root.classList.add('is-dragging-scrollbar');
+  });
+  thumb.addEventListener('pointermove', (e) => {
+    if (!thumb.hasPointerCapture(e.pointerId)) return;
+    const range = trackH - thumbH;
+    if (range <= 0) return;
+    const dy = e.clientY - dragStartY;
+    window.scrollTo({ top: dragStartScroll + dy * (maxScroll / range), behavior: 'instant' });
+  });
+  function endDrag(e) {
+    if (thumb.hasPointerCapture && thumb.hasPointerCapture(e.pointerId)) thumb.releasePointerCapture(e.pointerId);
+    bar.classList.remove('is-dragging');
+    root.classList.remove('is-dragging-scrollbar');
+    flash();
+  }
+  thumb.addEventListener('pointerup', endDrag);
+  thumb.addEventListener('pointercancel', endDrag);
+
+  // ---- click the track to jump (centres the thumb on the click) ----
+  bar.addEventListener('pointerdown', (e) => {
+    if (e.target !== bar) return;
+    measure();
+    const range = trackH - thumbH;
+    if (range <= 0) return;
+    const p = Math.min(Math.max((e.clientY - thumbH / 2) / range, 0), 1);
+    window.scrollTo({ top: p * maxScroll, behavior: 'smooth' });
+  });
+
   update();
 })();
