@@ -291,6 +291,42 @@ img { display: block; max-width: 100%; }
 }
 
 /* ============================================================
+   NAV — SCROLL-DIRECTION BEHAVIOUR
+   js/main.js adds .nav--hidden when scrolling down and removes it on
+   any upward scroll (and always at the top of the page).
+   ============================================================ */
+.nav {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+.nav.nav--hidden { transform: translateY(-100%); }
+
+/* ============================================================
+   SCROLL PROGRESS — project (case study) pages only; the element is
+   created by js/main.js. Thin vertical line on the right edge.
+   mix-blend-mode keeps it visible on light and dark sections alike.
+   ============================================================ */
+.scroll-progress {
+  position: fixed;
+  top: 0; right: 0; bottom: 0;
+  width: 3px;
+  z-index: 1001;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.18);
+  mix-blend-mode: difference;
+}
+.scroll-progress__fill {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  transform-origin: top;
+  transform: scaleY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav { transition: none; }
+}
+
+/* ============================================================
    PAGE WRAPPER
    ============================================================ */
 .page-body {

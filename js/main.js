@@ -484,3 +484,80 @@ document.querySelectorAll('a[href="#works"]').forEach(a => {
 
   items.forEach(el => observer.observe(el));
 })();
+
+/* ============================================================
+   NAV — HIDE ON SCROLL DOWN, REVEAL ON ANY SCROLL UP
+   Always visible at the top of the page, while the mobile menu is
+   open, and while keyboard focus is inside the nav. Rubber-band
+   overscroll (iOS) is ignored so a bounce never flips the state.
+   ============================================================ */
+(function () {
+  const nav = document.querySelector('.nav');
+  if (!nav) return;
+  const burger = document.querySelector('.nav-burger');
+
+  const TOP_ZONE = 8;                       // px from top where the nav is always shown
+  let lastY = window.scrollY;
+  let ticking = false;
+
+  const show = () => nav.classList.remove('nav--hidden');
+  const hide = () => nav.classList.add('nav--hidden');
+
+  function update() {
+    ticking = false;
+    const y = window.scrollY;
+    const max = Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);
+
+    if (y <= TOP_ZONE) { show(); lastY = Math.max(y, 0); return; }
+    if (y > max) return;                    // bottom overscroll bounce
+    if (burger && burger.classList.contains('open')) { show(); lastY = y; return; }
+
+    if (y > lastY) {
+      if (y > nav.offsetHeight) hide();     // scrolling down, past the nav's own height
+    } else if (y < lastY) {
+      show();                               // any upward movement reveals it
+    }
+    lastY = y;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+
+  nav.addEventListener('focusin', show);
+  window.addEventListener('resize', () => { lastY = window.scrollY; update(); });
+})();
+
+/* ============================================================
+   SCROLL PROGRESS BAR — project (case study) pages only
+   Case-study pages are the ones with the "Back to Works" button, so
+   index.html and resume.html are skipped without touching any HTML.
+   ============================================================ */
+(function () {
+  if (!document.querySelector('.nav-back')) return;
+
+  const bar = document.createElement('div');
+  bar.className = 'scroll-progress';
+  bar.setAttribute('aria-hidden', 'true');
+  const fill = document.createElement('div');
+  fill.className = 'scroll-progress__fill';
+  bar.appendChild(fill);
+  document.body.appendChild(bar);
+
+  let ticking = false;
+  function update() {
+    ticking = false;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const p = max > 0 ? Math.min(Math.max(window.scrollY / max, 0), 1) : 0;
+    fill.style.transform = 'scaleY(' + p + ')';
+  }
+  function request() {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }
+
+  window.addEventListener('scroll', request, { passive: true });
+  window.addEventListener('resize', request);
+  window.addEventListener('load', request);   // lazy images change the page height
+  if ('ResizeObserver' in window) new ResizeObserver(request).observe(document.body);
+  update();
+})();
