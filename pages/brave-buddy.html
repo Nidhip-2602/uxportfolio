@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/bb-walkthrough.css" />
   <style>
     /* Brave Buddy — page-only accent swap: blue -> the project's own Violet/Coral,
        borrowed from its design system (see "Design system" section below).
@@ -800,6 +801,40 @@
         </div>
       </div>
 
+      <!-- 08b · TASK FLOW WALKTHROUGH (my contribution) -->
+      <div class="reveal">
+        <p class="cs-section-label">My Contribution · Task Flow Walkthrough</p>
+        <h2 class="cs-section-heading">Complete an activity, one screen at a time.</h2>
+        <p class="cs-section-text">The task flow I designed, as a click-through. Tap the glowing areas on the phone, or use the controls, to follow a parent from today’s assigned activity to a saved result.</p>
+
+        <div class="bbw" id="bb-walk" role="region" aria-label="Interactive task flow walkthrough" aria-roledescription="carousel">
+          <div class="bbw-guide" aria-live="polite">
+            <p class="bbw-eyebrow">Step 1</p>
+            <h3 class="bbw-title"></h3>
+            <ul class="bbw-points"></ul>
+            <p class="bbw-try"><span class="bbw-try-text"></span></p>
+          </div>
+
+          <div class="bbw-controls">
+            <div class="bbw-bar">
+              <span class="bbw-counter" aria-label="Current step"></span>
+              <button type="button" class="bbw-btn bbw-btn--prev">← Previous</button>
+              <button type="button" class="bbw-btn bbw-btn--next">Next →</button>
+            </div>
+            <div class="bbw-dots" role="group" aria-label="Jump to step"></div>
+          </div>
+
+          <div class="bbw-stage">
+            <div class="bbw-phone-wrap">
+              <div class="bbw-phone">
+                <div class="bbw-screen"><div class="bbw-notch"></div></div>
+              </div>
+            </div>
+            <p class="bbw-hint">Tap the glowing areas · Use ← → keys or swipe</p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -890,5 +925,6 @@
 </footer>
 
 <script src="../js/main.js"></script>
+<script src="../js/bb-walkthrough.js"></script>
 </body>
 </html>

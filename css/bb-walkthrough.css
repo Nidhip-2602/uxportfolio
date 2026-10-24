@@ -1,0 +1,200 @@
+/* Brave Buddy — interactive task-flow walkthrough (iPhone 13 frame + hotspots).
+   Markup lives in pages/brave-buddy.html (#bb-walk); behaviour in js/bb-walkthrough.js. */
+
+.bbw {
+  --bbw-violet: #6259D8;
+  --bbw-hot: #E8486E;
+  --bbw-ink: #2b2850;
+  --bbw-cream: #FBF8F3;
+  --bbw-lav: #ECE9F7;
+  --bbw-line: #E0DEF5;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  grid-template-areas: "guide stage" "controls stage";
+  grid-template-rows: auto 1fr;
+  column-gap: 72px;
+  row-gap: 32px;
+  margin-top: 40px;
+  align-items: start;
+}
+.bbw-guide    { grid-area: guide; min-height: 300px; }
+.bbw-controls { grid-area: controls; align-self: end; }
+.bbw-stage    { grid-area: stage; }
+
+/* ---------- Guide (left) ---------- */
+.bbw-eyebrow {
+  font-family: var(--font-body);
+  font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--bbw-violet);
+  margin-bottom: 14px;
+}
+.bbw-title {
+  font-family: var(--font-heading);
+  font-size: clamp(24px, 2.6vw, 34px);
+  line-height: 1.2; color: var(--black);
+  margin-bottom: 16px;
+}
+.bbw-points {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: grid; gap: 12px;
+  max-width: 520px;
+}
+.bbw-points li {
+  position: relative;
+  padding-left: 22px;
+  font-family: var(--font-body);
+  font-size: 16px; line-height: 1.5; color: #4a4660;
+}
+.bbw-points li::before {
+  content: "";
+  position: absolute; left: 0; top: 0.55em;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--bbw-violet);
+}
+.bbw-try {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-top: 22px;
+  font-family: var(--font-body);
+  font-size: 13px; font-weight: 500; color: var(--bbw-hot);
+}
+.bbw-try::before {
+  content: "";
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--bbw-hot);
+  animation: bbw-pulse-dot 1.8s ease-out infinite;
+}
+@keyframes bbw-pulse-dot {
+  0%   { box-shadow: 0 0 0 0 rgba(232,72,110,0.45); }
+  100% { box-shadow: 0 0 0 10px rgba(232,72,110,0); }
+}
+
+/* ---------- Controls ---------- */
+.bbw-controls { display: flex; flex-direction: column; gap: 18px; }
+.bbw-bar { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.bbw-counter {
+  font-family: var(--font-heading);
+  font-size: 22px; font-weight: 700; color: var(--black);
+  min-width: 78px; font-variant-numeric: tabular-nums;
+}
+.bbw-counter span { color: #b4b0c8; }
+.bbw-btn {
+  font-family: var(--font-body);
+  font-size: 14px; font-weight: 500;
+  padding: 11px 22px; border-radius: 999px;
+  border: 1px solid var(--bbw-line);
+  background: #fff; color: var(--bbw-ink);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+}
+.bbw-btn:hover:not(:disabled) { border-color: var(--bbw-violet); color: var(--bbw-violet); }
+.bbw-btn--next { background: var(--bbw-violet); border-color: var(--bbw-violet); color: #fff; }
+.bbw-btn--next:hover:not(:disabled) { background: #4f47bd; border-color: #4f47bd; color: #fff; }
+.bbw-btn:disabled { opacity: 0.35; cursor: default; }
+.bbw-btn:focus-visible, .bbw-dot:focus-visible, .bbw-hot:focus-visible {
+  outline: 2px solid var(--bbw-hot); outline-offset: 3px;
+}
+.bbw-dots { display: flex; flex-wrap: wrap; gap: 8px; }
+.bbw-dot {
+  width: 10px; height: 10px; padding: 0; border-radius: 50%;
+  border: 0; background: #d9d5f2; cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.bbw-dot:hover { background: #b8b2f0; }
+.bbw-dot.is-active { background: var(--bbw-violet); transform: scale(1.35); }
+
+/* ---------- Stage + iPhone 13 (right) ---------- */
+.bbw-stage {
+  background: var(--bbw-lav);
+  border-radius: 20px;
+  padding: 36px 24px 28px;
+  display: flex; flex-direction: column; align-items: center; gap: 22px;
+}
+.bbw-phone-wrap { width: min(100%, 300px); container-type: inline-size; }
+.bbw-phone {
+  position: relative;
+  padding: 3.4cqw;
+  border-radius: 15cqw;
+  background: #15141f;
+  box-shadow:
+    0 0 0 0.5cqw #3a3950,
+    0 0 0 1cqw #15141f,
+    0 4cqw 8cqw rgba(43,40,80,0.28);
+}
+/* side buttons */
+.bbw-phone::before, .bbw-phone::after {
+  content: ""; position: absolute; width: 1cqw; background: #2a2940; border-radius: 1cqw;
+}
+.bbw-phone::before { left: -1.9cqw; top: 22cqw; height: 9cqw; box-shadow: 0 13cqw 0 #2a2940, 0 25cqw 0 #2a2940; }
+.bbw-phone::after  { right: -1.9cqw; top: 32cqw; height: 15cqw; }
+
+.bbw-screen {
+  position: relative;
+  aspect-ratio: 390 / 844;
+  border-radius: 11.8cqw;
+  overflow: hidden;
+  background: var(--bbw-cream);
+}
+.bbw-notch {
+  position: absolute; z-index: 5; top: 0; left: 50%;
+  width: 41.5%; height: 4.1%;
+  transform: translateX(-50%);
+  background: #15141f;
+  border-radius: 0 0 5.5cqw 5.5cqw;
+  pointer-events: none;
+}
+.bbw-slide {
+  position: absolute; inset: 0;
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+}
+.bbw-slide.is-active { opacity: 1; visibility: visible; transition: opacity 0.35s ease; }
+.bbw-slide img { display: block; width: 100%; height: auto; user-select: none; -webkit-user-drag: none; }
+.bbw-layer {
+  position: absolute; left: 0; top: 0;
+  width: 100%; aspect-ratio: 780 / 1688;
+}
+.bbw-hot {
+  position: absolute; padding: 0; border: 0; background: transparent;
+  border-radius: 3.6cqw; cursor: pointer;
+}
+.bbw-hot::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit;
+  box-shadow: 0 0 0 0.7cqw rgba(232,72,110,0.7);
+  opacity: 0; animation: bbw-ring 2s ease-out infinite;
+  pointer-events: none;
+}
+.bbw-hot:hover::after { animation: none; opacity: 1; }
+.bbw-hot--quiet::after { display: none; }
+.bbw-hot--quiet:hover { background: rgba(232,72,110,0.1); }
+@keyframes bbw-ring {
+  0%   { opacity: 0.9; transform: scale(1); }
+  70%  { opacity: 0;   transform: scale(1.06); }
+  100% { opacity: 0;   transform: scale(1.06); }
+}
+.bbw-hint {
+  font-family: var(--font-body);
+  font-size: 12px; letter-spacing: 0.04em; color: #6a6685; text-align: center;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1000px) {
+  .bbw { grid-template-columns: minmax(0, 1fr) 340px; column-gap: 40px; }
+}
+@media (max-width: 800px) {
+  .bbw {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "stage" "controls" "guide";
+    grid-template-rows: auto;
+    row-gap: 24px;
+  }
+  .bbw-guide { min-height: 0; }
+  .bbw-stage { padding: 28px 16px 22px; }
+  .bbw-phone-wrap { width: min(100%, 280px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bbw-slide, .bbw-slide.is-active { transition: none; }
+  .bbw-hot::after, .bbw-try::before { animation: none; }
+  .bbw-hot:not(.bbw-hot--quiet)::after { opacity: 0.8; }
+}
