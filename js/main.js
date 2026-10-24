@@ -71,11 +71,11 @@
 })();
 
 /* ============================================================
-   SMOOTH SCROLL — WORKS LINK
+   SMOOTH SCROLL — WORKS / MORE PROJECTS LINKS
    ============================================================ */
 document.querySelectorAll('a[href="#works"]').forEach(a => {
   a.addEventListener('click', e => {
-    const sec = document.getElementById('works');
+    const sec = document.getElementById(a.getAttribute('href').slice(1));
     if (sec) { e.preventDefault(); sec.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   });
 });

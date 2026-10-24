@@ -651,6 +651,27 @@ html.is-dragging-scrollbar, html.is-dragging-scrollbar * { user-select: none !im
   font-size: clamp(15px, 1.6vw, 19px);
 }
 
+/* "Explore More Projects" link + target section */
+.more-projects-link {
+  display: block;
+  width: fit-content;
+  margin: 40px auto 0;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: rgba(0,0,0,0.55);
+  border-bottom: 1px solid transparent;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+.more-projects-link span {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+.more-projects-link:hover {
+  color: var(--black);
+  border-color: currentColor;
+}
+.more-projects-link:hover span { transform: translateX(4px); }
+
 @media (max-width: 640px) {
   .ai-lab-divider { margin: 40px auto; }
   .ai-lab-card { max-width: 100%; }
