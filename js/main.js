@@ -287,11 +287,11 @@ document.querySelectorAll('a[href="#works"]').forEach(a => {
     // Order matches the 7 .arc-card templates in index.html: Places,
     // Illustrations, Clay & Making, Crafting, Books, Rangoli, Embroidery.
     images: [
-      'assets/images/travel.jpeg',
-      'assets/images/illustrations.jpg',
-      'assets/images/fridge-magnet.jpg',
-      'assets/images/craft.jpg',
-      'assets/images/books.jpg',
+      'assets/images/travel.webp',
+      'assets/images/illustrations.webp',
+      'assets/images/fridge-magnet.webp',
+      'assets/images/craft.webp',
+      'assets/images/books.webp',
       'assets/images/rangoli.jpg',
       'assets/images/embroidery.jpg',
     ],

@@ -13,70 +13,70 @@
 
   var STEPS = [
     {
-      file: '1.1 Home · Today.png', stage: 'Start',
+      file: '1.1 Home · Today.webp', stage: 'Start',
       title: 'One clear thing to do today',
       points: ['Today’s activity sits at the top, with its reward.', 'One Start button, no choices to make.', 'Goal and progress stay quieter below.', 'Tapping the card opens the activity details.'],
       tryIt: 'Tap on today’s activity card',
       hot: [[644, 366, 724, 454, 1, 'See activity details']]
     },
     {
-      file: '1.3 Activity details.png', stage: 'Understand',
+      file: '1.3 Activity details.webp', stage: 'Understand',
       title: 'Everything the parent needs, in a fixed order',
       points: ['Goal, situation, difficulty, instructions, reward: always in this order.', 'Four short steps, written like a calm coach.', '“A whisper counts” keeps expectations low.'],
       tryIt: 'Tap on the CTA for the next step',
       hot: [[44, 1386, 746, 1498, 2, 'Start activity']]
     },
     {
-      file: '1.4 Get ready.png', stage: 'Prepare',
+      file: '1.4 Get ready.webp', stage: 'Prepare',
       title: 'Calm the setup before the activity begins',
       points: ['Confirms the device is connected and charged.', 'Audio stays on this phone, and there is no timer.', 'Warm phrases the parent can borrow.'],
       tryIt: 'Tap Next',
       hot: [[40, 1160, 740, 1272, 3, 'Next'], HOME_TAB]
     },
     {
-      file: '1.5 Activity in progress.png', stage: 'Practise',
+      file: '1.5 Activity in progress.webp', stage: 'Practise',
       title: 'A quiet screen while the child practises',
       points: ['The screen shows the device is working and the progress it has recorded.', 'The voice gauge is for the adult; 40 dB is a target, not a pass mark.', 'Take a break carries the same weight as Finish.'],
       tryIt: 'Tap Finish activity',
       hot: [[40, 1372, 740, 1484, 4, 'Finish activity'], HOME_TAB]
     },
     {
-      file: '1.6 Well done.png', stage: 'Celebrate',
+      file: '1.6 Well done.webp', stage: 'Celebrate',
       title: 'Praise first, paperwork second',
       points: ['Praise comes before any data entry.', 'Courage, Communication and Persistence name what is being built.', 'Not now is always available, with no guilt.'],
       tryIt: 'Tap Record results',
       hot: [[42, 1016, 738, 1128, 5, 'Record results'], HOME_TAB]
     },
     {
-      file: '1.7 Results · what Buddy heard.png', stage: 'Review',
+      file: '1.7 Results · what Buddy heard.webp', stage: 'Review',
       title: 'What Buddy heard, ready to correct',
       points: ['Four big figures: attempts, speech, duration, volume.', 'The parent can correct attempts and edit the transcript.', 'The lock icon shows it was drafted on this phone.'],
       tryIt: 'Tap Next',
       hot: [[40, 1314, 736, 1426, 6, 'Next']]
     },
     {
-      file: '1.8 Results · support and how it went.png', stage: 'Capture',
+      file: '1.8 Results · support and how it went.webp', stage: 'Capture',
       title: 'Context in a single tap',
       points: ['Support and outcome are one-tap chips.', '“Skipped, and that is okay” is a valid answer.', 'Adding an observation is optional.'],
       tryIt: 'Tap Add observation',
       hot: [[40, 1298, 740, 1488, 7, 'Add observation']]
     },
     {
-      file: '1.9 Add observation.png', stage: 'Observe',
+      file: '1.9 Add observation.webp', stage: 'Observe',
       title: 'Notice first, write only if you want to',
       points: ['Chips first; voice note and text come second.', 'Voice notes stay on the phone.', 'Skip for now is always there.'],
       tryIt: 'Tap Save observation',
       hot: [[40, 1158, 736, 1270, 8, 'Save observation']]
     },
     {
-      file: '1.10 Review and save results.png', stage: 'Confirm',
+      file: '1.10 Review and save results.webp', stage: 'Confirm',
       title: 'One summary, and control over sharing',
       points: ['Every value in one summary, before saving.', 'Sharing with Dr. Rao is a visible toggle.', 'Saved on this phone first.'],
       tryIt: 'Tap Save results',
       hot: [[44, 1196, 740, 1308, 9, 'Save results'], HOME_TAB]
     },
     {
-      file: '1.11 Saved · choose a sticker.png', stage: 'Close the loop',
+      file: '1.11 Saved · choose a sticker.webp', stage: 'Close the loop',
       title: 'The effort is added to Riya’s progress',
       points: ['Confirms the effort counts toward progress.', 'The parent picks a sticker as the reward.', 'Exit to progress or back to Today.'],
       tryIt: 'Tap Back to Today, or restart the walkthrough',
