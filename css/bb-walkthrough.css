@@ -198,3 +198,38 @@
   .bbw-hot::after, .bbw-try::before { animation: none; }
   .bbw-hot:not(.bbw-hot--quiet)::after { opacity: 0.8; }
 }
+
+/* ---------- More flows: tabbed strips of screens ---------- */
+.bbf { --bbf-violet: #6259D8; --bbf-ink: #2b2850; --bbf-line: #E0DEF5; --bbf-lav: #ECE9F7; margin-top: 8px; }
+.bbf-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; padding: 4px; background: var(--bbf-lav); border-radius: 999px; width: fit-content; max-width: 100%; }
+.bbf-tab { font-family: var(--font-body); font-size: 14px; font-weight: 500; color: #4a4660; background: transparent; border: 0; padding: 10px 22px; border-radius: 999px; cursor: pointer; transition: background .2s, color .2s; }
+.bbf-tab:hover { color: var(--bbf-ink); }
+.bbf-tab[aria-selected="true"] { background: #fff; color: var(--bbf-violet); font-weight: 600; box-shadow: 0 1px 4px rgba(43,40,80,.14); }
+.bbf-tab:focus-visible, .bbf-strip:focus-visible { outline: 2px solid var(--bbf-violet); outline-offset: 3px; }
+
+.bbf-panel { margin-top: 32px; }
+.bbf-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+.bbf-eyebrow { font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--bbf-violet); margin-bottom: 10px; }
+.bbf-title { font-family: var(--font-heading); font-size: clamp(22px, 2.4vw, 30px); line-height: 1.2; color: var(--black); margin-bottom: 8px; }
+.bbf-goal { font-family: var(--font-body); font-size: 15px; line-height: 1.6; color: #4a4660; max-width: 560px; }
+.bbf-arrows { display: flex; gap: 8px; flex: none; }
+.bbf-arrow { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--bbf-line); background: #fff; color: var(--bbf-ink); font-size: 18px; cursor: pointer; transition: background .2s, border-color .2s; }
+.bbf-arrow:hover { background: var(--bbf-lav); border-color: var(--bbf-violet); }
+@media (max-width: 640px) { .bbf-arrows { display: none; } }
+
+.bbf-strip { display: flex; align-items: flex-start; gap: 22px; margin-top: 28px; padding: 6px 2px 18px; overflow-x: auto; scroll-snap-type: x proximity; scroll-padding-left: 2px; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: #c9c5ec transparent; }
+.bbf-strip::-webkit-scrollbar { height: 6px; }
+.bbf-strip::-webkit-scrollbar-thumb { background: #c9c5ec; border-radius: 3px; }
+.bbf-shot { flex: none; margin: 0; scroll-snap-align: start; }
+/* Fixed height (not width) so captions line up even though a couple of screens are a little taller */
+.bbf-shot img { display: block; height: 508px; width: auto; max-width: none; border-radius: 26px; border: 1px solid var(--bbf-line); box-shadow: 0 10px 28px rgba(43,40,80,.10); background: #FBF8F3; }
+.bbf-shot figcaption { display: grid; max-width: 220px; gap: 2px; margin-top: 14px; padding: 0 4px; }
+.bbf-n { font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: .1em; color: var(--bbf-violet); }
+.bbf-shot strong { font-family: var(--font-heading); font-size: 15px; line-height: 1.3; color: var(--black); }
+.bbf-shot em { font-family: var(--font-body); font-style: normal; font-size: 13px; line-height: 1.45; color: #6b6785; }
+@media (max-width: 640px) { .bbf-shot img { height: 440px; } }
+
+.bbf-notes { list-style: none; margin: 8px 0 0; padding: 22px 0 0; border-top: 1px solid var(--bbf-line); display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.bbf-notes li { position: relative; padding-left: 20px; font-family: var(--font-body); font-size: 14px; line-height: 1.6; color: #4a4660; }
+.bbf-notes li::before { content: ""; position: absolute; left: 0; top: .6em; width: 8px; height: 8px; border-radius: 50%; background: var(--bbf-violet); }
+@media (max-width: 768px) { .bbf-notes { grid-template-columns: 1fr; gap: 14px; } }

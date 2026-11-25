@@ -9,6 +9,10 @@
   var BASE = '../assets/images/Selective Mutism/';
   var W = 780, H = 1688;
   var HOME_TAB = [34, 1530, 150, 1650, 0, 'Home tab', true];
+  // Bottom-nav "Activities" tab. From every screen that shows the nav bar it opens
+  // the Activities list, which sits OUTSIDE the numbered steps (aside: true).
+  var ACT_IDX = 10;
+  var ACT_TAB  = [170, 1530, 312, 1650, ACT_IDX, 'Activities tab', true];
   var BACK_L   = [40, 96, 130, 196, 'back', 'Back'];
 
   var STEPS = [
@@ -31,21 +35,21 @@
       title: 'Calm the setup before the activity begins',
       points: ['Confirms the device is connected and charged.', 'Audio stays on this phone, and there is no timer.', 'Warm phrases the parent can borrow.'],
       tryIt: 'Tap Next',
-      hot: [[40, 1160, 740, 1272, 3, 'Next'], HOME_TAB]
+      hot: [[40, 1160, 740, 1272, 3, 'Next'], HOME_TAB, ACT_TAB]
     },
     {
       file: '1.5 Activity in progress.webp', stage: 'Practise',
       title: 'A quiet screen while the child practises',
       points: ['The screen shows the device is working and the progress it has recorded.', 'The voice gauge is for the adult; 40 dB is a target, not a pass mark.', 'Take a break carries the same weight as Finish.'],
       tryIt: 'Tap Finish activity',
-      hot: [[40, 1372, 740, 1484, 4, 'Finish activity'], HOME_TAB]
+      hot: [[40, 1372, 740, 1484, 4, 'Finish activity'], HOME_TAB, ACT_TAB]
     },
     {
       file: '1.6 Well done.webp', stage: 'Celebrate',
       title: 'Praise first, paperwork second',
       points: ['Praise comes before any data entry.', 'Courage, Communication and Persistence name what is being built.', 'Not now is always available, with no guilt.'],
       tryIt: 'Tap Record results',
-      hot: [[42, 1016, 738, 1128, 5, 'Record results'], HOME_TAB]
+      hot: [[42, 1016, 738, 1128, 5, 'Record results'], HOME_TAB, ACT_TAB]
     },
     {
       file: '1.7 Results · what Buddy heard.webp', stage: 'Review',
@@ -73,18 +77,27 @@
       title: 'One summary, and control over sharing',
       points: ['Every value in one summary, before saving.', 'Sharing with Dr. Rao is a visible toggle.', 'Saved on this phone first.'],
       tryIt: 'Tap Save results',
-      hot: [[44, 1196, 740, 1308, 9, 'Save results'], HOME_TAB]
+      hot: [[44, 1196, 740, 1308, 9, 'Save results'], HOME_TAB, ACT_TAB]
     },
     {
       file: '1.11 Saved · choose a sticker.webp', stage: 'Close the loop',
       title: 'The effort is added to Riya’s progress',
       points: ['Confirms the effort counts toward progress.', 'The parent picks a sticker as the reward.', 'Exit to progress or back to Today.'],
       tryIt: 'Tap Back to Today, or restart the walkthrough',
-      hot: [[260, 1060, 520, 1125, 0, 'Back to Today'], HOME_TAB]
+      hot: [[260, 1060, 520, 1125, 0, 'Back to Today'], HOME_TAB, ACT_TAB]
+    },
+    {
+      // Not part of the numbered walkthrough: reached only via the Activities tab.
+      aside: true,
+      file: '1.2 Activities · Assigned.webp', stage: 'Activities tab',
+      title: 'Today’s activity, plus what is coming this week',
+      points: ['Assigned, Completed and Incomplete sit in one segmented control.', 'Today’s activity is highlighted, with a single Start button.', 'Later this week stays quiet, so nothing competes for attention.'],
+      tryIt: 'Tap Start activity, or the Home tab',
+      hot: [[76, 770, 700, 882, 1, 'Start activity'], [40, 490, 740, 760, 1, 'See activity details', true], HOME_TAB]
     }
   ];
 
-  var N = STEPS.length;
+  var N = STEPS.filter(function (s) { return !s.aside; }).length;
   var idx = 0;
   var history = [];
 
@@ -108,7 +121,7 @@
 
     var img = document.createElement('img');
     img.src = BASE + encodeURI(s.file).replace(/%2F/g, '/');
-    img.alt = 'Brave Buddy screen ' + (i + 1) + ' of ' + N + ': ' + s.title;
+    img.alt = s.aside ? 'Brave Buddy Activities tab: ' + s.title : 'Brave Buddy screen ' + (i + 1) + ' of ' + N + ': ' + s.title;
     img.decoding = 'async';
     if (i > 1) img.loading = 'lazy';
     slide.appendChild(img);
@@ -134,6 +147,7 @@
   });
 
   var dots = STEPS.map(function (s, i) {
+    if (s.aside) return null;
     var d = document.createElement('button');
     d.type = 'button';
     d.className = 'bbw-dot';
@@ -153,10 +167,11 @@
       el.querySelectorAll('.bbw-hot').forEach(function (b) { b.tabIndex = on ? 0 : -1; });
     });
     dots.forEach(function (d, k) {
+      if (!d) return;
       d.classList.toggle('is-active', k === i);
       if (k === i) d.setAttribute('aria-current', 'step'); else d.removeAttribute('aria-current');
     });
-    eyebrow.textContent = 'Step ' + (i + 1) + ' · ' + s.stage;
+    eyebrow.textContent = s.aside ? s.stage : 'Step ' + (i + 1) + ' · ' + s.stage;
     title.textContent = s.title;
     points.innerHTML = '';
     s.points.forEach(function (n) {
@@ -165,9 +180,9 @@
       points.appendChild(li);
     });
     tryEl.textContent = s.tryIt;
-    counter.innerHTML = pad(i + 1) + '<span> / ' + pad(N) + '</span>';
+    counter.innerHTML = s.aside ? 'Tab<span> / Activities</span>' : pad(i + 1) + '<span> / ' + pad(N) + '</span>';
     prev.disabled = i === 0 && history.length === 0;
-    next.textContent = i === N - 1 ? 'Restart ↺' : 'Next →';
+    next.textContent = s.aside ? 'Back ←' : (i === N - 1 ? 'Restart ↺' : 'Next →');
   }
 
   function go(target) {
@@ -181,6 +196,7 @@
     else if (idx > 0) render(idx - 1);
   }
   function forward() {
+    if (STEPS[idx].aside) return back();
     if (idx === N - 1) { history = []; render(0); }
     else go(idx + 1);
   }
@@ -205,4 +221,38 @@
   }, { passive: true });
 
   render(0);
+})();
+
+/* ---------- More flows: tabs + sideways scroll buttons ---------- */
+(function () {
+  var root = document.getElementById('bb-flows');
+  if (!root) return;
+  var tabs = Array.prototype.slice.call(root.querySelectorAll('.bbf-tab'));
+  var panels = Array.prototype.slice.call(root.querySelectorAll('.bbf-panel'));
+
+  function select(i, focus) {
+    tabs.forEach(function (t, k) {
+      var on = k === i;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      panels[k].hidden = !on;
+    });
+    if (focus) tabs[i].focus();
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { select(i); });
+    t.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); select((i + 1) % tabs.length, true); }
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); select((i - 1 + tabs.length) % tabs.length, true); }
+    });
+  });
+
+  panels.forEach(function (p) {
+    var strip = p.querySelector('.bbf-strip');
+    p.querySelectorAll('.bbf-arrow').forEach(function (b) {
+      b.addEventListener('click', function () {
+        strip.scrollBy({ left: Number(b.getAttribute('data-dir')) * 520, behavior: 'smooth' });
+      });
+    });
+  });
 })();
